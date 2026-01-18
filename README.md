@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # 🎓 Institute Management System
-
 A comprehensive web application for managing institute operations including courses, students, and messages.
 
 ## Architecture
