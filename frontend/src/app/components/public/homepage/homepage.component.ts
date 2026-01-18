@@ -327,13 +327,13 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
       margin: 0 auto;
       padding: 0 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.4fr 1fr;
       gap: 60px;
       align-items: center;
     }
 
     .hero-title {
-      font-size: 4rem;
+      font-size: 3rem;
       font-weight: 700;
       margin: 0 0 20px 0;
       font-family: 'Poppins', sans-serif;
@@ -345,7 +345,10 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
       animation: shimmer 3s ease-in-out infinite;
       text-shadow: 0 4px 8px rgba(0,0,0,0.3);
       position: relative;
-    }
+      letter-spacing: 1px;
+  }
+  
+
 
     .hero-title::before {
       content: attr(data-text);
