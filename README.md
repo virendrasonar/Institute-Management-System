@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🎓 Institute Management System
 
 A comprehensive web application for managing institute operations including courses, students, and messages.
@@ -150,3 +151,7 @@ If you encounter any issues, check the [TROUBLESHOOTING.md](TROUBLESHOOTING.md) 
 - **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
 
 ## Folder Structure
+=======
+# Institute-Management-System
+This project is built to demonstrate real-world full-stack development, clean architecture, and CRUD operations using Java-based technologies. It is suitable for learning, academic use, and as a base for production-level systems with further enhancements.
+>>>>>>> 21cd130b42ff131f6c679bc035c84a41dd6a3496
