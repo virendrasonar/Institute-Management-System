@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry, timeout } from 'rxjs/operators';
 import { Course } from '../models/course.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:8080/admin/courses';
+  private apiUrl = `${environment.apiUrl}/admin/courses`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
