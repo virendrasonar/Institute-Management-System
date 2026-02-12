@@ -49,7 +49,7 @@ import { environment } from "src/environments/environment";
               <p>
                 Have questions about courses, admissions, or support? <br />
                 <span class="highlight-text">
-                  Call or WhatsApp us at +91 91029 3044
+                  Call or WhatsApp us at +93253 90860
                 </span>
                 <br />
               </p>
