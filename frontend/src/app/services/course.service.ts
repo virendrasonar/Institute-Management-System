@@ -1,98 +1,34 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry, timeout } from 'rxjs/operators';
-import { Course } from '../models/course.model';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { environment } from "src/environments/environment";
+import { Course } from "../models/course.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CourseService {
   private apiUrl = `${environment.apiUrl}/admin/courses`;
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    })
-  };
 
-  constructor(private http: HttpClient) { }
-
-  private handleError(error: HttpErrorResponse) {
-    let errorMessage = 'An unknown error occurred';
-    
-    if (error.error instanceof ErrorEvent) {
-      // Client-side error
-      errorMessage = `Client Error: ${error.error.message}`;
-    } else {
-      // Server-side error
-      switch (error.status) {
-        case 0:
-          errorMessage = 'Unable to connect to server. Please check if the backend is running on port 8080.';
-          break;
-        case 400:
-          errorMessage = 'Invalid course data. Please check your input.';
-          break;
-        case 404:
-          errorMessage = 'Course not found or API endpoint unavailable.';
-          break;
-        case 500:
-          errorMessage = 'Server error. Please try again later.';
-          break;
-        default:
-          errorMessage = `Server Error: ${error.status} - ${error.message}`;
-      }
-    }
-    
-    console.error('CourseService Error:', error);
-    return throwError(() => new Error(errorMessage));
-  }
+  constructor(private http: HttpClient) {}
 
   getAllCourses(): Observable<Course[]> {
-    return this.http.get<Course[]>(this.apiUrl, this.httpOptions)
-      .pipe(
-        timeout(10000), // 10 second timeout
-        retry(2), // Retry up to 2 times
-        catchError(this.handleError)
-      );
+    return this.http.get<Course[]>(this.apiUrl);
   }
 
   getCourseById(id: number): Observable<Course> {
-    return this.http.get<Course>(`${this.apiUrl}/${id}`, this.httpOptions)
-      .pipe(
-        timeout(10000),
-        retry(1),
-        catchError(this.handleError)
-      );
+    return this.http.get<Course>(`${this.apiUrl}/${id}`);
   }
 
   createCourse(course: Course): Observable<Course> {
-    console.log('Creating course:', course);
-    console.log('API URL:', this.apiUrl);
-    
-    return this.http.post<Course>(this.apiUrl, course, this.httpOptions)
-      .pipe(
-        timeout(15000), // Longer timeout for create operations
-        catchError(this.handleError)
-      );
+    return this.http.post<Course>(this.apiUrl, course);
   }
 
   updateCourse(id: number, course: Course): Observable<Course> {
-    console.log('Updating course:', id, course);
-    
-    return this.http.put<Course>(`${this.apiUrl}/${id}`, course, this.httpOptions)
-      .pipe(
-        timeout(15000),
-        catchError(this.handleError)
-      );
+    return this.http.put<Course>(`${this.apiUrl}/${id}`, course);
   }
 
   deleteCourse(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`, this.httpOptions)
-      .pipe(
-        timeout(10000),
-        catchError(this.handleError)
-      );
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

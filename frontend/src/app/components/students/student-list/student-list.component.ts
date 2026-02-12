@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { StudentService } from '../../../services/student.service';
-import { Student } from '../../../models/student.model';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatTableModule } from "@angular/material/table";
+import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatSnackBarModule, MatSnackBar } from "@angular/material/snack-bar";
+import { StudentService } from "../../../services/student.service";
+import { Student } from "../../../models/student.model";
 
 @Component({
-  selector: 'app-student-list',
+  selector: "app-student-list",
   standalone: true,
   imports: [
     CommonModule,
@@ -19,11 +19,11 @@ import { Student } from '../../../models/student.model';
     MatProgressSpinnerModule,
     MatIconModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   template: `
     <div class="creative-header fade-in">
-      <h1>👥 Student Directory</h1>
+      <h1>👥Student Directory👥</h1>
       <p>Explore and manage your institute's student community</p>
     </div>
 
@@ -68,30 +68,45 @@ import { Student } from '../../../models/student.model';
           <div class="empty-state-content">
             <mat-icon class="no-data-icon">people_outline</mat-icon>
             <h3>No Students Registered</h3>
-            <p>The student directory is currently empty. Students will appear here once they register through the system or are added by administrators.</p>
+            <p>
+              The student directory is currently empty. Students will appear
+              here once they register through the system or are added by
+              administrators.
+            </p>
             <div class="info-note">
               <mat-icon>info</mat-icon>
-              <span>This is a read-only view. Student registration is handled through separate enrollment processes.</span>
+              <span
+                >This is a read-only view. Student registration is handled
+                through separate enrollment processes.</span
+              >
             </div>
           </div>
         </mat-card-content>
       </mat-card>
     </div>
 
-    <div class="students-container fade-in" *ngIf="!loading && students.length > 0" style="animation-delay: 0.2s">
+    <div
+      class="students-container fade-in"
+      *ngIf="!loading && students.length > 0"
+      style="animation-delay: 0.2s"
+    >
       <!-- View Toggle -->
       <div class="view-controls">
+        <h2 class="section-title">Student Database</h2>
+
         <button mat-button class="view-toggle-btn" (click)="toggleView()">
-          <mat-icon>{{ showCards ? 'table_view' : 'view_module' }}</mat-icon>
-          {{ showCards ? 'Table View' : 'Card View' }}
+          <mat-icon>{{ showCards ? "table_view" : "view_module" }}</mat-icon>
+          {{ showCards ? "Table View" : "Card View" }}
         </button>
       </div>
 
       <!-- Card View -->
       <div class="students-grid" *ngIf="showCards">
-        <div class="student-card slide-in-left" 
-             *ngFor="let student of students; let i = index"
-             [style.animation-delay]="(i * 0.1) + 's'">
+        <div
+          class="student-card slide-in-left"
+          *ngFor="let student of students; let i = index"
+          [style.animation-delay]="i * 0.1 + 's'"
+        >
           <div class="student-header">
             <div class="student-avatar">
               <mat-icon>person</mat-icon>
@@ -104,7 +119,7 @@ import { Student } from '../../../models/student.model';
               <div class="status-indicator active"></div>
             </div>
           </div>
-          
+
           <div class="student-details">
             <div class="detail-item">
               <mat-icon>email</mat-icon>
@@ -112,10 +127,18 @@ import { Student } from '../../../models/student.model';
             </div>
             <div class="detail-item">
               <mat-icon>school</mat-icon>
-              <span>Active Student</span>
+              <span
+                class="status"
+                [ngClass]="{
+                  'active-status': student.status === 'ACTIVE',
+                  'inactive-status': student.status === 'INACTIVE',
+                }"
+              >
+                {{ student.status }}
+              </span>
             </div>
           </div>
-          
+
           <div class="student-actions">
             <button mat-button class="action-btn">
               <mat-icon>visibility</mat-icon>
@@ -159,7 +182,15 @@ import { Student } from '../../../models/student.model';
                   </div>
                   <div class="name-info">
                     <span class="name">{{ student.name }}</span>
-                    <span class="status">Active Student</span>
+                    <span
+                      class="status"
+                      [ngClass]="{
+                        'active-status': student.status === 'ACTIVE',
+                        'inactive-status': student.status === 'INACTIVE',
+                      }"
+                    >
+                      {{ student.status }}
+                    </span>
                   </div>
                 </div>
               </td>
@@ -199,401 +230,434 @@ import { Student } from '../../../models/student.model';
               </td>
             </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumnsWithActions"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumnsWithActions;" class="table-row"></tr>
+            <tr
+              mat-header-row
+              *matHeaderRowDef="displayedColumnsWithActions"
+            ></tr>
+            <tr
+              mat-row
+              *matRowDef="let row; columns: displayedColumnsWithActions"
+              class="table-row"
+            ></tr>
           </table>
         </mat-card-content>
       </mat-card>
     </div>
   `,
-  styles: [`
-    .student-stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    
-    .stat-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 24px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(102, 126, 234, 0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .stat-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
-    }
-    
-    .stat-icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    
-    .stat-icon mat-icon {
-      font-size: 1.8rem !important;
-      width: 1.8rem !important;
-      height: 1.8rem !important;
-    }
-    
-    .stat-info {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .stat-number {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: #333;
-      font-family: 'Poppins', sans-serif;
-      line-height: 1;
-    }
-    
-    .stat-label {
-      color: #666;
-      font-size: 0.95rem;
-      font-weight: 500;
-      margin-top: 4px;
-    }
-    
-    .empty-state-card {
-      background: rgba(255, 255, 255, 0.95) !important;
-      border-radius: 25px !important;
-      border: 2px dashed rgba(102, 126, 234, 0.3) !important;
-    }
-    
-    .empty-state-content {
-      text-align: center;
-      padding: 60px 40px;
-    }
-    
-    .info-note {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: rgba(102, 126, 234, 0.1);
-      border-radius: 12px;
-      color: #667eea;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    
-    .info-note mat-icon {
-      font-size: 1.2rem !important;
-      width: 1.2rem !important;
-      height: 1.2rem !important;
-    }
-    
-    .view-controls {
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 24px;
-    }
-    
-    .view-toggle-btn {
-      background: rgba(102, 126, 234, 0.1) !important;
-      color: #667eea !important;
-      border-radius: 20px !important;
-      padding: 8px 20px !important;
-      font-weight: 500 !important;
-    }
-    
-    .view-toggle-btn:hover {
-      background: rgba(102, 126, 234, 0.2) !important;
-    }
-    
-    .students-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      gap: 24px;
-    }
-    
-    .student-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(102, 126, 234, 0.1);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .student-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    }
-    
-    .student-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-    }
-    
-    .student-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-    
-    .student-avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    }
-    
-    .student-avatar mat-icon {
-      font-size: 1.8rem !important;
-      width: 1.8rem !important;
-      height: 1.8rem !important;
-    }
-    
-    .student-info {
-      flex: 1;
-    }
-    
-    .student-info h3 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 600;
-      color: #333;
-      margin: 0 0 4px 0;
-      font-size: 1.3rem;
-    }
-    
-    .student-id {
-      color: #666;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-    
-    .student-status {
-      display: flex;
-      align-items: center;
-    }
-    
-    .status-indicator {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #4caf50;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-      animation: pulse 2s infinite;
-    }
-    
-    .student-details {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    
-    .detail-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 8px 12px;
-      background: rgba(102, 126, 234, 0.05);
-      border-radius: 10px;
-      color: #666;
-    }
-    
-    .detail-item mat-icon {
-      color: #667eea;
-      font-size: 1.2rem !important;
-      width: 1.2rem !important;
-      height: 1.2rem !important;
-    }
-    
-    .student-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: flex-end;
-    }
-    
-    .action-btn {
-      background: rgba(102, 126, 234, 0.1) !important;
-      color: #667eea !important;
-      border-radius: 15px !important;
-      padding: 8px 16px !important;
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
-      transition: all 0.3s ease !important;
-    }
-    
-    .action-btn:hover {
-      background: rgba(102, 126, 234, 0.2) !important;
-      transform: translateY(-2px);
-    }
-    
-    .table-container {
-      background: rgba(255, 255, 255, 0.95) !important;
-      border-radius: 20px !important;
-    }
-    
-    .students-table {
-      width: 100%;
-    }
-    
-    .header-content {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600 !important;
-    }
-    
-    .header-content mat-icon {
-      font-size: 1.2rem !important;
-      width: 1.2rem !important;
-      height: 1.2rem !important;
-    }
-    
-    .student-id-badge {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 6px 12px;
-      border-radius: 12px;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-    
-    .student-name-cell {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .name-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-    }
-    
-    .name-info {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .name {
-      font-weight: 600;
-      color: #333;
-      font-size: 1.1rem;
-    }
-    
-    .status {
-      color: #4caf50;
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-    
-    .email-cell {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #666;
-    }
-    
-    .email-cell mat-icon {
-      color: #667eea;
-      font-size: 1.1rem !important;
-      width: 1.1rem !important;
-      height: 1.1rem !important;
-    }
-    
-    .table-actions {
-      display: flex;
-      gap: 8px;
-    }
-    
-    .view-btn {
-      background: rgba(102, 126, 234, 0.1) !important;
-      color: #667eea !important;
-    }
-    
-    .contact-btn {
-      background: rgba(76, 175, 80, 0.1) !important;
-      color: #4caf50 !important;
-    }
-    
-    .table-row {
-      transition: all 0.3s ease;
-    }
-    
-    .table-row:hover {
-      background-color: rgba(102, 126, 234, 0.05) !important;
-    }
-    
-    @media (max-width: 768px) {
+  styles: [
+    `
+      .creative-header h1 {
+        font-size: 3rem;
+        line-height: 1.2;
+        margin: 0;
+        padding: 0;
+      }
+      .creative-header {
+        padding: 40px 20px;
+        margin: 25px 10px;
+      }
+
+      .creative-header p {
+        margin: 20px 0px 10px 8px;
+        font-size: 24px;
+        color: #e8e8e8;
+      }
+
       .student-stats {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 24px;
+        margin: 30px 10px;
       }
-      
-      .students-grid {
-        grid-template-columns: 1fr;
+
+      .stat-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
       }
-      
-      .student-actions {
+
+      .stat-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+      }
+
+      .stat-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .stat-icon mat-icon {
+        font-size: 1.8rem !important;
+        width: 1.8rem !important;
+        height: 1.8rem !important;
+      }
+
+      .stat-info {
+        display: flex;
         flex-direction: column;
       }
-      
-      .view-controls {
-        justify-content: center;
+
+      .stat-number {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #333;
+        font-family: "Poppins", sans-serif;
+        line-height: 1;
       }
-    }
-  `]
+
+      .stat-label {
+        color: #666;
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-top: 4px;
+      }
+
+      .empty-state-card {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 25px !important;
+        border: 2px dashed rgba(102, 126, 234, 0.3) !important;
+      }
+
+      .empty-state-content {
+        text-align: center;
+        padding: 60px 40px;
+      }
+
+      .info-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: rgba(102, 126, 234, 0.1);
+        border-radius: 12px;
+        color: #667eea;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .info-note mat-icon {
+        font-size: 1.2rem !important;
+        width: 1.2rem !important;
+        height: 1.2rem !important;
+      }
+
+      .view-controls {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-bottom: 24px;
+        position: relative;
+      }
+
+      .section-title {
+        margin-left: 620px;
+        margin-right: auto;
+        margin-top: 10px;
+        font-size: 2rem;
+        font-weight: 600;
+        color: white;
+      }
+
+      .view-toggle-btn {
+        background: #ffffff !important;
+        color: #011684 !important;
+        border-radius: 10px !important;
+        padding: 8px 20px !important;
+        font-weight: 500 !important;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+      }
+
+      .students-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 24px;
+      }
+
+      .student-card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(102, 126, 234, 0.1);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .student-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      }
+
+      .student-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .student-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .student-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .student-avatar mat-icon {
+        font-size: 1.8rem !important;
+        width: 1.8rem !important;
+        height: 1.8rem !important;
+      }
+
+      .student-info {
+        flex: 1;
+      }
+
+      .student-info h3 {
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        color: #333;
+        margin: 0 0 4px 0;
+        font-size: 1.3rem;
+      }
+
+      .student-id {
+        color: #666;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      .student-status {
+        display: flex;
+        align-items: center;
+      }
+
+      .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #4caf50;
+        box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        animation: pulse 2s infinite;
+      }
+
+      .student-details {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+      }
+
+      .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px;
+        background: rgba(102, 126, 234, 0.05);
+        border-radius: 10px;
+        color: #666;
+      }
+
+      .detail-item mat-icon {
+        color: #667eea;
+        font-size: 1.2rem !important;
+        width: 1.2rem !important;
+        height: 1.2rem !important;
+      }
+
+      .student-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+      }
+
+      .action-btn {
+        background: rgba(102, 126, 234, 0.1) !important;
+        color: #667eea !important;
+        border-radius: 15px !important;
+        padding: 8px 16px !important;
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        transition: all 0.3s ease !important;
+      }
+
+      .table-container {
+        background: rgba(255, 255, 255, 0.95) !important;
+        border-radius: 20px !important;
+      }
+
+      .students-table {
+        width: 100%;
+      }
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600 !important;
+      }
+
+      .header-content mat-icon {
+        font-size: 1.2rem !important;
+        width: 1.2rem !important;
+        height: 1.2rem !important;
+      }
+
+      .student-id-badge {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+
+      .student-name-cell {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .name-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .name-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .name {
+        font-weight: 600;
+        color: #333;
+        font-size: 1.1rem;
+      }
+
+      .status {
+        font-size: 0.85rem;
+        font-weight: 600;
+        display: inline-block;
+        border-radius: 5px;
+        width: 100px;
+      }
+
+      .active-status {
+        color: #039303;
+      }
+
+      .inactive-status {
+        color: #e70707;
+      }
+
+      .email-cell {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #666;
+      }
+
+      .email-cell mat-icon {
+        color: #667eea;
+        font-size: 1.1rem !important;
+        width: 1.1rem !important;
+        height: 1.1rem !important;
+      }
+
+      .table-actions {
+        display: flex;
+        gap: 8px;
+      }
+
+      .view-btn {
+        background: rgba(102, 126, 234, 0.1) !important;
+        color: #667eea !important;
+      }
+
+      .contact-btn {
+        background: rgba(76, 175, 80, 0.1) !important;
+        color: #4caf50 !important;
+      }
+
+      @media (max-width: 768px) {
+        .student-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .students-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .student-actions {
+          flex-direction: column;
+        }
+
+        .view-controls {
+          justify-content: center;
+        }
+      }
+    `,
+  ],
 })
 export class StudentListComponent implements OnInit {
   students: Student[] = [];
   loading = false;
-  showCards = true;
-  displayedColumns: string[] = ['id', 'name', 'email'];
-  displayedColumnsWithActions: string[] = ['id', 'name', 'email', 'actions'];
+  showCards = false;
+  displayedColumns: string[] = ["id", "name", "email"];
+  displayedColumnsWithActions: string[] = ["id", "name", "email", "actions"];
 
   constructor(
     private studentService: StudentService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -609,7 +673,7 @@ export class StudentListComponent implements OnInit {
   }
 
   getUniqueEmails(): number {
-    const uniqueEmails = new Set(this.students.map(s => s.email));
+    const uniqueEmails = new Set(this.students.map((s) => s.email));
     return uniqueEmails.size;
   }
 
@@ -621,10 +685,12 @@ export class StudentListComponent implements OnInit {
         this.loading = false;
       },
       error: (error: any) => {
-        console.error('Error loading students:', error);
-        this.snackBar.open('Error loading students', 'Close', { duration: 3000 });
+        console.error("Error loading students:", error);
+        this.snackBar.open("Error loading students", "Close", {
+          duration: 3000,
+        });
         this.loading = false;
-      }
+      },
     });
   }
 }

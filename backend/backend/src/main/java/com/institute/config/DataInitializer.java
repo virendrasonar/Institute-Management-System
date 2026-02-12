@@ -1,12 +1,13 @@
 package com.institute.config;
 
-import com.institute.admin.model.Student;
-import com.institute.admin.model.Message;
-import com.institute.admin.repository.StudentRepository;
-import com.institute.admin.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import com.institute.admin.model.Message;
+import com.institute.admin.model.Student;
+import com.institute.admin.repository.MessageRepository;
+import com.institute.admin.repository.StudentRepository;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -31,14 +32,15 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializeStudents() {
-        Student student1 = new Student("Alice Johnson", "alice.johnson@email.com");
-        Student student2 = new Student("Bob Smith", "bob.smith@email.com");
-        Student student3 = new Student("Carol Davis", "carol.davis@email.com");
-        Student student4 = new Student("David Wilson", "david.wilson@email.com");
-        Student student5 = new Student("Emma Brown", "emma.brown@email.com");
-        Student student6 = new Student("Frank Miller", "frank.miller@email.com");
-        Student student7 = new Student("Grace Lee", "grace.lee@email.com");
-        Student student8 = new Student("Henry Taylor", "henry.taylor@email.com");
+       Student student1 = new Student("Aarav Sharma", "aarav.sharma@gmail.com", "ACTIVE");
+Student student2 = new Student("Vivaan Patel", "vivaan.patel@gmail.com", "ACTIVE");
+Student student3 = new Student("Ananya Gupta", "ananya.gupta@gmail.com", "ACTIVE");
+Student student4 = new Student("Ishaan Verma", "ishaan.verma@gmail.com", "ACTIVE");
+Student student5 = new Student("Diya Reddy", "diya.reddy@gmail.com", "ACTIVE");
+Student student6 = new Student("Aditya Singh", "aditya.singh@gmail.com", "ACTIVE");
+Student student7 = new Student("Kavya Nair", "kavya.nair@gmail.com", "ACTIVE");
+Student student8 = new Student("Rohan Kulkarni", "rohan.kulkarni@gmail.com", "ACTIVE");
+
 
         studentRepository.save(student1);
         studentRepository.save(student2);
@@ -53,20 +55,21 @@ public class DataInitializer implements CommandLineRunner {
     }
 
     private void initializeMessages() {
-        Message message1 = new Message("Alice Johnson", "alice.johnson@email.com", 
-            "Hello! I'm interested in enrolling in the Advanced JavaScript course. Could you please provide more information about the prerequisites and schedule?");
-        
-        Message message2 = new Message("Bob Smith", "bob.smith@email.com", 
-            "I'm having trouble accessing the course materials. Could someone help me with the login process?");
-        
-        Message message3 = new Message("Carol Davis", "carol.davis@email.com", 
-            "Thank you for the excellent Spring Boot course! The content was very comprehensive and well-structured. I would love to see more advanced topics covered.");
-        
-        Message message4 = new Message("David Wilson", "david.wilson@email.com", 
-            "Is there a mobile app available for accessing course content? It would be great to study on the go.");
-        
-        Message message5 = new Message("Emma Brown", "emma.brown@email.com", 
-            "I'm interested in the upcoming React course. When will registration open and what are the fees?");
+        Message message1 = new Message("Aarav Sharma", "aarav.sharma@email.com", 
+        "Hello! I'm interested in enrolling in the Advanced JavaScript course. Could you please provide more information about the prerequisites and schedule?");
+
+Message message2 = new Message("Priya Patel", "priya.patel@email.com", 
+        "I'm having trouble accessing the course materials. Could someone help me with the login process?");
+
+Message message3 = new Message("Rohan Mehta", "rohan.mehta@email.com", 
+        "Thank you for the excellent Spring Boot course! The content was very comprehensive and well-structured. I would love to see more advanced topics covered.");
+
+Message message4 = new Message("Liam Anderson", "liam.anderson@email.com", 
+        "Is there a mobile app available for accessing course content? It would be great to study on the go.");
+
+Message message5 = new Message("Sofia Martinez", "sofia.martinez@email.com", 
+        "I'm interested in the upcoming React course. When will registration open and what are the fees?");
+
 
         messageRepository.save(message1);
         messageRepository.save(message2);

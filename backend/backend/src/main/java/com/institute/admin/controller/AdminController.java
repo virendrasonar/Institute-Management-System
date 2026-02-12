@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,12 @@ import com.institute.admin.model.Message;
 import com.institute.admin.model.Student;
 import com.institute.admin.services.AdminService;
 
+@CrossOrigin(
+    origins = {
+        "http://localhost:4200",
+        "https://gleeful-panda-7ce1f7.netlify.app"
+    }
+)
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -33,18 +40,12 @@ public class AdminController {
 
     // ---------------- Course Endpoints ----------------
 
-    /**
-     * GET /admin/courses - Retrieve all courses
-     */
     @GetMapping("/courses")
     public ResponseEntity<List<Course>> getAllCourses() {
         List<Course> courses = adminService.getAllCourses();
         return ResponseEntity.ok(courses);
     }
 
-    /**
-     * POST /admin/courses - Create a new course
-     */
     @PostMapping("/courses")
     public ResponseEntity<Course> createCourse(@RequestBody Course course) {
         try {
@@ -55,19 +56,13 @@ public class AdminController {
         }
     }
 
-    /**
-     * GET /admin/courses/{id} - Retrieve a specific course by ID
-     */
     @GetMapping("/courses/{id}")
     public ResponseEntity<Course> getCourseById(@PathVariable Long id) {
         Optional<Course> course = adminService.getCourseById(id);
         return course.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
+                     .orElse(ResponseEntity.notFound().build());
     }
 
-    /**
-     * PUT /admin/courses/{id} - Update an existing course
-     */
     @PutMapping("/courses/{id}")
     public ResponseEntity<Course> updateCourse(@PathVariable Long id, @RequestBody Course course) {
         try {
@@ -78,9 +73,6 @@ public class AdminController {
         }
     }
 
-    /**
-     * DELETE /admin/courses/{id} - Delete a course by ID
-     */
     @DeleteMapping("/courses/{id}")
     public ResponseEntity<Void> deleteCourse(@PathVariable Long id) {
         try {
@@ -93,43 +85,78 @@ public class AdminController {
 
     // ---------------- Student Endpoints ----------------
 
-    /**
-     * GET /admin/students - Retrieve all students
-     */
     @GetMapping("/students")
     public ResponseEntity<List<Student>> getAllStudents() {
         List<Student> students = adminService.getAllStudents();
         return ResponseEntity.ok(students);
     }
 
-    /**
-     * GET /admin/students/{id} - Retrieve a specific student by ID
-     */
     @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
         Optional<Student> student = adminService.getStudentById(id);
         return student.map(ResponseEntity::ok)
-                     .orElse(ResponseEntity.notFound().build());
+                      .orElse(ResponseEntity.notFound().build());
     }
 
     // ---------------- Message Endpoints ----------------
 
-    /**
-     * GET /admin/messages - Retrieve all messages
-     */
     @GetMapping("/messages")
     public ResponseEntity<List<Message>> getAllMessages() {
         List<Message> messages = adminService.getAllMessages();
         return ResponseEntity.ok(messages);
     }
 
-    /**
-     * GET /admin/messages/{id} - Retrieve a specific message by ID
-     */
     @GetMapping("/messages/{id}")
     public ResponseEntity<Message> getMessageById(@PathVariable Long id) {
         Optional<Message> message = adminService.getMessageById(id);
         return message.map(ResponseEntity::ok)
-                     .orElse(ResponseEntity.notFound().build());
+                      .orElse(ResponseEntity.notFound().build());
+    }
+   @PostMapping("/messages")
+public ResponseEntity<Message> createMessage(@RequestBody Message message) {
+    Message savedMessage = adminService.addMessage(message);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedMessage);
+}
+    @DeleteMapping("/messages/{id}")
+public ResponseEntity<Void> deleteMessage(@PathVariable Long id) {
+    try {
+        adminService.deleteMessage(id);
+        return ResponseEntity.noContent().build();
+    } catch (RuntimeException e) {
+        return ResponseEntity.notFound().build();
     }
 }
+    @PostMapping("/students")
+public ResponseEntity<Student> addStudent(@RequestBody Student student) {
+    Student saved = adminService.addStudent(student);
+    return ResponseEntity.status(HttpStatus.CREATED).body(saved);
+}
+
+@DeleteMapping("/students/{id}")
+public ResponseEntity<Void> deleteStudent(@PathVariable Long id) {
+    adminService.deleteStudent(id);
+    return ResponseEntity.noContent().build();
+}
+
+@PutMapping("/students/{id}")
+public ResponseEntity<Student> updateStudent(
+        @PathVariable Long id,
+        @RequestBody Student student) {
+
+    try {
+        Student updated = adminService.updateStudent(id, student);
+        return ResponseEntity.ok(updated);
+    } catch (RuntimeException e) {
+        return ResponseEntity.notFound().build();
+    }
+}
+
+
+
+}
+
+
+
+
+
+

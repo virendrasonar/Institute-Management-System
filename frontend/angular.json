@@ -27,7 +27,8 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/_redirects"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -38,17 +39,17 @@
           "configurations": {
             "production": {
               "budgets": [
-  {
-    "type": "initial",
-    "maximumWarning": "5mb",
-    "maximumError": "10mb"
-  },
-  {
-    "type": "anyComponentStyle",
-    "maximumWarning": "50kb",
-    "maximumError": "100kb"
-  }
-],
+                {
+                  "type": "initial",
+                  "maximumWarning": "5mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "50kb",
+                  "maximumError": "100kb"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {

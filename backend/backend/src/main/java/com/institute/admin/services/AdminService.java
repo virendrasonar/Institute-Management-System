@@ -1,17 +1,17 @@
 package com.institute.admin.services;
 
-import com.institute.admin.model.Course;
-import com.institute.admin.model.Student;
-import com.institute.admin.model.Message;
-import com.institute.admin.repository.CourseRepository;
-import com.institute.admin.repository.StudentRepository;
-import com.institute.admin.repository.MessageRepository;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.institute.admin.model.Course;
+import com.institute.admin.model.Message;
+import com.institute.admin.model.Student;
+import com.institute.admin.repository.CourseRepository;
+import com.institute.admin.repository.MessageRepository;
+import com.institute.admin.repository.StudentRepository;
 
 @Service
 public class AdminService {
@@ -21,132 +21,166 @@ public class AdminService {
     private final MessageRepository messageRepository;
 
     @Autowired
-    public AdminService(CourseRepository courseRepository, StudentRepository studentRepository, MessageRepository messageRepository) {
+    public AdminService(CourseRepository courseRepository,
+                        StudentRepository studentRepository,
+                        MessageRepository messageRepository) {
         this.courseRepository = courseRepository;
         this.studentRepository = studentRepository;
         this.messageRepository = messageRepository;
     }
 
-    // ---------------- Course Management Methods ----------------
-    /**
-     * Retrieves all courses from the database
-     *
-     * @return List of all courses
-     */
+    // =========================
+    // COURSE MANAGEMENT
+    // =========================
+
     public List<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
-    /**
-     * Retrieves a specific course by its ID
-     *
-     * @param id The course ID
-     * @return Optional containing the course if found
-     */
     public Optional<Course> getCourseById(Long id) {
         return courseRepository.findById(id);
     }
 
-    /**
-     * Adds a new course to the database
-     *
-     * @param course The course to add
-     * @return The saved course with generated ID
-     */
     public Course addCourse(Course course) {
-        if (course.getName() == null || course.getName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Course name cannot be null or empty");
+
+        if (course.getName() == null || course.getName().isBlank()) {
+            throw new IllegalArgumentException("Course name required");
         }
+
         return courseRepository.save(course);
     }
 
-    /**
-     * Updates an existing course
-     *
-     * @param id The ID of the course to update
-     * @param updatedCourse The course data to update
-     * @return The updated course
-     * @throws RuntimeException if course not found
-     */
     public Course updateCourse(Long id, Course updatedCourse) {
+
         return courseRepository.findById(id).map(course -> {
-            if (updatedCourse.getName() != null && !updatedCourse.getName().trim().isEmpty()) {
+
+            if (updatedCourse.getName() != null &&
+                !updatedCourse.getName().isBlank()) {
                 course.setName(updatedCourse.getName());
             }
+
             if (updatedCourse.getDescription() != null) {
                 course.setDescription(updatedCourse.getDescription());
             }
+
             return courseRepository.save(course);
-        }).orElseThrow(() -> new RuntimeException("Course not found with id " + id));
+
+        }).orElseThrow(() ->
+            new RuntimeException("Course not found with id " + id)
+        );
     }
 
-    /**
-     * Deletes a course by its ID
-     *
-     * @param id The ID of the course to delete
-     * @throws RuntimeException if course not found
-     */
     public void deleteCourse(Long id) {
+
         if (!courseRepository.existsById(id)) {
             throw new RuntimeException("Course not found with id " + id);
         }
+
         courseRepository.deleteById(id);
     }
 
+    // =========================
+    // STUDENT MANAGEMENT
+    // =========================
 
-    // ---------------- Student Retrieval Methods ----------------
-
-    /**
-     * Retrieves all students from the database
-     * @return List of all students
-     */
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    /**
-     * Retrieves a specific student by their ID
-     * @param id The student ID
-     * @return Optional containing the student if found
-     */
     public Optional<Student> getStudentById(Long id) {
         return studentRepository.findById(id);
     }
 
-    // ---------------- Message Retrieval Methods ----------------
+    public Student addStudent(Student student) {
 
-    /**
-     * Retrieves all messages from the database
-     * @return List of all messages
-     */
+        if (student.getName() == null || student.getName().isBlank()) {
+            throw new IllegalArgumentException("Student name required");
+        }
+
+        if (student.getEmail() == null || student.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Student email required");
+        }
+
+        if (student.getStatus() == null || student.getStatus().isBlank()) {
+            student.setStatus("ACTIVE");
+        }
+
+        return studentRepository.save(student);
+    }
+
+    public Student updateStudent(Long id, Student updatedStudent) {
+
+        return studentRepository.findById(id).map(student -> {
+
+            if (updatedStudent.getName() != null &&
+                !updatedStudent.getName().isBlank()) {
+                student.setName(updatedStudent.getName());
+            }
+
+            if (updatedStudent.getEmail() != null &&
+                !updatedStudent.getEmail().isBlank()) {
+                student.setEmail(updatedStudent.getEmail());
+            }
+
+            if (updatedStudent.getStatus() != null &&
+                !updatedStudent.getStatus().isBlank()) {
+                student.setStatus(updatedStudent.getStatus());
+            }
+
+            return studentRepository.save(student);
+
+        }).orElseThrow(() ->
+            new RuntimeException("Student not found with id " + id)
+        );
+    }
+
+    public void deleteStudent(Long id) {
+
+        if (!studentRepository.existsById(id)) {
+            throw new RuntimeException("Student not found with id " + id);
+        }
+
+        studentRepository.deleteById(id);
+    }
+
+    // =========================
+    // MESSAGE MANAGEMENT
+    // =========================
+
     public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
 
-    /**
-     * Retrieves a specific message by its ID
-     * @param id The message ID
-     * @return Optional containing the message if found
-     */
     public Optional<Message> getMessageById(Long id) {
         return messageRepository.findById(id);
     }
 
-    /**
-     * Adds a new message to the database
-     * @param message The message to add
-     * @return The saved message with generated ID
-     */
     public Message addMessage(Message message) {
-        if (message.getSenderName() == null || message.getSenderName().trim().isEmpty()) {
-            throw new IllegalArgumentException("Sender name cannot be null or empty");
+
+        if (message.getSenderName() == null ||
+            message.getSenderName().isBlank()) {
+            throw new IllegalArgumentException("Sender name required");
         }
-        if (message.getEmail() == null || message.getEmail().trim().isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or empty");
+
+        if (message.getEmail() == null ||
+            message.getEmail().isBlank()) {
+            throw new IllegalArgumentException("Email required");
         }
-        if (message.getContent() == null || message.getContent().trim().isEmpty()) {
-            throw new IllegalArgumentException("Message content cannot be null or empty");
+
+        if (message.getContent() == null ||
+            message.getContent().isBlank()) {
+            throw new IllegalArgumentException("Message content required");
         }
+
         return messageRepository.save(message);
+    }
+
+    public void deleteMessage(Long id) {
+
+        if (!messageRepository.existsById(id)) {
+            throw new RuntimeException("Message not found with id " + id);
+        }
+
+        messageRepository.deleteById(id);
     }
 }

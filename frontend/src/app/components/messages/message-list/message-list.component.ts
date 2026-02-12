@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule, MatSnackBar } from '@angular/material/snack-bar';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MessageService } from '../../../services/message.service';
-import { Message } from '../../../models/message.model';
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatTableModule } from "@angular/material/table";
+import { MatCardModule } from "@angular/material/card";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatSnackBarModule, MatSnackBar } from "@angular/material/snack-bar";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatButtonModule } from "@angular/material/button";
+import { MessageService } from "../../../services/message.service";
+import { Message } from "../../../models/message.model";
 
 @Component({
-  selector: 'app-message-list',
+  selector: "app-message-list",
   standalone: true,
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import { Message } from '../../../models/message.model';
     MatCardModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatButtonModule,
   ],
   template: `
     <div class="header">
@@ -46,49 +48,78 @@ import { Message } from '../../../models/message.model';
             {{ message.email }}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        
+
         <div class="message-content">
           <p><strong>From:</strong> {{ message.senderName }}</p>
           <p><strong>Email:</strong> {{ message.email }}</p>
+
           <p><strong>Message:</strong></p>
           <div class="message-text">{{ message.content }}</div>
+
+          <!-- ✅ SAFE DELETE BUTTON -->
+          <div class="actions">
+            <button
+              mat-raised-button
+              color="warn"
+              (click)="message.id && deleteMessage(message.id)"
+            >
+              Delete Message
+            </button>
+          </div>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
   `,
-  styles: [`
-    .header {
-      margin-bottom: 20px;
-    }
-    
-    .loading-spinner {
-      display: flex;
-      justify-content: center;
-      padding: 40px;
-    }
-    
-    .no-data {
-      text-align: center;
-      padding: 40px;
-      color: #666;
-    }
-    
-    .message-content {
-      padding: 16px 0;
-    }
-    
-    .message-text {
-      background-color: #f5f5f5;
-      padding: 16px;
-      border-radius: 4px;
-      margin-top: 8px;
-      white-space: pre-wrap;
-    }
-    
-    mat-expansion-panel {
-      margin-bottom: 8px;
-    }
-  `]
+  styles: [
+    `
+      .header {
+        margin: 20px;
+      }
+
+      .header h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #0c9ae1;
+        letter-spacing: 0.5px;
+        margin-left: 20px;
+        padding: 10px 0;
+      }
+
+      .loading-spinner {
+        display: flex;
+        justify-content: center;
+        padding: 40px;
+      }
+
+      .no-data {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+      }
+
+      .message-content {
+        padding: 16px 0;
+      }
+
+      .message-text {
+        background-color: #f5f5f5;
+        padding: 16px;
+        border-radius: 4px;
+        margin-top: 8px;
+        white-space: pre-wrap;
+      }
+
+      .actions {
+        margin-top: 16px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      mat-expansion-panel {
+        margin-bottom: 8px;
+      }
+    `,
+  ],
 })
 export class MessageListComponent implements OnInit {
   messages: Message[] = [];
@@ -96,7 +127,7 @@ export class MessageListComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
@@ -110,11 +141,29 @@ export class MessageListComponent implements OnInit {
         this.messages = messages;
         this.loading = false;
       },
-      error: (error: any) => {
-        console.error('Error loading messages:', error);
-        this.snackBar.open('Error loading messages', 'Close', { duration: 3000 });
+      error: () => {
+        this.snackBar.open("Error loading messages", "Close", {
+          duration: 3000,
+        });
         this.loading = false;
-      }
+      },
+    });
+  }
+
+  // ✅ SAFE DELETE (id can never be undefined here)
+  deleteMessage(id: number): void {
+    if (!confirm("Delete this message?")) return;
+
+    this.messageService.deleteMessage(id).subscribe({
+      next: () => {
+        this.messages = this.messages.filter((m) => m.id !== id);
+        this.snackBar.open("Message deleted", "Close", { duration: 3000 });
+      },
+      error: () => {
+        this.snackBar.open("Failed to delete message", "Close", {
+          duration: 3000,
+        });
+      },
     });
   }
 }
