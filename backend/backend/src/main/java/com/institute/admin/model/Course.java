@@ -1,16 +1,22 @@
 package com.institute.admin.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Course {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String description;
     private String duration;
-    private String level; // Beginner, Intermediate, Advanced
+    private String level;          // Beginner, Intermediate, Advanced
+    private String icon;           
     private String category;
     private Double price;
     private String prerequisites;
@@ -26,7 +32,10 @@ public class Course {
         this.description = description;
     }
 
-    // Getters
+    // =========================
+    // GETTERS
+    // =========================
+
     public Long getId() {
         return id;
     }
@@ -45,6 +54,10 @@ public class Course {
 
     public String getLevel() {
         return level;
+    }
+
+    public String getIcon() {      
+        return icon;
     }
 
     public String getCategory() {
@@ -75,7 +88,10 @@ public class Course {
         return studentsEnrolled;
     }
 
-    // Setters
+    // =========================
+    // SETTERS
+    // =========================
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -94,6 +110,10 @@ public class Course {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public void setIcon(String icon) {   
+        this.icon = icon;
     }
 
     public void setCategory(String category) {

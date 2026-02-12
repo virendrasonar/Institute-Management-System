@@ -257,7 +257,9 @@ import { Course } from "../../../models/course.model";
                 <div class="preview-card">
                   <div class="preview-course-header">
                     <div class="preview-avatar">
-                      <mat-icon>school</mat-icon>
+                      <mat-icon>
+                        {{ courseForm.get("icon")?.value || "school" }}
+                      </mat-icon>
                     </div>
                     <div class="preview-info">
                       <h4>
