@@ -30,54 +30,74 @@ public class AdminService {
     }
 
     // =========================
-    // COURSE MANAGEMENT
-    // =========================
+// COURSE MANAGEMENT
+// =========================
 
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+public List<Course> getAllCourses() {
+    return courseRepository.findAll();
+}
+
+public Optional<Course> getCourseById(Long id) {
+    return courseRepository.findById(id);
+}
+
+public Course addCourse(Course course) {
+
+    if (course.getName() == null || course.getName().isBlank()) {
+        throw new IllegalArgumentException("Course name required");
     }
 
-    public Optional<Course> getCourseById(Long id) {
-        return courseRepository.findById(id);
-    }
+    return courseRepository.save(course);
+}
 
-    public Course addCourse(Course course) {
+public Course updateCourse(Long id, Course updatedCourse) {
 
-        if (course.getName() == null || course.getName().isBlank()) {
-            throw new IllegalArgumentException("Course name required");
+    return courseRepository.findById(id).map(course -> {
+
+        // 🔥 Update Name
+        if (updatedCourse.getName() != null &&
+            !updatedCourse.getName().isBlank()) {
+            course.setName(updatedCourse.getName());
+        }
+
+        // 🔥 Update Description
+        if (updatedCourse.getDescription() != null) {
+            course.setDescription(updatedCourse.getDescription());
+        }
+
+        // 🔥 Update Duration
+        if (updatedCourse.getDuration() != null &&
+            !updatedCourse.getDuration().isBlank()) {
+            course.setDuration(updatedCourse.getDuration());
+        }
+
+        // 🔥 Update Level
+        if (updatedCourse.getLevel() != null &&
+            !updatedCourse.getLevel().isBlank()) {
+            course.setLevel(updatedCourse.getLevel());
+        }
+
+        // 🔥 Update Icon
+        if (updatedCourse.getIcon() != null &&
+            !updatedCourse.getIcon().isBlank()) {
+            course.setIcon(updatedCourse.getIcon());
         }
 
         return courseRepository.save(course);
+
+    }).orElseThrow(() ->
+        new RuntimeException("Course not found with id " + id)
+    );
+}
+
+public void deleteCourse(Long id) {
+
+    if (!courseRepository.existsById(id)) {
+        throw new RuntimeException("Course not found with id " + id);
     }
 
-    public Course updateCourse(Long id, Course updatedCourse) {
-
-        return courseRepository.findById(id).map(course -> {
-
-            if (updatedCourse.getName() != null &&
-                !updatedCourse.getName().isBlank()) {
-                course.setName(updatedCourse.getName());
-            }
-
-            if (updatedCourse.getDescription() != null) {
-                course.setDescription(updatedCourse.getDescription());
-            }
-
-            return courseRepository.save(course);
-
-        }).orElseThrow(() ->
-            new RuntimeException("Course not found with id " + id)
-        );
-    }
-
-    public void deleteCourse(Long id) {
-
-        if (!courseRepository.existsById(id)) {
-            throw new RuntimeException("Course not found with id " + id);
-        }
-
-        courseRepository.deleteById(id);
-    }
+    courseRepository.deleteById(id);
+}
 
     // =========================
     // STUDENT MANAGEMENT
