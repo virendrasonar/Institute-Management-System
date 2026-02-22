@@ -1,36 +1,28 @@
 🎓 Institute Management System
-
-A full-stack web application for managing institute operations including courses, students, and messages.
-This project demonstrates real-world CRUD operations, RESTful API design, modular frontend architecture, and clean separation of concerns using Java and Angular technologies.
-
+<p align="center"> <b>A full-stack web application for managing institute operations including courses, students, and messages.</b><br> Built using <b>Spring Boot</b> and <b>Angular</b> with clean architecture and RESTful design principles. </p>
 🏗 Architecture
-
-Backend: Spring Boot 3 (REST API)
-
-Frontend: Angular 17 (Standalone Components) with Angular Material
-
-Database: H2 (Development)
-
-Build Tools: Maven & npm
-
-Container Support: Docker Compose
-
+Layer	Technology
+Backend	Spring Boot 3 (REST API)
+Frontend	Angular 17 (Standalone Components) + Angular Material
+Database	H2 (Development)
+Build Tools	Maven & npm
+Containerization	Docker Compose
 ✨ Core Features
 📊 Dashboard
 
 Real-time system statistics
 
-Centralized navigation to modules
+Centralized module navigation
 
 Dynamic API-driven data display
 
 📚 Course Management
 
-Create, update, and delete courses
+Create, update, delete courses
 
 Structured course listing
 
-Backend validation and error handling
+Backend validation & error handling
 
 👨‍🎓 Student Management
 
@@ -50,7 +42,7 @@ Admin-side message tracking
 
 🌐 Public Contact Form
 
-Allows website visitors to send inquiries
+Accept inquiries from website visitors
 
 Data persistence through REST APIs
 
@@ -95,19 +87,16 @@ Node.js 16+
 npm (comes with Node.js)
 
 🔹 Quick Setup (Recommended)
-
-Run:
-
 setup.bat
 start-system.bat
 
 Then access:
 
-Frontend → http://localhost:4200
+🌐 Frontend → http://localhost:4200
 
-Backend API → http://localhost:8080
+🔧 Backend API → http://localhost:8080
 
-H2 Console → http://localhost:8080/h2-console
+🗄 H2 Console → http://localhost:8080/h2-console
 
 🔹 Manual Setup
 1️⃣ Install Frontend Dependencies
@@ -121,35 +110,20 @@ cd frontend
 npm start
 📡 API Endpoints
 Courses
-
-GET /admin/courses
-
-POST /admin/courses
-
-GET /admin/courses/{id}
-
-PUT /admin/courses/{id}
-
-DELETE /admin/courses/{id}
-
+GET     /admin/courses
+POST    /admin/courses
+GET     /admin/courses/{id}
+PUT     /admin/courses/{id}
+DELETE  /admin/courses/{id}
 Students
-
-GET /admin/students
-
-POST /admin/students
-
-GET /admin/students/{id}
-
-PUT /admin/students/{id}
-
-DELETE /admin/students/{id}
-
+GET     /admin/students
+POST    /admin/students
+GET     /admin/students/{id}
+PUT     /admin/students/{id}
+DELETE  /admin/students/{id}
 Messages
-
-GET /admin/messages
-
-GET /admin/messages/{id}
-
+GET     /admin/messages
+GET     /admin/messages/{id}
 📂 Project Structure
 institute-management-system/
 │
@@ -181,7 +155,7 @@ Angular Material UI consistency
 
 Clean and responsive interface
 
-Proper error handling and snackbar notifications
+Structured error handling and snackbar notifications
 
 📘 Additional Documentation
 
@@ -193,9 +167,9 @@ TROUBLESHOOTING.md
 
 📌 Project Status
 
-Completed full-stack implementation with CRUD operations for Courses, Students, and Messages.
+✅ Completed full-stack implementation with CRUD operations for Courses, Students, and Messages.
 
-This project demonstrates practical application development using Java Spring Boot and Angular.
+This project demonstrates practical full-stack application development using Java Spring Boot and Angular.
 
 👨‍💻 Author
 
