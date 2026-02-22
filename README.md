@@ -396,6 +396,13 @@ DEPLOYMENT_GUIDE.md
 
 TROUBLESHOOTING.md
 
+🌐 Live Preview
+
+🔗 : Click on the link, you can add, edit, delete, modify courses.
+    You can add, delete, modify students.
+    You can send messages to us.
+👉 https://vsedutech.netlify.app
+
 📌 Project Status
 
 Completed full-stack implementation with CRUD operations for Courses, Students, and Messages.
