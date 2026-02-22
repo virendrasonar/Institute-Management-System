@@ -1,155 +1,203 @@
-# 🎓 Institute Management System
-A comprehensive web application for managing institute operations including courses, students, and messages.
+🎓 Institute Management System
 
-## Architecture
+A full-stack web application for managing institute operations including courses, students, and messages.
+This project demonstrates real-world CRUD operations, RESTful API design, modular frontend architecture, and clean separation of concerns using Java and Angular technologies.
 
-- **Backend**: Spring Boot REST API with H2 database
-- **Frontend**: Angular 17 with Angular Material
-- **Database**: H2 in-memory database (for development)
-- **Containerization**: Docker Compose
+🏗 Architecture
 
-## Features
+Backend: Spring Boot 3 (REST API)
 
-### Dashboard
-- Overview of system statistics
-- Quick navigation to all modules
-- Real-time data display
+Frontend: Angular 17 (Standalone Components) with Angular Material
 
-### Course Management
-- Create, read, update, and delete courses
-- Course listing with search and filter
-- Form validation and error handling
+Database: H2 (Development)
 
-### Student Management
-- View student information
-- Student listing and details
+Build Tools: Maven & npm
 
-### Message Management
-- View messages from students and visitors
-- Expandable message cards for better readability
+Container Support: Docker Compose
 
-## Getting Started
+✨ Core Features
+📊 Dashboard
 
-### Prerequisites
+Real-time system statistics
 
-- **Java 17+** - [Download here](https://adoptium.net/)
-- **Node.js 16+** - [Download here](https://nodejs.org/)
-- **npm** (comes with Node.js)
+Centralized navigation to modules
 
-### Quick Setup (Recommended)
+Dynamic API-driven data display
 
-1. **Run the setup script**:
-   ```bash
-   setup.bat
-   ```
+📚 Course Management
 
-2. **Start the system**:
-   ```bash
-   start-system.bat
-   ```
+Create, update, and delete courses
 
-3. **Access the application**:
-   - Frontend: http://localhost:4200
-   - Backend API: http://localhost:8080
-   - H2 Database Console: http://localhost:8080/h2-console
+Structured course listing
 
-### Manual Setup
+Backend validation and error handling
 
-1. **Install Frontend Dependencies**:
-   ```bash
-   cd frontend
-   npm install
-   ```
+👨‍🎓 Student Management
 
-2. **Start the Backend**:
-   ```bash
-   cd backend/backend
-   mvnw.cmd spring-boot:run
-   ```
+Add, update, delete students
 
-3. **Start the Frontend**:
-   ```bash
-   cd frontend
-   npm start
-   ```
+Active / Inactive status handling
 
-### Troubleshooting
+Clean data table with action controls
 
-If you encounter any issues, check the [TROUBLESHOOTING.md](TROUBLESHOOTING.md) file for common solutions.
+📩 Message Management
 
-**Common Issues:**
-- **Dependencies not found**: Run `setup.bat` or `npm install` in frontend directory
-- **Port conflicts**: Ensure ports 8080 and 4200 are available
-- **Java/Node not found**: Verify installations and PATH variables
+View messages submitted via contact form
 
-## API Documentation
+Expandable message cards
 
-### Course Endpoints
-- `GET /admin/courses` - Get all courses
-- `POST /admin/courses` - Create new course
-- `GET /admin/courses/{id}` - Get course by ID
-- `PUT /admin/courses/{id}` - Update course
-- `DELETE /admin/courses/{id}` - Delete course
+Admin-side message tracking
 
-### Student Endpoints
-- `GET /admin/students` - Get all students
-- `GET /admin/students/{id}` - Get student by ID
+🌐 Public Contact Form
 
-### Message Endpoints
-- `GET /admin/messages` - Get all messages
-- `GET /admin/messages/{id}` - Get message by ID
+Allows website visitors to send inquiries
 
-## Technology Stack
+Data persistence through REST APIs
 
-### Backend
-- Spring Boot 3.x
-- Spring Data JPA
-- H2 Database
-- Maven
-- JUnit 5 for testing
+Validation and structured storage
 
-### Frontend
-- Angular 17
-- Angular Material
-- TypeScript
-- RxJS
-- Standalone components
-- Lazy loading
+🛠 Technology Stack
+Backend
 
-## 🎯 Project Status: COMPLETE ✅
+Java 17+
 
-**The Institute Management System is now PRODUCTION-READY!**
+Spring Boot 3
 
-### ✅ Completed Features:
-- **Full CRUD Operations** for Courses, Students, and Messages
-- **Modern Angular Frontend** with Material Design
-- **Spring Boot Backend** with RESTful APIs
-- **Real-time Dashboard** with statistics
-- **Responsive Design** for all devices
-- **Contact Form** for public inquiries
-- **Comprehensive Documentation** and deployment guides
-- **Sample Data** pre-loaded for testing
+Spring Data JPA
 
-### 🚀 What You Can Do:
-1. **Manage Courses** - Add, edit, delete, and view courses
-2. **Manage Students** - Complete student directory management
-3. **Handle Messages** - View and manage inquiries
-4. **Public Contact** - Accept messages from website visitors
-5. **View Analytics** - Real-time dashboard statistics
+H2 Database
 
-### 📱 Access the Application:
-- **Main App:** http://localhost:4200
-- **Backend API:** http://localhost:8080
-- **Database Console:** http://localhost:8080/h2-console
+RESTful APIs
 
-## 📚 Additional Documentation
+Maven
 
-- **[Complete Project Documentation](PROJECT_DOCUMENTATION.md)** - Comprehensive technical details
-- **[Deployment Guide](DEPLOYMENT_GUIDE.md)** - Production deployment instructions
-- **[Troubleshooting Guide](TROUBLESHOOTING.md)** - Common issues and solutions
+Frontend
 
-## Folder Structure
-=======
-# Institute-Management-System
-This project is built to demonstrate real-world full-stack development, clean architecture, and CRUD operations using Java-based technologies. It is suitable for learning, academic use, and as a base for production-level systems with further enhancements.
->>>>>>> 21cd130b42ff131f6c679bc035c84a41dd6a3496
+Angular 17
+
+Angular Material (MDC)
+
+TypeScript
+
+RxJS
+
+Standalone Components
+
+Lazy Loading
+
+🚀 Getting Started
+📌 Prerequisites
+
+Java 17+
+
+Node.js 16+
+
+npm (comes with Node.js)
+
+🔹 Quick Setup (Recommended)
+
+Run:
+
+setup.bat
+start-system.bat
+
+Then access:
+
+Frontend → http://localhost:4200
+
+Backend API → http://localhost:8080
+
+H2 Console → http://localhost:8080/h2-console
+
+🔹 Manual Setup
+1️⃣ Install Frontend Dependencies
+cd frontend
+npm install
+2️⃣ Start Backend
+cd backend/backend
+mvnw.cmd spring-boot:run
+3️⃣ Start Frontend
+cd frontend
+npm start
+📡 API Endpoints
+Courses
+
+GET /admin/courses
+
+POST /admin/courses
+
+GET /admin/courses/{id}
+
+PUT /admin/courses/{id}
+
+DELETE /admin/courses/{id}
+
+Students
+
+GET /admin/students
+
+POST /admin/students
+
+GET /admin/students/{id}
+
+PUT /admin/students/{id}
+
+DELETE /admin/students/{id}
+
+Messages
+
+GET /admin/messages
+
+GET /admin/messages/{id}
+
+📂 Project Structure
+institute-management-system/
+│
+├── backend/               → Spring Boot REST API
+│   ├── controller/
+│   ├── service/
+│   ├── repository/
+│   └── model/
+│
+├── frontend/              → Angular 17 Application
+│   ├── components/
+│   ├── services/
+│   ├── models/
+│   └── shared/
+│
+├── docker-compose.yml
+└── documentation files
+🎯 Development Highlights
+
+Modular Angular standalone component architecture
+
+RESTful API design following best practices
+
+Layered backend structure (Controller → Service → Repository)
+
+Reactive Forms with validation
+
+Angular Material UI consistency
+
+Clean and responsive interface
+
+Proper error handling and snackbar notifications
+
+📘 Additional Documentation
+
+PROJECT_DOCUMENTATION.md
+
+DEPLOYMENT_GUIDE.md
+
+TROUBLESHOOTING.md
+
+📌 Project Status
+
+Completed full-stack implementation with CRUD operations for Courses, Students, and Messages.
+
+This project demonstrates practical application development using Java Spring Boot and Angular.
+
+👨‍💻 Author
+
+Virendra Sonar
+Full Stack Developer specializing in scalable web applications using Java, Spring Boot, RESTful APIs, and modern frontend technologies.
