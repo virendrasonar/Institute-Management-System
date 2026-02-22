@@ -208,37 +208,18 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
   `,
   styles: [
     `
+      /* ================= MAIN TOOLBAR ================= */
+
       .main-toolbar {
-        background: #ffefef !important;
-        backdrop-filter: blur(20px) saturate(180%) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+        background: #ffffff !important;
+        border-bottom: 1px solid #e5e7eb !important;
         position: sticky !important;
         top: 0 !important;
         z-index: 1000 !important;
-        box-shadow: 0 8px 32px rgba(102, 126, 234, 0.15) !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04) !important;
       }
 
-      .main-toolbar::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
-        background-size: 300% 100%;
-        animation: gradientMove 3s ease-in-out infinite;
-      }
-
-      @keyframes gradientMove {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
+      /* ================= TOOLBAR CONTENT ================= */
 
       .toolbar-content {
         width: 100%;
@@ -250,139 +231,85 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
         padding: 0 20px;
       }
 
+      /* ================= LOGO ================= */
+
       .logo {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         cursor: pointer;
         text-decoration: none;
-        color: inherit;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-      }
-
-      .logo::before {
-        content: "";
-        position: absolute;
-        top: -5px;
-        left: -5px;
-        right: -5px;
-        bottom: -5px;
-        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
-        border-radius: 15px;
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 0.3s ease;
-      }
-
-      .logo:hover::before {
-        opacity: 0.4;
+        color: #1f2937;
       }
 
       .logo-icon {
-        font-size: 2rem !important;
-        width: 2rem !important;
-        height: 2rem !important;
-        color: #010a43;
+        font-size: 28px !important;
+        width: 28px !important;
+        height: 28px !important;
+        color: #4338ca;
       }
 
       .logo-text {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         font-weight: 700;
         font-family: "Poppins", sans-serif;
-        background: linear-gradient(135deg, #27357d 0%, #28103f 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: #1f2937;
       }
+
+      /* ================= DESKTOP NAV ================= */
 
       .desktop-nav {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
       }
 
       .desktop-nav a,
       .desktop-nav button {
         display: flex !important;
         align-items: center !important;
-        gap: 8px !important;
-        padding: 10px 18px !important;
-        border-radius: 25px !important;
+        gap: 6px !important;
+        padding: 8px 16px !important;
+        border-radius: 8px !important;
         font-weight: 500 !important;
         text-transform: none !important;
-        color: #290149 !important;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        position: relative !important;
-        overflow: hidden !important;
+        color: #374151 !important;
+        transition: all 0.2s ease !important;
       }
 
-      .desktop-nav a::before,
-      .desktop-nav button::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(102, 126, 234, 0.2),
-          transparent
-        );
-        transition: left 0.5s ease;
-      }
-
+      /* Hover */
       .desktop-nav a:hover,
       .desktop-nav button:hover {
-        background: rgba(95, 21, 232, 0.61) !important;
-        color: #ffffff !important;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(37, 72, 228, 0.22);
+        background: #f3f4ff !important;
+        color: #4338ca !important;
       }
 
-      .desktop-nav a:hover::before,
-      .desktop-nav button:hover::before {
-        left: 100%;
-      }
-
+      /* Active Route */
       .desktop-nav a.active {
-        background: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 100%
-        ) !important;
-        color: white !important;
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        transform: translateY(-2px);
+        background: #4338ca !important;
+        color: #ffffff !important;
       }
 
-      .desktop-nav a.active::before {
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.2),
-          transparent
-        );
-      }
+      /* ================= ADMIN BUTTON ================= */
 
       .admin-menu-trigger {
-        background: rgba(102, 126, 234, 0.1) !important;
-        color: #667eea !important;
+        background: #f3f4ff !important;
+        color: #4338ca !important;
+        font-weight: 600 !important;
       }
 
-      .admin-menu {
-        margin-top: 8px;
-        border-radius: 12px !important;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+      .admin-menu-trigger:hover {
+        background: #e0e7ff !important;
       }
+
+      /* ================= MOBILE MENU BUTTON ================= */
 
       .mobile-menu-btn {
-        color: #667eea !important;
+        color: #4338ca !important;
       }
 
-      /* Mobile Navigation */
+      /* ================= MOBILE SIDENAV ================= */
+
       .mobile-nav-container {
         position: fixed;
         top: 64px;
@@ -390,97 +317,91 @@ import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
         right: 0;
         bottom: 0;
         z-index: 999;
-        pointer-events: none;
       }
 
       .mobile-nav {
-        width: 280px !important;
-        background: white !important;
-        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
-        pointer-events: all;
+        width: 260px !important;
+        background: #ffffff !important;
+        box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08) !important;
       }
 
+      /* Mobile Header */
       .mobile-nav-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 20px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 18px;
+        border-bottom: 1px solid #e5e7eb;
+        background: #4338ca;
         color: white;
       }
 
       .mobile-logo {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         font-weight: 600;
-        font-size: 1.1rem;
       }
 
+      /* Mobile Links */
       .mobile-nav-links {
         display: flex;
         flex-direction: column;
-        padding: 20px 0;
+        padding: 10px 0;
       }
 
       .mobile-nav-link {
         display: flex !important;
         align-items: center !important;
-        gap: 16px !important;
-        padding: 16px 24px !important;
-        text-align: left !important;
+        gap: 14px !important;
+        padding: 14px 20px !important;
         justify-content: flex-start !important;
-        color: #333 !important;
+        color: #374151 !important;
         font-weight: 500 !important;
         text-transform: none !important;
-        border-radius: 0 !important;
-        transition: all 0.3s ease !important;
       }
 
       .mobile-nav-link:hover {
-        background: rgba(102, 126, 234, 0.1) !important;
-        color: #667eea !important;
+        background: #f3f4ff !important;
+        color: #4338ca !important;
       }
 
+      /* Admin Section */
       .mobile-admin-section {
-        margin-top: 20px;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-        padding-top: 20px;
+        margin-top: 10px;
+        border-top: 1px solid #e5e7eb;
+        padding-top: 10px;
       }
 
       .admin-section-title {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 12px 24px;
+        gap: 8px;
+        padding: 10px 20px;
         font-weight: 600;
-        color: #667eea;
-        font-size: 0.9rem;
+        color: #4338ca;
+        font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
 
       .admin-link {
-        padding-left: 48px !important;
-        background: rgba(102, 126, 234, 0.05) !important;
+        padding-left: 40px !important;
       }
 
-      .admin-link:hover {
-        background: rgba(102, 126, 234, 0.15) !important;
-      }
+      /* ================= RESPONSIVE ================= */
 
-      /* Responsive adjustments */
       @media (max-width: 768px) {
-        .toolbar-content {
-          padding: 0 16px;
-        }
-
         .logo-text {
-          font-size: 1.3rem;
+          font-size: 1.1rem;
         }
       }
 
+      @media (max-width: 480px) {
+        .logo-text {
+          display: none;
+        }
+      }
       @media (max-width: 480px) {
         .logo-text {
           display: none;

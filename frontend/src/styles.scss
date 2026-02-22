@@ -49,8 +49,8 @@ html, body {
   height: 100%; 
   margin: 0;
   font-family: 'Inter', 'Roboto', sans-serif;
-  background: var(--bg-primary);
-  background-attachment: fixed;
+    background: #f5f7ff;
+ 
 
 }
 
@@ -58,27 +58,6 @@ body {
   position: relative;
 }
 
-/* 🌊 Animated Background Elements */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(240, 147, 251, 0.1) 0%, transparent 50%);
-  animation: backgroundFloat 20s ease-in-out infinite;
-  z-index: -1;
-}
-
-@keyframes backgroundFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-20px) rotate(1deg); }
-  66% { transform: translateY(10px) rotate(-1deg); }
-}
 
 /* 🎨 Enhanced Scrollbar */
 ::-webkit-scrollbar {
@@ -291,71 +270,6 @@ body::before {
   text-shadow: 0 0 10px rgba(0,0,0,0.5) !important;
 }
 
-/* 🎪 Enhanced Tables */
-.mat-mdc-table {
-  width: 100%;
-  border-radius: var(--border-radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-float);
-  background: var(--bg-card);
-  backdrop-filter: blur(20px);
-}
-
-.mat-mdc-header-row {
-  background: var(--primary-gradient) !important;
-  position: relative;
-}
-
-.mat-mdc-header-row::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--neon-gradient);
-  animation: headerPulse 2s ease-in-out infinite;
-}
-
-@keyframes headerPulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
-}
-
-.mat-mdc-header-cell {
-  color: white !important;
-  font-weight: 700 !important;
-  font-size: 1rem !important;
-  border-bottom: none !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
-}
-
-.mat-mdc-row {
-  transition: var(--transition-smooth);
-  position: relative;
-}
-
-.mat-mdc-row:hover {
-  background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05)) !important;
-  transform: scale(1.01);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
-}
-
-.mat-mdc-row:hover::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--primary-gradient);
-  animation: rowGlow 1s ease-in-out;
-}
-
-@keyframes rowGlow {
-  0% { opacity: 0; transform: scaleY(0); }
-  100% { opacity: 1; transform: scaleY(1); }
-}
 
 /* 🎨 Enhanced Form Fields */
 .mat-mdc-form-field {

@@ -195,6 +195,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
             <button
               mat-raised-button
               class="action-btn creative-btn creative-btn-success"
+              routerLink="/reports"
             >
               <div class="btn-content">
                 <mat-icon>analytics</mat-icon>
@@ -281,58 +282,11 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         box-sizing: border-box;
       }
 
-      /* Creative Animations */
-      @keyframes morphing {
-        0%,
-        100% {
-          border-radius: 63% 37% 54% 46% / 55% 48% 52% 45%;
-        }
-        14% {
-          border-radius: 40% 60% 54% 46% / 49% 60% 40% 51%;
-        }
-        28% {
-          border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%;
-        }
-        42% {
-          border-radius: 61% 39% 55% 45% / 61% 38% 62% 39%;
-        }
-        56% {
-          border-radius: 61% 39% 67% 33% / 70% 50% 50% 30%;
-        }
-        70% {
-          border-radius: 50% 50% 34% 66% / 56% 68% 32% 44%;
-        }
-        84% {
-          border-radius: 46% 54% 50% 50% / 35% 61% 39% 65%;
-        }
-      }
-
-      @keyframes neonGlow {
-        0%,
-        100% {
-          box-shadow:
-            0 0 20px rgba(102, 126, 234, 0.5),
-            0 0 40px rgba(102, 126, 234, 0.3),
-            0 0 60px rgba(102, 126, 234, 0.1);
-        }
-        50% {
-          box-shadow:
-            0 0 30px rgba(118, 75, 162, 0.6),
-            0 0 60px rgba(118, 75, 162, 0.4),
-            0 0 90px rgba(118, 75, 162, 0.2);
-        }
-      }
-
-      @keyframes holographic {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+      :host {
+        display: block;
+        min-height: 100vh;
+        background: #f5f7ff;
+        padding: 30px 20px 60px;
       }
 
       @keyframes particleFloat {
@@ -357,26 +311,13 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
       .hero-section {
         margin-top: 25px;
-        background: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 50%,
-          #f093fb 100%
-        );
-        background-size: 400% 400%;
-        animation: holographic 8s ease-in-out infinite;
-        position: relative;
-        overflow: hidden;
-        min-height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: var(--primary-gradient);
+        background: linear-gradient(135deg, #4338ca, #818cf8);
         border-radius: 20px;
         padding: 60px 40px;
-        overflow: hidden;
+        text-align: center;
         color: white;
+        position: relative;
+        overflow: hidden;
       }
 
       .hero-title {
@@ -449,8 +390,10 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         gap: 30px;
         padding: 40px 20px;
         max-width: 1400px;
-        margin: 0 auto;
+        margin: 0px auto;
+        margin-top: 40px !important;
       }
+
       .stat-number {
         font-size: 3.5rem;
         font-weight: 700;
@@ -467,22 +410,19 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
       }
 
       .stat-card {
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.95) 0%,
-          rgba(255, 255, 255, 0.85) 50%,
-          rgba(255, 255, 255, 0.95) 100%
-        );
-        backdrop-filter: blur(25px) saturate(180%);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 25px;
-        padding: 30px;
-        position: relative;
-        overflow: hidden;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow:
-          0 15px 45px rgba(0, 0, 0, 0.1),
-          0 5px 15px rgba(0, 0, 0, 0.05);
+        background: white;
+        border-radius: 20px;
+        padding: 32px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(67, 56, 202, 0.12);
       }
 
       .stat-card::before {
@@ -499,13 +439,6 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
           transparent
         );
         transition: left 0.8s ease;
-      }
-
-      .stat-card:hover {
-        transform: translateY(-15px) scale(1.02);
-        box-shadow:
-          0 25px 60px rgba(0, 0, 0, 0.15),
-          0 10px 25px rgba(0, 0, 0, 0.1);
       }
 
       .stat-card:hover::before {
@@ -543,15 +476,15 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
       }
 
       .stat-icon {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #4338ca, #818cf8);
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         margin-bottom: 20px;
-        position: relative;
-        overflow: hidden;
+        color: white;
       }
 
       .courses-card .stat-icon {
@@ -577,16 +510,11 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
       }
 
       .stat-number {
-        font-size: 3.5rem;
+        font-size: 3rem;
         font-weight: 700;
-        background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
-        background-size: 200% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: holographic 3s ease-in-out infinite;
-        margin-bottom: 10px;
-        display: block;
+        font-family: "Poppins", sans-serif;
+        color: #4338ca;
+        margin-bottom: 8px;
       }
 
       .stat-content h3 {
@@ -797,6 +725,20 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         50% {
           transform: translateY(-10px);
         }
+      }
+
+      .creative-btn-neon,
+      .creative-btn-secondary,
+      .creative-btn-success {
+        background: #4338ca !important;
+        color: white !important;
+        box-shadow: none !important;
+      }
+
+      .creative-btn-neon:hover,
+      .creative-btn-secondary:hover,
+      .creative-btn-success:hover {
+        background: #3730a3 !important;
       }
 
       /* Responsive Design */
@@ -1059,7 +1001,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
       /* 🚀 Quick Actions Panel */
       .quick-actions-panel {
-        margin: 40px 0px;
+        margin: 40px 10px;
       }
 
       .action-card {
@@ -1104,6 +1046,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
       /* 📈 Analytics Section */
       .analytics-section {
+        margin-top: 80px;
         margin-bottom: 40px;
       }
 
@@ -1265,7 +1208,7 @@ export class DashboardComponent implements OnInit {
       messages: this.messageService.getAllMessages(),
     }).subscribe({
       next: (data: any) => {
-        this.courseCount = 3 + data.courses.length;
+        this.courseCount = data.courses.length;
         this.studentCount = data.students.length;
         this.messageCount = data.messages.length;
       },

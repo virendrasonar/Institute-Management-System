@@ -170,123 +170,87 @@ import { Student } from "../../../models/student.model";
   `,
   styles: [
     `
+      :host {
+        display: block;
+        min-height: 100vh;
+        background: #f5f7ff;
+        padding: 10px 20px 80px;
+      }
+
+      /* ================= LAYOUT ================= */
+
       .container {
-        padding: 30px;
-        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
       .container h1 {
-        font-size: 36px;
+        font-size: 30px;
         font-weight: 700;
         margin-bottom: 30px;
-        color: #4e65c0;
-      }
-
-      .full-width {
-        width: 100%;
-      }
-
-      .form-card {
-        max-width: 500px;
-        margin: 40px auto;
-        padding: 25px;
-      }
-
-      table {
-        width: 100%;
-      }
-
-      .form-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 75vh;
-        margin: 40px;
-      }
-
-      .edit-card {
-        width: 100%;
-        max-width: 520px;
-        padding: 35px;
-        border-radius: 20px;
-      }
-
-      .form-header {
+        color: #094cb1;
         text-align: center;
-        margin-bottom: 25px;
       }
 
-      .header-icon {
-        font-size: 40px;
-        width: 40px;
-        height: 40px;
-        color: #3f51b5;
-        margin-bottom: 10px;
+      /* ================= BUTTON ================= */
+
+      button[mat-raised-button] {
+        display: block;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
+        margin: 10px auto;
       }
 
-      .form-header h2 {
-        margin: 0;
-        font-weight: 600;
-      }
+      /* ================= TABLE ================= */
 
-      .edit-form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .full-width {
-        width: 100%;
-      }
-
-      .form-actions {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 15px;
-      }
-      .students-table {
+      table[mat-table] {
         width: 100%;
         background: #ffffff;
-        border-radius: 12px;
+        border-radius: 14px;
         overflow: hidden;
+        border: 1px solid #e5e7eb;
       }
 
-      .students-table th {
-        background: #f4f6fb;
-        font-weight: 600;
+      /* Header */
+      .mat-mdc-header-row {
+        background: #eef2ff;
+      }
+
+      .mat-mdc-header-cell {
+        font-weight: 600 !important;
         font-size: 14px;
-        color: #3f51b5;
+        color: #4338ca !important;
         letter-spacing: 0.5px;
+        padding: 16px !important;
       }
 
-      .students-table td {
+      /* Body */
+      .mat-mdc-cell {
         font-size: 14px;
-        color: #444;
+        color: #374151;
+        padding: 16px !important;
       }
 
-      .table-row {
-        transition:
-          background-color 0.2s ease,
-          transform 0.15s ease;
+      .mat-mdc-row {
+        transition: background 0.2s ease;
       }
 
-      .table-row:hover {
-        background-color: #040f29;
-        transform: scale(1.01);
+      .mat-mdc-row:hover {
+        background: #f3f4ff;
       }
 
-      .students-table th,
-      .students-table td {
-        padding: 16px 20px;
+      /* Action buttons */
+      .mat-mdc-icon-button {
+        transition: transform 0.15s ease !important;
       }
 
-      .mat-icon-button {
-        transition: transform 0.15s ease;
-      }
-
-      .mat-icon-button:hover {
+      .mat-mdc-icon-button:hover {
         transform: scale(1.15);
       }
+
+      /* ================= STATUS BADGES ================= */
+
       .status-badge {
         padding: 6px 14px;
         border-radius: 20px;
@@ -310,6 +274,162 @@ import { Student } from "../../../models/student.model";
         background-color: #fdecea;
         color: #b71c1c;
         border: 1px solid #d32f2f;
+      }
+
+      /* ================= FORM VIEW ================= */
+
+      .form-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 75vh;
+        padding: 20px 0;
+      }
+
+      .edit-card {
+        width: 100%;
+        max-width: 520px;
+        padding: 40px 35px;
+        border-radius: 20px;
+        background: #ffffff;
+        box-shadow: 0 20px 50px rgba(67, 56, 202, 0.12);
+        border: 1px solid #e0e7ff;
+        transition: 0.3s ease;
+      }
+
+      /* Header */
+      .form-header {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .header-icon {
+        font-size: 42px !important;
+        width: 42px !important;
+        height: 42px !important;
+        color: #4338ca;
+        margin-bottom: 10px;
+      }
+
+      .form-header h2 {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.4rem;
+        color: #1f2937;
+      }
+
+      /* Form */
+      .edit-form {
+        display: flex;
+        flex-direction: column;
+        gap: 22px;
+      }
+
+      .full-width {
+        width: 100%;
+      }
+
+      /* ================= FORM ACTIONS CLEAN ================= */
+
+      .form-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        margin-top: 35px;
+      }
+
+      .form-actions button {
+        width: 180px;
+        height: 48px;
+        border-radius: 12px !important;
+        text-transform: none !important;
+      }
+
+      .form-actions button[mat-stroked-button] {
+        width: 180px;
+        margin-left: 18px;
+        border-color: #4338ca !important;
+        color: #4338ca !important;
+      }
+      /* ================= MOBILE IMPROVEMENTS ================= */
+
+      @media (max-width: 768px) {
+        :host {
+          padding: 20px 12px 60px;
+        }
+
+        .container h1 {
+          font-size: 22px;
+          margin-bottom: 20px;
+        }
+
+        /* Make Add button full width */
+        button[mat-raised-button] {
+          width: 100%;
+          margin: 15px 0;
+        }
+
+        /* ---------- TABLE FIX ---------- */
+
+        /* Allow horizontal scroll */
+        .container {
+          overflow-x: auto;
+        }
+
+        table[mat-table] {
+          min-width: 600px; /* keeps layout intact */
+          font-size: 12px;
+        }
+
+        .mat-mdc-header-cell,
+        .mat-mdc-cell {
+          padding: 10px !important;
+          font-size: 12px;
+        }
+
+        /* Smaller action buttons */
+        .mat-mdc-icon-button {
+          width: 32px !important;
+          height: 32px !important;
+        }
+
+        .mat-mdc-icon-button mat-icon {
+          font-size: 18px !important;
+        }
+
+        /* ---------- FORM FIX ---------- */
+
+        .form-wrapper {
+          margin-top: 20px;
+          padding: 0 5px;
+        }
+
+        .edit-card {
+          padding: 20px;
+          border-radius: 14px;
+        }
+
+        .form-header h2 {
+          font-size: 18px;
+        }
+
+        .header-icon {
+          font-size: 30px !important;
+        }
+
+        .edit-form {
+          gap: 16px;
+        }
+
+        .form-actions {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .form-actions button {
+          width: 100%;
+        }
       }
     `,
   ],

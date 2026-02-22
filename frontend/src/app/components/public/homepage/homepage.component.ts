@@ -242,58 +242,25 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
         display: flex;
         align-items: center;
         overflow: hidden;
-        background: linear-gradient(
-          135deg,
-          #1e3a8a 0%,
-          #3730a3 50%,
-          #4f46e5 100%
-        );
-        color: white;
-        animation: gradientShift 10s ease-in-out infinite;
+        background: linear-gradient(135deg, #4338ca, #818cf8);
+        animation: gradientShift 20s ease-in-out infinite;
+        color: #ffffff;
       }
 
+      /* Smooth Indigo Animation */
       @keyframes gradientShift {
         0%,
         100% {
-          background: linear-gradient(
-            135deg,
-            #667eea 0%,
-            #764ba2 50%,
-            #f093fb 100%
-          );
-        }
-        25% {
-          background: linear-gradient(
-            135deg,
-            #f093fb 0%,
-            #f5576c 50%,
-            #4facfe 100%
-          );
+          background: linear-gradient(135deg, #4338ca, #818cf8);
         }
         50% {
-          background: linear-gradient(
-            135deg,
-            #4facfe 0%,
-            #00f2fe 50%,
-            #667eea 100%
-          );
-        }
-        75% {
-          background: linear-gradient(
-            135deg,
-            #764ba2 0%,
-            #667eea 50%,
-            #f093fb 100%
-          );
+          background: linear-gradient(135deg, #3730a3, #a5b4fc);
         }
       }
 
       .hero-background {
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        inset: 0;
         z-index: 1;
       }
 
@@ -312,75 +279,85 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       .hero-title {
         font-size: 3rem;
         font-weight: 700;
-        margin: 0 0 20px 0;
+        margin-bottom: 20px;
         font-family: "Poppins", sans-serif;
-        background: white;
-        background-size: 400% 400%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: shimmer 3s ease-in-out infinite;
-        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        position: relative;
-        letter-spacing: 1px;
         line-height: 1.35;
-      }
-
-      .hero-title::before {
-        content: attr(data-text);
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: linear-gradient(
-          45deg,
-          transparent,
-          rgba(255, 255, 255, 0.4),
-          transparent
-        );
-        background-size: 200% 200%;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: shine 2s linear infinite;
-      }
-
-      @keyframes shimmer {
-        0%,
-        100% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-      }
-
-      @keyframes shine {
-        0% {
-          background-position: -200% 0;
-        }
-        100% {
-          background-position: 200% 0;
-        }
       }
 
       .hero-subtitle {
         font-size: 1.5rem;
-        margin: 0 0 20px 0;
-        opacity: 0.9;
-        font-weight: 300;
+        margin-bottom: 20px;
+        font-weight: 400;
+        opacity: 0.95;
       }
 
       .hero-description {
         font-size: 1.1rem;
         line-height: 1.6;
-        margin: 0 0 40px 0;
-        opacity: 0.8;
+        margin-bottom: 40px;
+        opacity: 0.9;
       }
 
       .hero-actions {
         display: flex;
         gap: 20px;
         flex-wrap: wrap;
+      }
+
+      /* Primary Button */
+      .cta-button {
+        padding: 12px 32px !important;
+        font-size: 1rem !important;
+        border-radius: 24px !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
+        background-color: #ffffff !important;
+        color: #4338ca !important;
+      }
+
+      /* Secondary Button */
+      .secondary-button {
+        padding: 12px 32px !important;
+        font-size: 1rem !important;
+        border-radius: 24px !important;
+        font-weight: 600 !important;
+        text-transform: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.6) !important;
+        color: #ffffff !important;
+      }
+
+      .hero-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 26px 20px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        transition:
+          transform 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-6px);
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      .stat-number {
+        font-size: 2.6rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        opacity: 0.9;
       }
 
       .cta-button {
@@ -470,11 +447,9 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
         font-size: 1rem;
         opacity: 0.8;
       }
-
-      /* Features Section */
       .features-section {
         padding: 100px 0;
-        background: #d7e1f8;
+        background: #f5f7ff;
       }
 
       .container {
@@ -491,45 +466,45 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       .section-header h2 {
         font-size: 2.5rem;
         font-weight: 700;
-        color: #121c35;
-        margin: 0 0 25px 0;
-        font-family: "Poppins", sans-serif;
+        color: #1f2937;
+        margin-bottom: 20px;
       }
 
       .section-header p {
         font-size: 1.2rem;
-        font-weight: 00;
-        color: #253346;
+        font-weight: 400;
+        color: #4b5563;
         margin: 0;
       }
 
       .features-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 40px;
       }
 
       .feature-card {
         text-align: center;
-        padding: 40px 30px;
-        background: white;
+        padding: 45px 30px;
+        background: #ffffff;
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
       }
 
       .feature-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-6px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
       }
 
       .feature-icon {
-        width: 80px;
-        height: 80px;
+        width: 90px;
+        height: 90px;
         margin: 0 auto 30px auto;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #4338ca, #818cf8);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -538,160 +513,184 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       }
 
       .feature-icon mat-icon {
-        font-size: 2.5rem !important;
-        width: 2.5rem !important;
-        height: 2.5rem !important;
+        font-size: 36px !important;
+        width: 36px !important;
+        height: 36px !important;
+        line-height: 36px !important;
+      }
+
+      .feature-card:hover .feature-icon {
+        transform: scale(1.08);
       }
 
       .feature-card h3 {
         font-size: 1.5rem;
         font-weight: 600;
-        color: #333;
-        margin: 0 0 20px 0;
+        color: #1f2937;
+        margin-bottom: 18px;
       }
 
       .feature-card p {
-        color: #666;
+        color: #4b5563;
         line-height: 1.6;
-        margin: 0;
+        font-size: 0.98rem;
       }
 
-      /* Courses Preview Section */
+      /* ================= COURSES PREVIEW SECTION ================= */
+
       .courses-preview-section {
-        padding: 100px 0;
-        background: #e1e4f5;
+        padding: 110px 0;
+        background: linear-gradient(to bottom, #f5f7ff, #ffffff);
       }
 
       .courses-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 30px;
-        margin-bottom: 60px;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
       }
+
+      /* ================= COURSE CARD ================= */
 
       .course-card {
         border-radius: 20px !important;
+        border: 1px solid #eef2ff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        background: #ffffff;
+        position: relative;
         overflow: hidden !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease !important;
       }
 
-      .course-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+      /* Top Accent Strip */
+      .course-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background: linear-gradient(135deg, #4338ca, #818cf8);
       }
+
+      /* Hover Effect */
+      .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(67, 56, 202, 0.15) !important;
+      }
+
+      /* ================= IMAGE ================= */
 
       .course-image {
         height: 200px;
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        background: linear-gradient(135deg, #4338ca, #818cf8);
         display: flex;
         align-items: center;
         justify-content: center;
-        color: white;
+        color: #ffffff;
       }
 
       .course-image mat-icon {
-        font-size: 4rem !important;
-        width: 4rem !important;
-        height: 4rem !important;
+        font-size: 50px !important;
+        width: 50px !important;
+        height: 50px !important;
+        transition: transform 0.3s ease;
       }
+
+      /* Icon Hover Animation */
+      .course-card:hover .course-image mat-icon {
+        transform: scale(1.15);
+      }
+
+      /* ================= CONTENT ================= */
 
       .course-card h3 {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
         font-weight: 600;
-        color: #333;
-        margin: 0 0 15px 0;
-      }
-
-      .course-card mat-card-actions {
-        padding: 16px 24px !important;
-        gap: 12px !important;
-        display: flex !important;
-        justify-content: space-between !important;
-      }
-
-      .course-card button {
-        border-radius: 20px !important;
-        font-weight: 500 !important;
-        text-transform: none !important;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        position: relative !important;
-        overflow: hidden !important;
-      }
-
-      .course-card button::before {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        transform: translate(-50%, -50%);
-      }
-
-      .course-card button:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-      }
-
-      .course-card button:hover::before {
-        width: 300px;
-        height: 300px;
-      }
-
-      .course-card button:active {
-        transform: translateY(0) scale(0.98);
+        color: #1f2937;
+        margin: 18px 0 14px 0;
       }
 
       .course-card p {
-        color: #666;
-        line-height: 1.5;
-        margin: 0 0 20px 0;
+        color: #4b5563;
+        line-height: 1.6;
+        margin: 14px 0 22px 0;
+        font-size: 0.95rem;
+        text-align: justify;
       }
+
+      /* ================= META ================= */
 
       .course-meta {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
-        margin-bottom: 20px;
+        gap: 16px;
+        margin-bottom: 24px;
       }
 
       .course-meta span {
         display: flex;
         align-items: center;
-        gap: 5px;
-        color: #666;
+        gap: 6px;
+        color: #6b7280;
         font-size: 0.9rem;
+        font-weight: 500;
       }
 
       .course-meta mat-icon {
-        font-size: 1.2rem !important;
-        width: 1.2rem !important;
-        height: 1.2rem !important;
+        font-size: 18px !important;
+        width: 18px !important;
+        height: 18px !important;
       }
+
+      /* ================= ACTIONS ================= */
+
+      .course-card mat-card-actions {
+        padding: 18px 24px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+      }
+
+      .course-card button {
+        border-radius: 8px !important;
+        font-weight: 500 !important;
+        text-transform: none !important;
+        transition: transform 0.2s ease !important;
+      }
+
+      .course-card button:hover {
+        transform: translateY(-2px);
+      }
+
+      .course-card button:active {
+        transform: scale(0.98);
+      }
+
+      /* ================= VIEW ALL BUTTON ================= */
 
       .view-all-courses {
         text-align: center;
       }
 
       .view-all-btn {
-        padding: 15px 40px !important;
-        font-size: 1.1rem !important;
-        border-radius: 25px !important;
+        padding: 14px 36px !important;
+        font-size: 1rem !important;
+        border-radius: 22px !important;
         font-weight: 600 !important;
         text-transform: none !important;
       }
 
-      /* Testimonials Section */
+      mat-card.course-card {
+        border: none !important;
+      }
+
+      /* ================= TESTIMONIALS SECTION ================= */
+
       .testimonials-section {
         padding: 100px 0;
-        background: #eef2ff;
+        background: #f5f7ff;
       }
 
       .testimonials-grid {
@@ -701,15 +700,19 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       }
 
       .testimonial-card {
-        background: white;
+        background: #ffffff;
         padding: 40px 30px;
         border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
       .testimonial-card:hover {
-        transform: translateY(-5px);
+        transform: translateY(-6px);
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.08);
       }
 
       .testimonial-content {
@@ -717,9 +720,9 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       }
 
       .testimonial-content p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #333;
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #4b5563;
         font-style: italic;
         margin: 0;
       }
@@ -731,9 +734,9 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
       }
 
       .author-avatar {
-        width: 50px;
-        height: 50px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        width: 52px;
+        height: 52px;
+        background: linear-gradient(135deg, #4338ca, #818cf8);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -741,74 +744,93 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
         color: white;
       }
 
+      .author-avatar mat-icon {
+        font-size: 22px !important;
+        width: 22px !important;
+        height: 22px !important;
+      }
+
       .author-info h4 {
         margin: 0 0 5px 0;
-        color: #333;
+        color: #1f2937;
         font-weight: 600;
       }
 
       .author-info span {
-        color: #666;
+        color: #6b7280;
         font-size: 0.9rem;
       }
 
-      /* CTA Section */
+      /* ================= CTA SECTION ================= */
+
       .cta-section {
-        padding: 100px 0;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
+        padding: 110px 0;
+        background: linear-gradient(135deg, #4338ca, #3730a3);
+        color: #ffffff;
         text-align: center;
       }
 
+      .cta-content {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
       .cta-content h2 {
-        font-size: 2.5rem;
+        font-size: 2.6rem;
         font-weight: 700;
-        margin: 0 0 20px 0;
-        font-family: "Poppins", sans-serif;
+        margin-bottom: 20px;
       }
 
       .cta-content p {
-        font-size: 1.2rem;
-        margin: 0 0 40px 0;
-        opacity: 0.9;
+        font-size: 1.15rem;
+        margin-bottom: 45px;
+        opacity: 0.95;
       }
 
       .cta-actions {
         display: flex;
-        gap: 20px;
+        gap: 22px;
         justify-content: center;
         flex-wrap: wrap;
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
+      .features-section {
+        background: #f5f7ff;
+      }
+
+      .courses-preview-section {
+        background: #ffffff;
+      }
+
+      .testimonials-section {
+        background: #f5f7ff;
+      }
+
+      /* ================= RESPONSIVE ================= */
+
+      /* Tablet */
+      @media (max-width: 900px) {
         .hero-content {
           grid-template-columns: 1fr;
-          gap: 40px;
           text-align: center;
         }
+      }
 
+      /* Small Tablet / Large Mobile */
+      @media (max-width: 600px) {
         .hero-title {
-          font-size: 2.5rem;
+          font-size: 2rem;
+        }
+        .hero-subtitle {
+          font-size: 1.2rem;
+        }
+        .hero-description {
+          font-size: 0.95rem;
         }
 
         .hero-stats {
-          grid-template-columns: 1fr 1fr;
-          gap: 20px;
-        }
-
-        .stat-number {
-          font-size: 2rem;
-        }
-
-        .section-header h2 {
-          font-size: 2rem;
-        }
-
-        .features-grid,
-        .courses-grid,
-        .testimonials-grid {
-          grid-template-columns: 1fr;
+          grid-template-columns: 1fr; /* Better mobile layout */
         }
 
         .hero-actions,
@@ -820,7 +842,17 @@ import { MatSnackBar, MatSnackBarModule } from "@angular/material/snack-bar";
         .cta-button,
         .secondary-button {
           width: 100%;
-          max-width: 300px;
+          max-width: 260px;
+        }
+      }
+
+      /* Very Small Mobile */
+      @media (max-width: 360px) {
+        .section-header h2 {
+          font-size: 1.6rem;
+        }
+        .stat-number {
+          font-size: 1.8rem;
         }
       }
     `,

@@ -49,7 +49,7 @@ import { environment } from "src/environments/environment";
               <p>
                 Have questions about courses, admissions, or support? <br />
                 <span class="highlight-text">
-                  Call or WhatsApp us at +93253 90860
+                  Call or WhatsApp us at +91 93253 90860
                 </span>
                 <br />
               </p>
@@ -181,101 +181,113 @@ import { environment } from "src/environments/environment";
   `,
   styles: [
     `
-      .contact-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 60px 20px;
+      :host {
+        display: block;
+        background: linear-gradient(to bottom, #f5f7ff, #eef2ff);
+        min-height: 100vh;
       }
 
-      /* HEADER */
+      /* ================= CONTAINER ================= */
+
+      .contact-container {
+        max-width: 1200px;
+        margin: 0 90px;
+        padding: 60px 24px;
+      }
+
+      /* ================= HEADER ================= */
+
       .contact-header {
         text-align: center;
-        margin-bottom: 60px;
+        margin-bottom: 70px;
         color: #4d4dab;
       }
 
       .contact-header h1 {
         font-size: 3rem;
         font-weight: 800;
-        line-height: 1;
-        -webkit-background-clip: text;
-        letter-spacing: 2px;
+        line-height: 1.1;
+        letter-spacing: 1px;
       }
 
       .contact-header p {
-        font-size: 1.3rem;
+        font-size: 1.25rem;
         color: #060e46;
+        margin-top: 12px;
       }
 
-      /* GRID: 35 / 65 */
+      /* ================= GRID LAYOUT ================= */
+
       .contact-content {
         display: grid;
         grid-template-columns: 35% 65%;
-        gap: 40px;
+        gap: 60px;
         align-items: stretch;
       }
 
-      /* LEFT COLUMN */
+      /* ================= LEFT COLUMN ================= */
+
       .contact-info {
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 28px;
       }
 
       .info-card {
-        padding: 25px;
+        padding: 28px;
         border-radius: 18px;
         background: #ffffff;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 18px;
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
         border: 1px solid transparent;
-        transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease,
-          border-color 0.25s ease;
+        transition: all 0.25s ease;
       }
 
       .info-card mat-icon {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         font-size: 28px;
-        line-height: 34px;
+        line-height: 36px;
         color: #0072ff;
         flex-shrink: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        transition:
-          transform 0.25s ease,
-          color 0.25s ease;
+        transition: all 0.25s ease;
       }
 
       .info-card h3 {
-        margin: 0 0 4px 0;
+        margin: 0 0 6px 0;
         font-weight: 600;
+        font-size: 1.05rem;
       }
 
       .info-card p {
         margin: 0;
         color: #1e1818;
-        line-height: 1.45;
+        line-height: 1.5;
+        font-size: 0.95rem;
       }
 
       .highlight-text {
         color: #6c1f9c;
-        font-weight: 500;
+        font-weight: 600;
       }
 
+      /* Highlight card */
       .highlight-card {
-        background: linear-gradient(135deg, #eef2ff, #ffffff);
+        background: #ffffff;
+        border: 1px solid rgba(63, 81, 181, 0.2);
       }
+
+      /* Hover Effects */
 
       .info-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-        border-color: rgba(63, 81, 181, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+        border-color: rgba(63, 81, 181, 0.25);
       }
 
       .info-card:hover mat-icon {
@@ -294,18 +306,20 @@ import { environment } from "src/environments/environment";
         color: #102bdd;
       }
 
-      /* RIGHT COLUMN */
+      /* ================= RIGHT COLUMN ================= */
+
       .contact-form-card {
-        border-radius: 20px;
-        padding: 14px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        border-radius: 22px;
+        padding: 24px;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
         height: 100%;
+        background: #ffffff;
       }
 
       .contact-form {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 22px;
         margin-top: 20px;
       }
 
@@ -316,20 +330,55 @@ import { environment } from "src/environments/environment";
       .form-actions {
         display: flex;
         justify-content: center;
-        margin-top: 30px;
+        margin-top: 35px;
       }
 
       .submit-btn {
-        padding: 14px 44px;
-        border-radius: 30px;
-        font-size: 1.1rem;
+        padding: 14px 48px;
+        border-radius: 32px;
+        font-size: 1.05rem;
         font-weight: 600;
       }
 
-      /* MOBILE */
+      /* ================= MOBILE ================= */
+
       @media (max-width: 900px) {
+        .contact-container {
+          padding: 60px 18px;
+        }
+
+        .contact-header h1 {
+          font-size: 2.2rem;
+        }
+
+        .contact-header p {
+          font-size: 1.05rem;
+        }
+
         .contact-content {
           grid-template-columns: 1fr;
+          gap: 50px;
+        }
+
+        .contact-info {
+          gap: 22px;
+        }
+
+        .info-card {
+          padding: 22px;
+        }
+
+        .contact-form-card {
+          padding: 18px;
+        }
+
+        .submit-btn {
+          width: 100%;
+          max-width: 260px;
+        }
+
+        .form-actions {
+          margin-top: 25px;
         }
       }
     `,

@@ -129,9 +129,26 @@ import { RouterModule } from "@angular/router";
               </p>
             </div>
             <div class="footer-bottom-links">
-              <a href="#">Privacy Policy</a>
-              <a href="#">Terms of Service</a>
-              <a href="#">Cookie Policy</a>
+              <a
+                href="#"
+                onclick="alert('Privacy Policy page coming soon'); return false;"
+              >
+                Privacy Policy
+              </a>
+
+              <a
+                href="#"
+                onclick="alert('Terms of Service page coming soon'); return false;"
+              >
+                Terms of Service
+              </a>
+
+              <a
+                href="#"
+                onclick="alert('Cookie Policy page coming soon'); return false;"
+              >
+                Cookie Policy
+              </a>
               <a routerLink="/dashboard">Admin Portal</a>
             </div>
           </div>

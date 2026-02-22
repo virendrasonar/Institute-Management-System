@@ -55,19 +55,19 @@ Student student8 = new Student("Rohan Kulkarni", "rohan.kulkarni@gmail.com", "AC
     }
 
     private void initializeMessages() {
-        Message message1 = new Message("Aarav Sharma", "aarav.sharma@email.com", 
+        Message message1 = new Message("Aarav Sharma", "aarav.sharma@gmail.com", 
         "Hello! I'm interested in enrolling in the Advanced JavaScript course. Could you please provide more information about the prerequisites and schedule?");
 
-Message message2 = new Message("Priya Patel", "priya.patel@email.com", 
+Message message2 = new Message("Priya Patel", "priya.patel@gmail.com", 
         "I'm having trouble accessing the course materials. Could someone help me with the login process?");
 
-Message message3 = new Message("Rohan Mehta", "rohan.mehta@email.com", 
+Message message3 = new Message("Rohan Mehta", "rohan.mehta@gmail.com", 
         "Thank you for the excellent Spring Boot course! The content was very comprehensive and well-structured. I would love to see more advanced topics covered.");
 
-Message message4 = new Message("Liam Anderson", "liam.anderson@email.com", 
+Message message4 = new Message("Latika Jha", "latika.jha@gmail.com", 
         "Is there a mobile app available for accessing course content? It would be great to study on the go.");
 
-Message message5 = new Message("Sofia Martinez", "sofia.martinez@email.com", 
+Message message5 = new Message("Rahul Sharma", "rahul.sharma@gmail.com", 
         "I'm interested in the upcoming React course. When will registration open and what are the fees?");
 
 
