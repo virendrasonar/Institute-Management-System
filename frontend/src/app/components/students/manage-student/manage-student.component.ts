@@ -130,21 +130,21 @@ import { Student } from "../../../models/student.model";
             class="edit-form"
           >
             <!-- Name -->
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Full Name</mat-label>
               <input matInput formControlName="name" />
               <mat-icon matSuffix>person</mat-icon>
             </mat-form-field>
 
             <!-- Email -->
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Email Address</mat-label>
               <input matInput formControlName="email" />
               <mat-icon matSuffix>email</mat-icon>
             </mat-form-field>
 
             <!-- Status -->
-            <mat-form-field appearance="outline" class="full-width">
+            <mat-form-field class="full-width">
               <mat-label>Status</mat-label>
               <mat-select formControlName="status">
                 <mat-option value="ACTIVE">ACTIVE</mat-option>
