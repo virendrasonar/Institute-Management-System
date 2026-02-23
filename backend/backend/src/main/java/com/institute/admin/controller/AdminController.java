@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,12 +20,7 @@ import com.institute.admin.model.Message;
 import com.institute.admin.model.Student;
 import com.institute.admin.services.AdminService;
 
-@CrossOrigin(
-    origins = {
-        "http://localhost:4200",
-        "https://institute-management-system-frontend.onrender.com"
-    }
-)
+
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -91,7 +85,6 @@ public class AdminController {
         return ResponseEntity.ok(students);
     }
 
-    
     @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
         Optional<Student> student = adminService.getStudentById(id);
