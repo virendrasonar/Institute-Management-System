@@ -24,7 +24,7 @@ import com.institute.admin.services.AdminService;
 @CrossOrigin(
     origins = {
         "http://localhost:4200",
-        "https://vsedutech.netlify.app"
+        "https://institute-management-system-frontend.onrender.com"
     }
 )
 @RestController
@@ -91,6 +91,7 @@ public class AdminController {
         return ResponseEntity.ok(students);
     }
 
+    
     @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable Long id) {
         Optional<Student> student = adminService.getStudentById(id);

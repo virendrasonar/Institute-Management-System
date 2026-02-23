@@ -22,7 +22,7 @@ import com.institute.admin.services.AdminService;
 
 @RestController
 @RequestMapping("/api/public")
-@CrossOrigin(origins = {"http://localhost:4300", "http://localhost:4200", "https://vsedutech.netlify.app"})
+@CrossOrigin(origins = {"http://localhost:4300", "http://localhost:4200", "https://institute-management-system-frontend.onrender.com"})
 public class PublicController {
 
     private final AdminService adminService;
