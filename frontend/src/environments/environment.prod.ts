@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://imsbackend-production-96d5.up.railway.app",
+  apiUrl: "https://institute-management-system-jg8w.onrender.com/",
 };
