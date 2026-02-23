@@ -2,6 +2,7 @@
 
 A full-stack web application for managing institute operations including courses, students, and messages. Built using modern enterprise technologies with clean architecture principles.
 
+Live Demo: https://institute-management-system-frontend.onrender.com
 🏗 Architecture
 
 Backend: Spring Boot 3 REST API
@@ -401,7 +402,7 @@ TROUBLESHOOTING.md
 🔗 : Click on the link, you can add, edit, delete, modify courses.
     You can add, delete, modify students.
     You can send messages to us.
-👉 https://vsedutech.netlify.app
+👉 https://institute-management-system-frontend.onrender.com
 
 📌 Project Status
 
