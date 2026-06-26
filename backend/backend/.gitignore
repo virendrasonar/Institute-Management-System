@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Local Spring profile
+backend/backend/src/main/resources/application-local.properties
