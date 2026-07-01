@@ -1,0 +1,264 @@
+<div class="course-detail-page">
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="container">
+      <div class="loading-spinner"></div>
+      <p>Loading course details...</p>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div class="error-state" *ngIf="error && !isLoading">
+    <div class="container">
+      <div class="error-message">
+        <h2>Unable to load course</h2>
+        <p>{{ error }}</p>
+        <div class="error-actions">
+          <button (click)="loadCourse()" class="retry-btn">Try Again</button>
+          <button (click)="goBack()" class="back-btn">Back to Courses</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Course Content -->
+  <div class="course-content" *ngIf="course && !isLoading && !error">
+    <!-- Course Header -->
+    <div class="course-header">
+      <div class="container">
+        <div class="breadcrumb">
+          <button (click)="goBack()" class="back-link">← Back to Courses</button>
+        </div>
+
+        <div class="course-header-content">
+          <div class="course-header-main">
+            <img *ngIf="course.thumbnailUrl"
+                 class="course-thumbnail"
+                 [src]="course.thumbnailUrl"
+                 [alt]="course.name + ' thumbnail'" />
+            <div class="course-badges">
+              <span class="course-category" *ngIf="course.category">
+                {{ course.category }}
+              </span>
+              <span class="course-level" [class]="getLevelClass()" *ngIf="course.level">
+                {{ course.level }}
+              </span>
+            </div>
+
+            <h1 class="course-title">{{ course.name }}</h1>
+            <p class="course-description">{{ course.description }}</p>
+
+            <div class="course-meta">
+              <div class="course-rating" *ngIf="course.rating">
+                <div class="stars">
+                  <span *ngFor="let star of getStarArray()" 
+                        class="star" 
+                        [class.filled]="isStarFilled(star)">
+                    ⭐
+                  </span>
+                </div>
+                <span class="rating-text">{{ course.rating }}/5</span>
+                <span class="students-count" *ngIf="course.studentsEnrolled">
+                  ({{ course.studentsEnrolled }} students)
+                </span>
+              </div>
+
+              <div class="course-instructor" *ngIf="course.instructor">
+                <i class="icon">👨‍🏫</i>
+                <span>Instructor: {{ course.instructor }}</span>
+              </div>
+
+              <div class="course-duration" *ngIf="course.duration">
+                <i class="icon">⏱️</i>
+                <span>Duration: {{ course.duration }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-header-sidebar">
+            <div class="course-price-card">
+              <div class="price-section">
+                <div class="price">{{ formatPrice(course.price) }}</div>
+                <div class="price-note" *ngIf="!course.price || course.price === 0">
+                  No cost to enroll
+                </div>
+              </div>
+
+              <div class="enrollment-actions">
+                <button (click)="enrollInCourse()" class="enroll-btn">
+                  Enroll Now
+                </button>
+                <button (click)="contactAboutCourse()" class="contact-btn">
+                  Ask Questions
+                </button>
+              </div>
+
+              <div class="course-stats" *ngIf="course.studentsEnrolled">
+                <div class="stat">
+                  <i class="icon">👥</i>
+                  <span>{{ course.studentsEnrolled }} students enrolled</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Course Details Section -->
+    <div class="course-details">
+      <div class="container">
+        <div class="course-details-content">
+          <div class="course-details-main">
+            <!-- Embedded Course Video -->
+            <div class="course-section media-section" *ngIf="youtubeEmbedUrl || (course.videoType === 'UPLOADED' && course.videoUrl)">
+              <h2>Course Video</h2>
+              <div class="responsive-video" *ngIf="youtubeEmbedUrl">
+                <iframe
+                  [src]="youtubeEmbedUrl"
+                  [title]="course.name + ' course video'"
+                  loading="lazy"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen>
+                </iframe>
+              </div>
+              <video *ngIf="course.videoType === 'UPLOADED' && course.videoUrl"
+                     class="uploaded-video"
+                     [src]="course.videoUrl"
+                     [poster]="course.thumbnailUrl || ''"
+                     controls
+                     playsinline
+                     preload="metadata">
+                Your browser does not support HTML5 video.
+              </video>
+            </div>
+
+            <!-- Course Overview -->
+            <div class="course-section">
+              <h2>Course Overview</h2>
+              <div class="course-overview">
+                <p>{{ course.description }}</p>
+                
+                <div class="course-highlights" *ngIf="courseFeatures.length > 0">
+                  <h3>What you'll learn:</h3>
+                  <ul class="features-list">
+                    <li *ngFor="let feature of courseFeatures">
+                      <i class="check-icon">✓</i>
+                      {{ feature }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Course Materials -->
+            <div class="course-section" *ngIf="courseMaterials.length > 0">
+              <h2>Course Materials</h2>
+              <ul class="materials-list">
+                <li *ngFor="let material of courseMaterials">
+                  <a *ngIf="isWebLink(material); else materialName"
+                     [href]="material" target="_blank" rel="noopener noreferrer">
+                    {{ material }}
+                  </a>
+                  <ng-template #materialName><span>{{ material }}</span></ng-template>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="course-section" *ngIf="coursePrerequisites.length > 0">
+              <h2>Prerequisites</h2>
+              <div class="prerequisites">
+                <p>Before taking this course, you should have:</p>
+                <ul class="prerequisites-list">
+                  <li *ngFor="let prerequisite of coursePrerequisites">
+                    <i class="requirement-icon">📋</i>
+                    {{ prerequisite }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Course Content -->
+            <div class="course-section">
+              <h2>Course Content</h2>
+              <div class="course-curriculum">
+                <p>This comprehensive course covers all essential topics to help you master the subject matter.</p>
+                <div class="curriculum-note">
+                  <i class="info-icon">ℹ️</i>
+                  <span>Detailed curriculum information will be provided upon enrollment.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Instructor Information -->
+            <div class="course-section" *ngIf="course.instructor">
+              <h2>Instructor</h2>
+              <div class="instructor-info">
+                <div class="instructor-card">
+                  <div class="instructor-avatar">
+                    <i class="avatar-icon">👨‍🏫</i>
+                  </div>
+                  <div class="instructor-details">
+                    <h3>{{ course.instructor }}</h3>
+                    <p>Experienced instructor with expertise in {{ course.category || 'this field' }}.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="course-details-sidebar">
+            <!-- Course Information Card -->
+            <div class="info-card">
+              <h3>Course Information</h3>
+              <div class="info-items">
+                <div class="info-item" *ngIf="course.level">
+                  <span class="info-label">Level:</span>
+                  <span class="info-value" [class]="getLevelClass()">{{ course.level }}</span>
+                </div>
+                <div class="info-item" *ngIf="course.duration">
+                  <span class="info-label">Duration:</span>
+                  <span class="info-value">{{ course.duration }}</span>
+                </div>
+                <div class="info-item" *ngIf="course.category">
+                  <span class="info-label">Category:</span>
+                  <span class="info-value">{{ course.category }}</span>
+                </div>
+                <div class="info-item" *ngIf="course.studentsEnrolled">
+                  <span class="info-label">Students:</span>
+                  <span class="info-value">{{ course.studentsEnrolled }} enrolled</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enrollment Card -->
+            <div class="enrollment-card">
+              <h3>Ready to Start?</h3>
+              <p>Join thousands of students who have already enrolled in our courses.</p>
+              <button (click)="enrollInCourse()" class="enroll-btn-sidebar">
+                Enroll Now
+              </button>
+              <div class="contact-option">
+                <p>Have questions?</p>
+                <button (click)="contactAboutCourse()" class="contact-link">
+                  Contact us about this course
+                </button>
+              </div>
+            </div>
+
+            <!-- Related Courses -->
+            <div class="related-courses-card">
+              <h3>Need Help Choosing?</h3>
+              <p>Explore our full course catalog to find the perfect fit for your learning goals.</p>
+              <button (click)="goBack()" class="browse-courses-btn">
+                Browse All Courses
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

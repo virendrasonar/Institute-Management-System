@@ -1,0 +1,40 @@
+
+> public-website@0.0.0 start
+> ng serve --port 4300
+
+[33m>[39m Building...
+[32m√[39m Building...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m                         [2m | [22m [1mRaw size[22m
+[32mmain.js[39m            [2m | [22m[2mmain[22m                          [2m | [22m [36m93.84 kB[39m[2m | [22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m                        [2m | [22m [36m66.21 kB[39m[2m | [22m
+[32mchunk-VDSVFLTO.js[39m  [2m | [22m[2m-[22m                             [2m | [22m  [36m8.63 kB[39m[2m | [22m
+[32mchunk-UA5MDKUN.js[39m  [2m | [22m[2m-[22m                             [2m | [22m  [36m6.37 kB[39m[2m | [22m
+[32mchunk-VUJOFXKG.js[39m  [2m | [22m[2m-[22m                             [2m | [22m[36m938 bytes[39m[2m | [22m
+[32mpolyfills.js[39m       [2m | [22m[2mpolyfills[22m                     [2m | [22m [36m95 bytes[39m[2m | [22m
+
+[1m [22m                  [2m | [22m[1mInitial total[22m                 [2m | [22m[1m176.08 kB[22m
+
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m                         [2m | [22m [1mRaw size[22m
+[32mchunk-D3E7UAX7.js[39m  [2m | [22m[2mabout-component[22m               [2m | [22m[36m191.68 kB[39m[2m | [22m
+[32mchunk-5AVAJNVE.js[39m  [2m | [22m[2mhome-component[22m                [2m | [22m[36m166.80 kB[39m[2m | [22m
+[32mchunk-EPQLFEKK.js[39m  [2m | [22m[2mcourses-component[22m             [2m | [22m[36m161.31 kB[39m[2m | [22m
+[32mchunk-N6MR43IY.js[39m  [2m | [22m[2mcontact-component[22m             [2m | [22m[36m110.16 kB[39m[2m | [22m
+[32mchunk-IDILNJ7W.js[39m  [2m | [22m[2mcourse-detail-component[22m       [2m | [22m[36m101.80 kB[39m[2m | [22m
+[32mchunk-MRYHW4WQ.js[39m  [2m | [22m[2mtest-api-integration-component[22m[2m | [22m [36m12.57 kB[39m[2m | [22m
+[32mchunk-VJWW3B6M.js[39m  [2m | [22m[2mnot-found-component[22m           [2m | [22m  [36m8.16 kB[39m[2m | [22m
+[32mchunk-MZZ4MXKR.js[39m  [2m | [22m[2m-[22m                             [2m | [22m  [36m2.15 kB[39m[2m | [22m
+[32mchunk-HEO6Q6BZ.js[39m  [2m | [22m[2m-[22m                             [2m | [22m  [36m1.60 kB[39m[2m | [22m
+
+Application bundle generation complete. [7.298 seconds] - 2026-07-01T19:53:49.686Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4300[22m/[39m
+[33m>[39m Changes detected. Rebuilding...
+[32m√[39m Changes detected. Rebuilding...
+[1mInitial chunk files[22m[2m | [22m[1mNames[22m [2m | [22m[1mRaw size[22m
+[32mstyles.css[39m         [2m | [22m[2mstyles[22m[2m | [22m[36m66.38 kB[39m[2m | [22m
+
+Application bundle generation complete. [0.395 seconds] - 2026-07-01T19:55:14.802Z
+
+Stylesheet update sent to client(s).

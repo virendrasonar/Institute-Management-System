@@ -1,0 +1,97 @@
+[baseline-browser-mapping] The data in this module is over two months old.  To ensure accurate Baseline data, please update: `npm i baseline-browser-mapping@latest -D`
+- Generating browser application bundles (phase: setup)...
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+
+./src/app/app.routes.ts:31:23-93 - Error: Module not found: Error: Can't resolve './components/courses/course-details/course-details.component' in 'C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app'
+
+./src/app/app.routes.ts:34:23-95 - Error: Module not found: Error: Can't resolve './components/courses/learning-course/learning-course.component' in 'C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app'
+
+Error: src/app/app.routes.ts:57:14 - error TS2307: Cannot find module './components/courses/course-details/course-details.component' or its corresponding type declarations.
+
+57       import("./components/courses/course-details/course-details.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.routes.ts:64:14 - error TS2307: Cannot find module './components/courses/learning-course/learning-course.component' or its corresponding type declarations.
+
+64       import("./components/courses/learning-course/learning-course.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/app.routes.ts:31:23-93 - Error: Module not found: Error: Can't resolve './components/courses/course-details/course-details.component' in 'C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app'
+
+./src/app/app.routes.ts:34:23-95 - Error: Module not found: Error: Can't resolve './components/courses/learning-course/learning-course.component' in 'C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app'
+
+Error: src/app/app.routes.ts:57:14 - error TS2307: Cannot find module './components/courses/course-details/course-details.component' or its corresponding type declarations.
+
+57       import("./components/courses/course-details/course-details.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.routes.ts:64:14 - error TS2307: Cannot find module './components/courses/learning-course/learning-course.component' or its corresponding type declarations.
+
+64       import("./components/courses/learning-course/learning-course.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/app.routes.ts:34:23-95 - Error: Module not found: Error: Can't resolve './components/courses/learning-course/learning-course.component' in 'C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app'
+
+./src/app/components/courses/course-details/course-details.component.ts - Error: Module build failed (from ./node_modules/@ngtools/webpack/src/ivy/index.js):
+Error: C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app\components\courses\course-details\course-details.component.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+
+Error: src/app/app.routes.ts:57:14 - error TS2307: Cannot find module './components/courses/course-details/course-details.component' or its corresponding type declarations.
+
+57       import("./components/courses/course-details/course-details.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.routes.ts:64:14 - error TS2307: Cannot find module './components/courses/learning-course/learning-course.component' or its corresponding type declarations.
+
+64       import("./components/courses/learning-course/learning-course.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/components/courses/course-details/course-details.component.ts - Error: Module build failed (from ./node_modules/@ngtools/webpack/src/ivy/index.js):
+Error: C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app\components\courses\course-details\course-details.component.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+
+./src/app/components/courses/learning-course/learning-course.component.ts - Error: Module build failed (from ./node_modules/@ngtools/webpack/src/ivy/index.js):
+Error: C:\Users\VIRENDRA\OneDrive\Desktop\nnnnn\Institute-Management-System-main\frontend\src\app\components\courses\learning-course\learning-course.component.ts is missing from the TypeScript compilation. Please make sure it is in your tsconfig via the 'files' or 'include' property.
+
+Error: src/app/app.routes.ts:57:14 - error TS2307: Cannot find module './components/courses/course-details/course-details.component' or its corresponding type declarations.
+
+57       import("./components/courses/course-details/course-details.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Error: src/app/app.routes.ts:64:14 - error TS2307: Cannot find module './components/courses/learning-course/learning-course.component' or its corresponding type declarations.
+
+64       import("./components/courses/learning-course/learning-course.component").then(
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+√ Browser application bundle generation complete.
+
+./src/app/components/courses/learning-course/learning-course.component.ts-18.scss?ngResource!=!./node_modules/@ngtools/webpack/src/loaders/inline-resource.js!./src/app/components/courses/learning-course/learning-course.component.ts - Warning: Module Warning (from ./node_modules/postcss-loader/dist/cjs.js):
+(33:3) from "autoprefixer" plugin: end value has mixed support, consider using flex-end instead
+
+Code:
+  align-items: end
+
+
+
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.
+√ Browser application bundle generation complete.

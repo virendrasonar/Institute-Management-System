@@ -1,0 +1,312 @@
+/* Unified soft blue-purple visual theme. Kept global so it consistently themes
+   standalone Angular components without changing their layout rules. */
+:root {
+  --theme-blue: #5b6ee1;
+  --theme-blue-dark: #4453bd;
+  --theme-purple: #8266c7;
+  --theme-purple-dark: #684aa8;
+  --theme-ink: #252442;
+  --theme-muted: #666583;
+  --theme-surface: rgba(255, 255, 255, 0.82);
+  --theme-surface-strong: #ffffff;
+  --theme-border: rgba(100, 103, 196, 0.16);
+  --theme-soft-blue: #edf2ff;
+  --theme-soft-purple: #f3efff;
+  --theme-shadow: 0 16px 42px rgba(72, 65, 145, 0.11);
+  --theme-gradient: linear-gradient(135deg, #6277df 0%, #8064c5 100%);
+  --theme-page-gradient:
+    radial-gradient(circle at 10% 5%, rgba(117, 148, 255, 0.18), transparent 28rem),
+    radial-gradient(circle at 92% 18%, rgba(174, 127, 232, 0.16), transparent 30rem),
+    linear-gradient(180deg, #f8f9ff 0%, #f3f1fc 100%);
+}
+
+html { background: #f4f3fc; }
+
+body {
+  color: var(--theme-ink);
+  background: var(--theme-page-gradient);
+}
+
+/* Navigation */
+.navigation {
+  background: rgba(248, 249, 255, 0.9) !important;
+  border-bottom-color: var(--theme-border) !important;
+  box-shadow: 0 8px 30px rgba(58, 53, 122, 0.07);
+}
+
+.navigation .logo-text,
+.navigation .nav-link:hover,
+.navigation .nav-link.active { color: var(--theme-blue) !important; }
+
+.navigation .nav-link.active::after,
+.navigation .nav-link::before { background: var(--theme-gradient) !important; }
+
+.navigation .mobile-menu { background: #f8f9ff !important; }
+
+/* Page canvases */
+.home-page,
+.about-page,
+.contact-page,
+.courses-page,
+.course-detail-page,
+.not-found-page {
+  color: var(--theme-ink) !important;
+  background: var(--theme-page-gradient) !important;
+}
+
+/* Signature blue-purple headers */
+.hero-section,
+.hero-mobile,
+.courses-page .page-header,
+.course-detail-page .course-header,
+.about-page .about-content .hero-section,
+.cta-section .main-cta-banner,
+.cta-section .final-cta {
+  background: var(--theme-gradient) !important;
+}
+
+.hero-mobile {
+  position: relative;
+  color: white;
+}
+
+.hero-mobile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(255,255,255,.18), transparent 24rem),
+    radial-gradient(circle at 86% 68%, rgba(223,214,255,.22), transparent 28rem);
+}
+
+.hero-mobile .btn-primary {
+  color: var(--theme-blue-dark) !important;
+  background: rgba(255,255,255,.94) !important;
+  border-color: rgba(255,255,255,.92) !important;
+  box-shadow: 0 12px 28px rgba(41, 38, 99, .2);
+}
+
+.hero-mobile .btn-outline {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.6) !important;
+  background: rgba(255,255,255,.08) !important;
+}
+
+.hero-mobile .text-neutral-100,
+.hero-mobile .text-neutral-300 { color: rgba(255,255,255,.84) !important; }
+
+.hero-mobile .hero-text,
+.hero-mobile .responsive-heading,
+.hero-mobile .responsive-heading span,
+.hero-mobile .hero-text p,
+.hero-mobile .stat-item,
+.hero-mobile .stat-item div { color: #fff !important; }
+
+.hero-mobile .hero-text p { opacity: .88; }
+
+.hero-section::after,
+.courses-page .page-header::after,
+.course-detail-page .course-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 16% 20%, rgba(255,255,255,.16), transparent 25%),
+    radial-gradient(circle at 88% 75%, rgba(225,215,255,.18), transparent 28%);
+}
+
+.courses-page .page-header,
+.course-detail-page .course-header { position: relative; overflow: hidden; }
+
+.courses-page .page-header > *,
+.course-detail-page .course-header > * { position: relative; z-index: 1; }
+
+/* Soft sections */
+.features-section,
+.testimonials-section,
+.cta-section,
+.about-page .about-content > section,
+.contact-page,
+.courses-page .courses-content,
+.course-detail-page .course-details {
+  background-color: transparent !important;
+}
+
+.features-section,
+.cta-section { background-image: linear-gradient(180deg, rgba(239,243,255,.7), rgba(247,244,255,.72)) !important; }
+
+.testimonials-section { background-image: linear-gradient(180deg, rgba(247,244,255,.82), rgba(235,241,255,.76)) !important; }
+
+/* Cards and panels */
+.feature-card,
+.stat-card,
+.highlight-item,
+.testimonial-card,
+.cta-section .course-card,
+.courses-page .course-card,
+.course-detail-page .course-section,
+.course-detail-page .info-card,
+.course-detail-page .enrollment-card,
+.course-detail-page .related-courses-card,
+.contact-page .contact-info-section,
+.contact-page .contact-form-section,
+.contact-page .location-section,
+.about-page .value-card,
+.about-page .team-card,
+.about-page .achievement-card,
+.course-search,
+.course-filters {
+  background: var(--theme-surface) !important;
+  border: 1px solid var(--theme-border) !important;
+  box-shadow: var(--theme-shadow) !important;
+  backdrop-filter: blur(12px);
+}
+
+.feature-card:hover,
+.testimonial-card:hover,
+.courses-page .course-card:hover,
+.contact-page .contact-card:hover {
+  border-color: rgba(91, 110, 225, .36) !important;
+  box-shadow: 0 22px 48px rgba(75, 65, 156, .16) !important;
+}
+
+/* Typography */
+.section-title,
+.course-title,
+.contact-page h1,
+.contact-page h2,
+.about-page h2,
+.courses-page .course-title,
+.course-detail-page h2,
+.course-detail-page h3 { color: var(--theme-ink) !important; }
+
+.section-subtitle,
+.course-description,
+.contact-page p,
+.about-page p,
+.courses-page .course-description,
+.course-detail-page .course-details p { color: var(--theme-muted) !important; }
+
+.hero-section .hero-title,
+.hero-section .hero-description,
+.courses-page .page-header .page-title,
+.courses-page .page-header .page-subtitle,
+.course-detail-page .course-header .course-title,
+.course-detail-page .course-header .course-description,
+.about-page .hero-section .hero-title,
+.about-page .hero-section .hero-tagline { color: white !important; }
+
+/* Buttons and links */
+.courses-page button,
+.course-detail-page button,
+.contact-page button,
+.about-page button,
+.cta-section .btn-primary,
+.course-search button,
+.course-filters button {
+  border-color: transparent;
+}
+
+.courses-page .retry-btn,
+.courses-page .clear-filters-btn,
+.course-detail-page .enroll-btn,
+.course-detail-page .enroll-btn-sidebar,
+.contact-page .submit-button,
+.contact-page .primary-button,
+.about-page .toggle-button,
+.cta-section .btn-primary {
+  color: #fff !important;
+  background: var(--theme-gradient) !important;
+  box-shadow: 0 10px 24px rgba(84, 76, 181, .22) !important;
+}
+
+.course-detail-page .contact-btn,
+.course-detail-page .browse-courses-btn,
+.course-detail-page .back-link,
+.cta-section .btn-secondary {
+  color: var(--theme-blue-dark) !important;
+  background: rgba(255,255,255,.72) !important;
+  border-color: rgba(91,110,225,.32) !important;
+}
+
+button:hover,
+.btn:hover { filter: saturate(1.06) brightness(1.02); }
+
+a { color: var(--theme-blue-dark); }
+
+/* Form controls */
+.contact-page input,
+.contact-page textarea,
+.contact-page select,
+.course-search input,
+.course-filters input,
+.course-filters select {
+  color: var(--theme-ink) !important;
+  background: rgba(250, 250, 255, .92) !important;
+  border-color: rgba(105, 105, 182, .23) !important;
+}
+
+.contact-page input:focus,
+.contact-page textarea:focus,
+.course-search input:focus,
+.course-filters select:focus {
+  border-color: var(--theme-blue) !important;
+  box-shadow: 0 0 0 4px rgba(91, 110, 225, .12) !important;
+}
+
+.contact-page .map-placeholder,
+.contact-page .map-placeholder h3,
+.contact-page .map-placeholder p,
+.contact-page .map-placeholder .map-icon { color: #fff !important; }
+
+/* Tags, icons and informative surfaces */
+.course-category,
+.preview-badge,
+.feature-icon,
+.contact-page .contact-icon {
+  color: var(--theme-blue-dark) !important;
+  background-color: var(--theme-soft-blue) !important;
+}
+
+.course-detail-page .curriculum-note,
+.about-page .mission-section,
+.contact-page .contact-card,
+.courses-page .no-results-message {
+  background: linear-gradient(135deg, var(--theme-soft-blue), var(--theme-soft-purple)) !important;
+  border-color: var(--theme-border) !important;
+}
+
+/* Footer */
+.footer {
+  color: rgba(255,255,255,.82) !important;
+  background: linear-gradient(135deg, #30345f 0%, #4e3f76 100%) !important;
+}
+
+.footer h3,
+.footer h4,
+.footer .logo-text { color: white !important; }
+
+.footer a { color: rgba(239,242,255,.86) !important; }
+.footer a:hover { color: white !important; }
+.footer .footer-bottom { border-top-color: rgba(255,255,255,.12) !important; }
+
+/* Keep errors readable without introducing a harsh red block. */
+.courses-page .error-message,
+.course-detail-page .error-message,
+.about-page .error-message {
+  background: rgba(255, 246, 250, .92) !important;
+  border-color: rgba(202, 93, 137, .18) !important;
+  box-shadow: var(--theme-shadow);
+}
+
+@media (max-width: 768px) {
+  .navigation { background: rgba(248, 249, 255, .97) !important; }
+  .feature-card,
+  .testimonial-card,
+  .courses-page .course-card,
+  .course-detail-page .course-section,
+  .contact-page .contact-info-section,
+  .contact-page .contact-form-section { border-radius: 16px !important; }
+}

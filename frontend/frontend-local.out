@@ -1,0 +1,39 @@
+
+> institute-management-frontend@1.0.0 start
+> ng serve
+
+
+Initial chunk files                                                                                    | Names                                                       |  Raw size
+vendor.js                                                                                              | vendor                                                      |   3.80 MB | 
+polyfills.js                                                                                           | polyfills                                                   | 262.60 kB | 
+styles.css, styles.js                                                                                  | styles                                                      | 254.71 kB | 
+main.js                                                                                                | main                                                        |  79.25 kB | 
+runtime.js                                                                                             | runtime                                                     |  12.67 kB | 
+
+                                                                                                       | Initial total                                               |   4.40 MB
+
+Lazy chunk files                                                                                       | Names                                                       |  Raw size
+default-node_modules_angular_material_fesm2022_input_mjs.js                                            | components-courses-course-form-course-form-component        | 535.83 kB | 
+default-src_app_services_student_service_ts-node_modules_angular_material_fesm2022_table_mjs.js        | components-students-manage-student-manage-student-component | 201.01 kB | 
+src_app_components_students_manage-student_manage-student_component_ts.js                              | components-students-manage-student-manage-student-component |  97.73 kB | 
+src_app_components_messages_message-list_message-list_component_ts.js                                  | components-messages-message-list-message-list-component     |  91.43 kB | 
+src_app_components_courses_course-form_course-form_component_ts.js                                     | components-courses-course-form-course-form-component        |  87.74 kB | 
+default-node_modules_angular_material_fesm2022_select_mjs.js                                           | components-courses-course-form-course-form-component        |  84.53 kB | 
+src_app_components_dashboard_dashboard_component_ts.js                                                 | components-dashboard-dashboard-component                    |  83.42 kB | 
+src_app_components_students_student-list_student-list_component_ts.js                                  | components-students-student-list-student-list-component     |  68.22 kB | 
+src_app_components_public_homepage_homepage_component_ts.js                                            | components-public-homepage-homepage-component               |  66.45 kB | 
+src_app_components_public_about_about_component_ts.js                                                  | components-public-about-about-component                     |  59.96 kB | 
+default-node_modules_angular_material_fesm2022_snack-bar_mjs.js                                        | components-public-homepage-homepage-component               |  50.87 kB | 
+default-node_modules_angular_material_fesm2022_card_mjs.js                                             | components-public-homepage-homepage-component               |  36.83 kB | 
+default-src_environments_environment_ts-node_modules_angular_material_fesm2022_progress-spinner_mjs.js | components-dashboard-dashboard-component                    |  32.95 kB | 
+src_app_components_courses_course-list_course-list_component_ts.js                                     | components-courses-course-list-course-list-component        |  32.29 kB | 
+src_app_components_public_contact-form_contact-form_component_ts.js                                    | components-public-contact-form-contact-form-component       |  30.29 kB | 
+src_app_components_reports_reports_component_ts.js                                                     | components-reports-reports-component                        |  19.34 kB | 
+common.js                                                                                              | common                                                      |   3.71 kB | 
+
+Build at: 2026-07-01T15:08:28.911Z - Hash: 7f99d39a1b75d388 - Time: 6375ms
+
+** Angular Live Development Server is listening on localhost:4200, open your browser on http://localhost:4200/ **
+
+
+√ Compiled successfully.
