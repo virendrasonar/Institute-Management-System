@@ -61,6 +61,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
           </a>
 
           <button mat-button [matMenuTriggerFor]="loginMenu" class="login-menu-trigger">
+            <mat-icon>login</mat-icon>
             Login
           </button>
 
