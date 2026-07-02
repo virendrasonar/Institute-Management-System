@@ -27,10 +27,48 @@ export interface EnrollmentResult {
   courseName: string;
   studentName: string;
   enrolledAt: string;
+  progressPercent: number;
 }
 
 export interface LearningCourse {
   course: Course;
   studentName: string;
   enrolledAt: string;
+  progressPercent: number;
+  completedAt?: string;
+}
+
+export interface EnrollmentSummary {
+  enrollmentId: number;
+  studentId: number;
+  studentName: string;
+  studentEmail: string;
+  courseId: number;
+  courseName: string;
+  enrolledAt: string;
+  progressPercent: number;
+  completedAt?: string;
+}
+
+export interface StudentCourse {
+  enrollmentId: number;
+  courseId: number;
+  courseName: string;
+  description: string;
+  thumbnailUrl?: string;
+  instructor?: string;
+  duration?: string;
+  level?: string;
+  accessToken: string;
+  enrolledAt: string;
+  progressPercent: number;
+  completedAt?: string;
+  hasVideo: boolean;
+}
+
+export interface StudentDashboard {
+  studentId: number;
+  studentName: string;
+  email: string;
+  courses: StudentCourse[];
 }

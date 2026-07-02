@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "students")
@@ -23,6 +24,10 @@ public class Student {
 
     @Column(nullable = false)
     private String status = "ACTIVE";   // default value
+
+    @JsonIgnore
+    @Column(length = 512)
+    private String passwordHash;
 
     public Student() {}
 
@@ -42,10 +47,12 @@ public class Student {
     public String getName() { return name; }
     public String getEmail() { return email; }
     public String getStatus() { return status; }
+    public String getPasswordHash() { return passwordHash; }
 
     // Setters
     public void setId(Long id) { this.id = id; }
     public void setName(String name) { this.name = name; }
     public void setEmail(String email) { this.email = email; }
     public void setStatus(String status) { this.status = status; }
+    public void setPasswordHash(String passwordHash) { this.passwordHash = passwordHash; }
 }

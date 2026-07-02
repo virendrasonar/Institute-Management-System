@@ -159,10 +159,22 @@ public class DataInitializer implements CommandLineRunner {
         course.setRating(seed.rating());
         course.setStudentsEnrolled(seed.studentsEnrolled());
         course.setThumbnailUrl(seed.thumbnailUrl());
-        course.setVideoType("NONE");
-        course.setVideoUrl(null);
-        course.setVideoId(null);
+        String videoId = featuredVideoId(seed.name());
+        course.setVideoType("YOUTUBE");
+        course.setVideoUrl("https://www.youtube.com/watch?v=" + videoId);
+        course.setVideoId(videoId);
         course.setMaterials(seed.materials());
+    }
+
+    private String featuredVideoId(String courseName) {
+        if (courseName.startsWith("Modern Java")) return "xk4_1vDrzzo";
+        if (courseName.startsWith("AI Engineering")) return "i_LwzRVP7bg";
+        if (courseName.startsWith("Generative AI")) return "H4YK_7MAckk";
+        if (courseName.startsWith("Full-Stack")) return "bMknfKXIFA8";
+        if (courseName.startsWith("Data Science")) return "ua-CiDNNj30";
+        if (courseName.startsWith("Cloud")) return "Wf2eSG3owoA";
+        if (courseName.startsWith("Cybersecurity")) return "3Kq1MIfTWCE";
+        return "kbZejnPXyLM";
     }
 
     private record CourseSeed(String name, String description, String duration, String level, String icon,

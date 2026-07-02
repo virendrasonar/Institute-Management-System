@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -72,7 +73,19 @@ public class PublicController {
                                                       @RequestBody EnrollmentRequest request) {
         try {
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(EnrollmentResponse.from(enrollmentService.enroll(id, request.name(), request.email())));
+                    .body(EnrollmentResponse.from(enrollmentService.enroll(id, request.name(), request.email(),
+                            request.password())));
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
+    @PutMapping("/learning/{accessToken}/progress")
+    public ResponseEntity<LearningCourseResponse> updateLearningProgress(
+            @PathVariable String accessToken, @RequestBody ProgressRequest request) {
+        try {
+            return ResponseEntity.ok(LearningCourseResponse.from(
+                    enrollmentService.updateProgress(accessToken, request.progressPercent())));
         } catch (IllegalArgumentException exception) {
             return ResponseEntity.badRequest().build();
         }
@@ -238,4 +251,6 @@ public class PublicController {
         public void setMessage(String message) { this.message = message; }
         public void setCourseInterest(String courseInterest) { this.courseInterest = courseInterest; }
     }
+
+    public record ProgressRequest(Integer progressPercent) {}
 }

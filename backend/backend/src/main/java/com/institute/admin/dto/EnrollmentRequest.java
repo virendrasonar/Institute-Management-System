@@ -1,3 +1,3 @@
 package com.institute.admin.dto;
 
-public record EnrollmentRequest(String name, String email) {}
+public record EnrollmentRequest(String name, String email, String password) {}

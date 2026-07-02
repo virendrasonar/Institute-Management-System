@@ -19,6 +19,8 @@ import com.institute.admin.model.Course;
 import com.institute.admin.model.Message;
 import com.institute.admin.model.Student;
 import com.institute.admin.services.AdminService;
+import com.institute.admin.services.EnrollmentService;
+import com.institute.admin.dto.EnrollmentSummaryResponse;
 
 
 @RestController
@@ -26,10 +28,18 @@ import com.institute.admin.services.AdminService;
 public class AdminController {
 
     private final AdminService adminService;
+    private final EnrollmentService enrollmentService;
 
     @Autowired
-    public AdminController(AdminService adminService) {
+    public AdminController(AdminService adminService, EnrollmentService enrollmentService) {
         this.adminService = adminService;
+        this.enrollmentService = enrollmentService;
+    }
+
+    @GetMapping("/enrollments")
+    public ResponseEntity<List<EnrollmentSummaryResponse>> getEnrollments() {
+        return ResponseEntity.ok(enrollmentService.getAllEnrollments().stream()
+                .map(EnrollmentSummaryResponse::from).toList());
     }
 
     // ---------------- Course Endpoints ----------------

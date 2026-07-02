@@ -151,7 +151,7 @@ import { CourseService } from "../../../services/course.service";
               </div>
             </mat-card-content>
             <mat-card-actions>
-              <button mat-button color="primary" (click)="learnMore(course)">
+              <button mat-stroked-button color="primary" (click)="learnMore(course)">
                 Learn More
               </button>
               <button
@@ -557,6 +557,8 @@ import { CourseService } from "../../../services/course.service";
       /* ================= COURSE CARD ================= */
 
       .course-card {
+        display: flex;
+        flex-direction: column;
         border-radius: 20px !important;
         border: 1px solid #eef2ff;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
@@ -615,6 +617,12 @@ import { CourseService } from "../../../services/course.service";
 
       /* ================= CONTENT ================= */
 
+      .course-card mat-card-content {
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+      }
+
       .course-card h3 {
         font-size: 1.4rem;
         font-weight: 600;
@@ -628,6 +636,7 @@ import { CourseService } from "../../../services/course.service";
         margin: 14px 0 22px 0;
         font-size: 0.95rem;
         text-align: justify;
+        flex: 1 1 auto;
       }
 
       /* ================= META ================= */
@@ -662,11 +671,17 @@ import { CourseService } from "../../../services/course.service";
         display: flex !important;
         justify-content: space-between !important;
         gap: 12px !important;
+        flex-wrap: nowrap !important;
+        margin: 0;
       }
 
-      .course-card button {
+      .course-card mat-card-actions button {
+        flex: 1 1 0;
+        min-width: 0;
+        height: 44px;
+        white-space: nowrap;
         border-radius: 8px !important;
-        font-weight: 500 !important;
+        font-weight: 600 !important;
         text-transform: none !important;
         transition: transform 0.2s ease !important;
       }

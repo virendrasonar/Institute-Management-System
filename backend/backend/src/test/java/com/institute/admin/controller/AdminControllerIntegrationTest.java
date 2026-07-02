@@ -4,6 +4,7 @@ import com.institute.admin.model.Course;
 import com.institute.admin.model.Student;
 import com.institute.admin.model.Message;
 import com.institute.admin.services.AdminService;
+import com.institute.admin.services.EnrollmentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,6 +33,9 @@ class AdminControllerIntegrationTest {
 
     @MockBean
     private AdminService adminService;
+
+    @MockBean
+    private EnrollmentService enrollmentService;
 
     @Autowired
     private ObjectMapper objectMapper;

@@ -1,5 +1,6 @@
 package com.institute.admin.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,10 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     @EntityGraph(attributePaths = {"course", "student"})
     Optional<Enrollment> findByAccessToken(String accessToken);
     Optional<Enrollment> findByCourseIdAndStudentEmailIgnoreCase(Long courseId, String email);
+
+    @EntityGraph(attributePaths = {"course", "student"})
+    List<Enrollment> findAllByOrderByEnrolledAtDesc();
+
+    @EntityGraph(attributePaths = {"course", "student"})
+    List<Enrollment> findByStudentIdOrderByEnrolledAtDesc(Long studentId);
 }

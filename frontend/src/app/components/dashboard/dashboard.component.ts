@@ -35,7 +35,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         <div class="hero-stats">
           <div class="hero-stat bounce-in" style="animation-delay: 0.2s">
             <span class="stat-value">{{
-              courseCount + studentCount + messageCount
+              courseCount + studentCount + messageCount + enrollmentCount
             }}</span>
             <span class="stat-label">Total Records</span>
           </div>
@@ -162,6 +162,9 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         </mat-card-header>
         <mat-card-content>
           <div class="actions-grid">
+            <button mat-raised-button class="action-btn creative-btn creative-btn-success" routerLink="/enrollments">
+              <div class="btn-content"><mat-icon>fact_check</mat-icon><span>Enrollments & Progress</span></div>
+            </button>
             <button
               mat-raised-button
               class="action-btn creative-btn"
@@ -221,7 +224,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
                 <mat-icon>school</mat-icon>
               </div>
               <div class="metric-info">
-                <span class="metric-value">{{ courseCount * 15 }}%</span>
+                <span class="metric-value">{{ completionRate }}%</span>
                 <span class="metric-label">Course Completion</span>
               </div>
             </div>
@@ -230,8 +233,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
                 <mat-icon>people</mat-icon>
               </div>
               <div class="metric-info">
-                <span class="metric-value">{{ studentCount * 8 }}%</span>
-                <span class="metric-label">Student Engagement</span>
+                <span class="metric-value">{{ enrollmentCount }}</span>
+                <span class="metric-label">Course Enrollments</span>
               </div>
             </div>
             <div class="metric-item">
@@ -1178,6 +1181,8 @@ export class DashboardComponent implements OnInit {
   courseCount = 0;
   studentCount = 0;
   messageCount = 0;
+  enrollmentCount = 0;
+  completionRate = 0;
 
   constructor(
     private courseService: CourseService,
@@ -1194,6 +1199,7 @@ export class DashboardComponent implements OnInit {
     if (this.courseCount > 0) modules++;
     if (this.studentCount > 0) modules++;
     if (this.messageCount > 0) modules++;
+    if (this.enrollmentCount > 0) modules++;
     return modules;
   }
 
@@ -1206,11 +1212,16 @@ export class DashboardComponent implements OnInit {
       courses: this.courseService.getAllCourses(),
       students: this.studentService.getAllStudents(),
       messages: this.messageService.getAllMessages(),
+      enrollments: this.courseService.getEnrollments(),
     }).subscribe({
       next: (data: any) => {
         this.courseCount = data.courses.length;
         this.studentCount = data.students.length;
         this.messageCount = data.messages.length;
+        this.enrollmentCount = data.enrollments.length;
+        this.completionRate = this.enrollmentCount
+          ? Math.round(data.enrollments.filter((item: any) => item.progressPercent === 100).length / this.enrollmentCount * 100)
+          : 0;
       },
       error: (error: any) => {
         console.error("Error loading dashboard data:", error);

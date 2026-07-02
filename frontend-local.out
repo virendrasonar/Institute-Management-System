@@ -166,3 +166,65 @@ src_app_components_courses_course-form_course-form_component_ts.js | components-
 Build at: 2026-07-01T21:06:11.020Z - Hash: 2ffa29b119d10756 - Time: 2924ms
 
 √ Compiled successfully.
+
+Initial chunk files | Names   | Raw size
+main.js             | main    | 97.71 kB | 
+runtime.js          | runtime | 12.67 kB | 
+
+23 unchanged chunks
+
+Build at: 2026-07-01T21:52:31.929Z - Hash: d25d28c8eff5d95f - Time: 5588ms
+
+× Failed to compile.
+
+Initial chunk files                                                        | Names                                                        | Raw size
+main.js                                                                    | main                                                         | 69.82 kB | 
+runtime.js                                                                 | runtime                                                      | 12.67 kB | 
+
+Lazy chunk files                                                           | Names                                                        | Raw size
+src_app_components_courses_course-form_course-form_component_ts.js         | components-courses-course-form-course-form-component         | 55.94 kB | 
+src_app_components_courses_course-details_course-details_component_ts.js   | components-courses-course-details-course-details-component   | 41.96 kB | 
+src_app_components_courses_learning-course_learning-course_component_ts.js | components-courses-learning-course-learning-course-component | 34.12 kB | 
+src_app_components_public_homepage_homepage_component_ts.js                | components-public-homepage-homepage-component                | 30.74 kB | 
+src_app_components_public_contact-form_contact-form_component_ts.js        | components-public-contact-form-contact-form-component        | 30.32 kB | 
+src_app_components_courses_course-list_course-list_component_ts.js         | components-courses-course-list-course-list-component         | 14.54 kB | 
+common.js                                                                  | common                                                       |  4.25 kB | 
+
+16 unchanged chunks
+
+Build at: 2026-07-01T21:52:35.883Z - Hash: 4fec32b608eed0cc - Time: 3880ms
+
+× Failed to compile.
+
+Initial chunk files                                                 | Names                                                 | Raw size
+main.js                                                             | main                                                  | 97.82 kB | 
+runtime.js                                                          | runtime                                               | 12.67 kB | 
+
+Lazy chunk files                                                    | Names                                                 | Raw size
+src_app_components_courses_course-form_course-form_component_ts.js  | components-courses-course-form-course-form-component  | 98.78 kB | 
+src_app_components_public_homepage_homepage_component_ts.js         | components-public-homepage-homepage-component         | 70.22 kB | 
+src_app_components_courses_course-list_course-list_component_ts.js  | components-courses-course-list-course-list-component  | 38.88 kB | 
+src_app_components_public_contact-form_contact-form_component_ts.js | components-public-contact-form-contact-form-component | 30.32 kB | 
+
+19 unchanged chunks
+
+Build at: 2026-07-01T21:54:36.826Z - Hash: 8f6e79b615dad1db - Time: 4249ms
+
+× Failed to compile.
+
+Initial chunk files                                                 | Names                                                 | Raw size
+main.js                                                             | main                                                  | 97.82 kB | 
+runtime.js                                                          | runtime                                               | 12.67 kB | 
+
+Lazy chunk files                                                    | Names                                                 | Raw size
+src_app_components_courses_course-form_course-form_component_ts.js  | components-courses-course-form-course-form-component  | 98.78 kB | 
+src_app_components_public_homepage_homepage_component_ts.js         | components-public-homepage-homepage-component         | 70.22 kB | 
+src_app_components_courses_course-list_course-list_component_ts.js  | components-courses-course-list-course-list-component  | 38.88 kB | 
+src_app_components_public_contact-form_contact-form_component_ts.js | components-public-contact-form-contact-form-component | 30.32 kB | 
+common.js                                                           | common                                                |  4.25 kB | 
+
+18 unchanged chunks
+
+Build at: 2026-07-01T21:54:39.086Z - Hash: 743e8613e5c8b337 - Time: 2201ms
+
+√ Compiled successfully.

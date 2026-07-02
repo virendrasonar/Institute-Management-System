@@ -9,10 +9,12 @@ public record EnrollmentResponse(
         Long courseId,
         String courseName,
         String studentName,
-        Instant enrolledAt) {
+        Instant enrolledAt,
+        Integer progressPercent) {
 
     public static EnrollmentResponse from(Enrollment enrollment) {
         return new EnrollmentResponse(enrollment.getAccessToken(), enrollment.getCourse().getId(),
-                enrollment.getCourse().getName(), enrollment.getStudent().getName(), enrollment.getEnrolledAt());
+                enrollment.getCourse().getName(), enrollment.getStudent().getName(), enrollment.getEnrolledAt(),
+                enrollment.getProgressPercent());
     }
 }

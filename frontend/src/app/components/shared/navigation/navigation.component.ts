@@ -7,8 +7,9 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatDividerModule } from "@angular/material/divider";
 import { RouterModule, Router } from "@angular/router";
-import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
+import { BreakpointObserver } from "@angular/cdk/layout";
 import { AdminAuthService } from "../../../services/admin-auth.service";
+import { StudentAuthService } from "../../../services/student-auth.service";
 
 @Component({
   selector: "app-navigation",
@@ -59,55 +60,71 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
             Contact
           </a>
 
-          <!-- Admin Menu -->
-          <button
-            *ngIf="auth.isAuthenticated()"
-            mat-button
-            [matMenuTriggerFor]="adminMenu"
-            class="admin-menu-trigger"
-          >
-            <mat-icon>admin_panel_settings</mat-icon>
-            Admin
-            <mat-icon>arrow_drop_down</mat-icon>
+          <button mat-button [matMenuTriggerFor]="loginMenu" class="login-menu-trigger">
+            Login
           </button>
 
-          <mat-menu #adminMenu="matMenu">
-            <button mat-menu-item routerLink="/dashboard">
+          <mat-menu #loginMenu="matMenu">
+            <ng-container *ngIf="!auth.isAuthenticated() && !studentAuth.isAuthenticated()">
+              <button mat-menu-item routerLink="/admin/login">
+                <mat-icon>admin_panel_settings</mat-icon>
+                Admin Login
+              </button>
+              <button mat-menu-item routerLink="/student/login">
+                <mat-icon>school</mat-icon>
+                Student Login
+              </button>
+            </ng-container>
+
+            <ng-container *ngIf="auth.isAuthenticated()">
+              <button mat-menu-item routerLink="/dashboard">
               <mat-icon>dashboard</mat-icon>
               Dashboard
-            </button>
+              </button>
 
-            <button mat-menu-item routerLink="/students">
+              <button mat-menu-item routerLink="/students">
               <mat-icon>people</mat-icon>
               Students
-            </button>
+              </button>
 
-            <button mat-menu-item routerLink="/messages">
+              <button mat-menu-item routerLink="/enrollments">
+              <mat-icon>fact_check</mat-icon>
+              Enrollments & Progress
+              </button>
+
+              <button mat-menu-item routerLink="/messages">
               <mat-icon>message</mat-icon>
               Messages
-            </button>
+              </button>
 
-            <mat-divider></mat-divider>
+              <mat-divider></mat-divider>
 
-            <button mat-menu-item routerLink="/students/manage">
+              <button mat-menu-item routerLink="/students/manage">
               <mat-icon>manage_accounts</mat-icon>
               Manage Students
-            </button>
-            <button mat-menu-item routerLink="/reports">
+              </button>
+              <button mat-menu-item routerLink="/reports">
               <mat-icon>assessment</mat-icon>
               Reports
-            </button>
-            <mat-divider></mat-divider>
-            <button mat-menu-item (click)="logout()">
+              </button>
+              <mat-divider></mat-divider>
+              <button mat-menu-item (click)="logout()">
               <mat-icon>logout</mat-icon>
-              Logout
-            </button>
-          </mat-menu>
+              Admin Logout
+              </button>
+            </ng-container>
 
-          <a *ngIf="!auth.isAuthenticated()" mat-button routerLink="/admin/login" class="admin-login-link">
-            <mat-icon>login</mat-icon>
-            Admin Login
-          </a>
+            <ng-container *ngIf="studentAuth.isAuthenticated()">
+              <button mat-menu-item routerLink="/student/dashboard">
+                <mat-icon>school</mat-icon>
+                My Dashboard
+              </button>
+              <button mat-menu-item (click)="studentLogout()">
+                <mat-icon>logout</mat-icon>
+                Student Logout
+              </button>
+            </ng-container>
+          </mat-menu>
         </nav>
 
         <!-- Mobile Menu Button -->
@@ -182,6 +199,18 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
             Contact
           </a>
 
+          <a *ngIf="studentAuth.isAuthenticated()" mat-button routerLink="/student/dashboard"
+             (click)="drawer.close()" class="mobile-nav-link">
+            <mat-icon>school</mat-icon>
+            My Learning
+          </a>
+
+          <button *ngIf="studentAuth.isAuthenticated()" mat-button
+             (click)="studentLogout(); drawer.close()" class="mobile-nav-link">
+            <mat-icon>logout</mat-icon>
+            Student Sign Out
+          </button>
+
           <div class="mobile-admin-section" *ngIf="auth.isAuthenticated()">
             <div class="admin-section-title">
               <mat-icon>admin_panel_settings</mat-icon>
@@ -217,6 +246,10 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
               <mat-icon>message</mat-icon>
               Messages
             </a>
+            <a mat-button routerLink="/enrollments" (click)="drawer.close()" class="mobile-nav-link admin-link">
+              <mat-icon>fact_check</mat-icon>
+              Enrollments & Progress
+            </a>
             <a mat-button routerLink="/reports" (click)="drawer.close()" class="mobile-nav-link admin-link">
               <mat-icon>assessment</mat-icon>
               Reports
@@ -231,6 +264,11 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
              (click)="drawer.close()" class="mobile-nav-link admin-link">
             <mat-icon>login</mat-icon>
             Admin Login
+          </a>
+          <a *ngIf="!studentAuth.isAuthenticated()" mat-button routerLink="/student/login"
+             (click)="drawer.close()" class="mobile-nav-link">
+            <mat-icon>person</mat-icon>
+            Student Login
           </a>
         </nav>
       </mat-sidenav>
@@ -259,6 +297,7 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
         justify-content: space-between;
         align-items: center;
         padding: 0 20px;
+        box-sizing: border-box;
       }
 
       /* ================= LOGO ================= */
@@ -270,6 +309,8 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
         cursor: pointer;
         text-decoration: none;
         color: #1f2937;
+        min-width: 0;
+        flex: 0 1 auto;
       }
 
       .logo-icon {
@@ -292,6 +333,7 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
         display: flex;
         align-items: center;
         gap: 6px;
+        flex: 0 0 auto;
       }
 
       .desktop-nav a,
@@ -318,23 +360,6 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
       .desktop-nav a.active {
         background: #4338ca !important;
         color: #ffffff !important;
-      }
-
-      /* ================= ADMIN BUTTON ================= */
-
-      .admin-menu-trigger {
-        background: #f3f4ff !important;
-        color: #4338ca !important;
-        font-weight: 600 !important;
-      }
-
-      .admin-menu-trigger:hover {
-        background: #e0e7ff !important;
-      }
-
-      .admin-login-link {
-        color: #4338ca !important;
-        border: 1px solid #c7d2fe !important;
       }
 
       /* ================= MOBILE MENU BUTTON ================= */
@@ -426,17 +451,12 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
 
       /* ================= RESPONSIVE ================= */
 
-      @media (max-width: 768px) {
+      @media (max-width: 1100px) {
         .logo-text {
           font-size: 1.1rem;
         }
       }
 
-      @media (max-width: 480px) {
-        .logo-text {
-          display: none;
-        }
-      }
       @media (max-width: 480px) {
         .logo-text {
           display: none;
@@ -453,9 +473,10 @@ export class NavigationComponent {
     private breakpointObserver: BreakpointObserver,
     private router: Router,
     public readonly auth: AdminAuthService,
+    public readonly studentAuth: StudentAuthService,
   ) {
     this.breakpointObserver
-      .observe([Breakpoints.Handset])
+      .observe(["(max-width: 1100px)"])
       .subscribe((result) => {
         this.isMobile = result.matches;
         if (!this.isMobile) {
@@ -470,6 +491,11 @@ export class NavigationComponent {
 
   logout(): void {
     this.auth.logout();
+    this.router.navigate(["/home"]);
+  }
+
+  studentLogout(): void {
+    this.studentAuth.logout();
     this.router.navigate(["/home"]);
   }
 }

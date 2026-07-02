@@ -281,8 +281,18 @@ body {
   border-radius: var(--border-radius-md) !important;
   background: rgba(102, 126, 234, 0.05) !important;
   backdrop-filter: blur(10px) !important;
-  border: 2px solid transparent !important;
+  /* Angular Material already renders the field outline/underline. A second
+     wrapper border caused the overlapping rectangles visible on focus. */
+  border: 0 !important;
   transition: var(--transition-smooth) !important;
+}
+
+.mat-form-field-appearance-outline {
+  --mdc-outlined-text-field-container-shape: 12px;
+  --mdc-outlined-text-field-outline-color: #a8a8b3;
+  --mdc-outlined-text-field-hover-outline-color: #6d6b78;
+  --mdc-outlined-text-field-focus-outline-color: #5b5bd6;
+  --mdc-outlined-text-field-focus-outline-width: 2px;
 }
 
 .mat-mdc-form-field-focus-overlay {
@@ -291,9 +301,7 @@ body {
 }
 
 .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
-  border-color: rgba(102, 126, 234, 0.5) !important;
   box-shadow: var(--shadow-glow) !important;
-  transform: scale(1.02);
 }
 
 /* 🎭 Loading States */

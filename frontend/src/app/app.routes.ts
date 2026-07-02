@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { adminGuard } from "./guards/admin.guard";
+import { studentGuard } from "./guards/student.guard";
 
 export const routes: Routes = [
   { path: "", redirectTo: "/home", pathMatch: "full" },
@@ -65,6 +66,19 @@ export const routes: Routes = [
         (m) => m.LearningCourseComponent,
       ),
   },
+  {
+    path: "student/login",
+    loadComponent: () => import("./components/auth/student-login.component").then(
+      (m) => m.StudentLoginComponent,
+    ),
+  },
+  {
+    path: "student/dashboard",
+    canActivate: [studentGuard],
+    loadComponent: () => import("./components/students/student-dashboard.component").then(
+      (m) => m.StudentDashboardComponent,
+    ),
+  },
 
   // ---------------- STUDENTS ----------------
   // Specific routes FIRST
@@ -91,6 +105,13 @@ export const routes: Routes = [
       import("./components/students/student-list/student-list.component").then(
         (m) => m.StudentListComponent,
       ),
+  },
+  {
+    path: "enrollments",
+    canActivate: [adminGuard],
+    loadComponent: () => import("./components/students/enrollment-admin.component").then(
+      (m) => m.EnrollmentAdminComponent,
+    ),
   },
 
   // ---------------- MESSAGES ----------------

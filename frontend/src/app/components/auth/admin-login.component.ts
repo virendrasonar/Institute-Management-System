@@ -23,12 +23,12 @@ import { AdminAuthService } from "../../services/admin-auth.service";
         <p>Sign in to access institute management tools.</p>
 
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Admin Email</mat-label>
             <input matInput type="email" formControlName="email" autocomplete="username" />
             <mat-icon matSuffix>email</mat-icon>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput type="password" formControlName="password" autocomplete="current-password" />
             <mat-icon matSuffix>lock</mat-icon>

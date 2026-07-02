@@ -106,7 +106,7 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
           </mat-card-content>
 
           <mat-card-actions class="user-actions">
-            <button mat-button color="primary" (click)="learnMore(course)">
+            <button mat-stroked-button color="primary" (click)="learnMore(course)">
               Learn More
             </button>
 
@@ -261,6 +261,9 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
 
       mat-card-content {
         padding: 22px;
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
       }
 
       mat-card-content h3 {
@@ -274,6 +277,7 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
         color: #4b5563;
         line-height: 1.6;
         margin-bottom: 12px;
+        flex: 1 1 auto;
       }
 
       .course-meta {
@@ -296,6 +300,16 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
         display: flex;
         justify-content: space-between;
         gap: 10px;
+        flex-wrap: nowrap;
+        margin: 0;
+      }
+
+      mat-card-actions button {
+        flex: 1 1 0;
+        min-width: 0;
+        height: 44px;
+        white-space: nowrap;
+        font-weight: 600;
       }
 
       /* ================= ADMIN ACTIONS ================= */
@@ -393,15 +407,6 @@ import { AdminAuthService } from "../../../services/admin-auth.service";
 
         .course-image {
           height: 160px;
-        }
-
-        mat-card-actions {
-          flex-direction: column;
-          gap: 12px;
-        }
-
-        mat-card-actions button {
-          width: 100%;
         }
 
         .course-meta {

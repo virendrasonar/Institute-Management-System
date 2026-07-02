@@ -35,6 +35,11 @@ public class Enrollment {
     @Column(nullable = false)
     private Instant enrolledAt;
 
+    @Column(nullable = false)
+    private Integer progressPercent = 0;
+
+    private Instant completedAt;
+
     protected Enrollment() {}
 
     public Enrollment(Course course, Student student, String accessToken) {
@@ -49,4 +54,9 @@ public class Enrollment {
     public Student getStudent() { return student; }
     public String getAccessToken() { return accessToken; }
     public Instant getEnrolledAt() { return enrolledAt; }
+    public Integer getProgressPercent() { return progressPercent == null ? 0 : progressPercent; }
+    public Instant getCompletedAt() { return completedAt; }
+
+    public void setProgressPercent(Integer progressPercent) { this.progressPercent = progressPercent; }
+    public void setCompletedAt(Instant completedAt) { this.completedAt = completedAt; }
 }
