@@ -14,7 +14,8 @@ public class CorsConfig implements WebMvcConfigurer {
                         "http://localhost:4200",
                         "http://localhost:4300",
                         "http://localhost:5173",
-                        "https://institute-management-system-frontend.onrender.com")
+                        "https://institute-management-system-frontend.onrender.com",
+                        "https://lovely-art-production.up.railway.app")
                 .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }
