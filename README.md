@@ -1,416 +1,334 @@
-🎓 Institute Management System
+# 🎓 Institute Management System
 
-A full-stack web application for managing institute operations including courses, students, and messages. Built using modern enterprise technologies with clean architecture principles.
+A full-stack web application for managing institute operations through dedicated **student** and **admin** portals. Students can explore courses, enroll, access their dashboard, and track learning progress. Administrators can manage courses, students, enquiries, enrollments, and dashboard statistics from one centralized platform.
 
-Live Demo: https://institute-management-system-frontend.onrender.com
-🏗 Architecture
+## 🌐 Live Demo
 
-Backend: Spring Boot 3 REST API
+* **Backend API:** https://institute-management-system-production-ef72.up.railway.app
+* **Frontend:** Add your Railway frontend URL here after deployment.
 
-Frontend: Angular 17 (Standalone Components) + Angular Material
+---
 
-Database: H2 (Development)
+## 🏗 Architecture
 
-Build Tools: Maven & npm
+* **Backend:** Java 17, Spring Boot 3, Spring Data JPA, Hibernate
+* **Frontend:** Angular 17, TypeScript, Angular Material
+* **Database:** H2 for local development, PostgreSQL for production
+* **Authentication:** Admin and student login with protected routes
+* **Deployment:** Railway
+* **Build Tools:** Maven and npm
+* **Container Support:** Docker and Docker Compose
 
-Container Support: Docker Compose
+---
 
-✨ Core Features
-📊 Dashboard
+## ✨ Core Features
 
-Real-time system statistics
+### 📚 Course Management
 
-Module navigation
+* Browse available courses
+* View course details
+* Add, edit, and delete courses
+* Manage course information from the admin portal
+* Validate forms on frontend and backend
 
-Dynamic data updates via REST APIs
+### 👨‍🎓 Student Features
 
-📚 Course Management
+* Student registration and login
+* Course enrollment
+* Personalized student dashboard
+* View enrolled courses
+* Track learning progress
+* Access course learning pages
 
-Create, update, delete courses
+### 🛠 Admin Portal
 
-Course listing
+* Secure admin login
+* Dashboard with system statistics
+* Manage courses through CRUD operations
+* Manage student records
+* View and manage enrollments
+* View student enquiries and contact messages
+* Access reports and analytics
 
-Form validation and backend integration
+### 📩 Enquiry and Contact Management
 
-👨‍🎓 Student Management
+* Public contact form for visitors
+* Submit course-related enquiries
+* Store messages in the backend database
+* Admin-side message tracking and management
 
-Add, update, delete students
+### 📊 Dashboard and Analytics
 
-Status tracking (Active / Inactive)
+* Course, student, enquiry, and enrollment statistics
+* Dynamic data loaded through REST APIs
+* Centralized navigation for administrative modules
 
-Data-driven table with actions
+---
 
-📩 Message Management
+## 🛠 Technology Stack
 
-View contact messages
+### Backend
 
-Expandable message details
+* Java 17
+* Spring Boot 3
+* Spring Data JPA
+* Hibernate
+* PostgreSQL
+* H2 Database
+* RESTful APIs
+* Maven
 
-Admin-side message tracking
+### Frontend
 
-🌐 Public Contact Form
+* Angular 17
+* TypeScript
+* Angular Material
+* RxJS
+* Reactive Forms
+* Standalone Components
+* Lazy Loading
+* HTML and CSS
 
-Allows visitors to send inquiries
+---
 
-Backend persistence
+## 📂 Project Structure
 
-Validation handling
+```text
+Institute-Management-System/
+│
+├── backend/
+│   └── backend/
+│       ├── src/
+│       │   ├── main/
+│       │   │   ├── java/
+│       │   │   │   └── com/institute/
+│       │   │   │       ├── admin/
+│       │   │   │       ├── config/
+│       │   │   │       └── security/
+│       │   │   └── resources/
+│       │   │       ├── application.properties
+│       │   │       ├── application-local.properties
+│       │   │       └── application-prod.properties
+│       ├── Dockerfile
+│       └── pom.xml
+│
+├── frontend/
+│   ├── src/
+│   │   └── app/
+│   │       ├── components/
+│   │       ├── services/
+│   │       ├── guards/
+│   │       ├── models/
+│   │       └── shared/
+│   └── package.json
+│
+├── docker-compose.yml
+└── README.md
+```
 
-🛠 Technology Stack
-Backend
+---
 
-Java 17+
+## 🚀 Getting Started
 
-Spring Boot 3
+### Prerequisites
 
-Spring Data JPA
+Install the following before running the project:
 
-H2 Database
+* Java 17+
+* Node.js 16+
+* npm
+* Maven or Maven Wrapper
+* PostgreSQL for production setup
 
-RESTful APIs
+---
 
-Maven
+## 🔹 Run Locally
 
-Frontend
+### 1. Start the Backend
 
-Angular 17
+```bash
+cd backend/backend
+mvnw.cmd spring-boot:run
+```
 
-Angular Material (MDC)
+Backend runs at:
 
-TypeScript
+```text
+http://localhost:8080
+```
 
-RxJS
+---
 
-Standalone Components
+### 2. Start the Frontend
 
-Lazy Loading
+Open another terminal:
 
-🚀 Getting Started
-Prerequisites
-
-Java 17+
-
-Node.js 16+
-
-npm
-
-🔹 Quick Start
-
-Run:
-
-setup.bat
-start-system.bat
-
-Access:
-
-Frontend → http://localhost:4200
-
-Backend → http://localhost:8080
-
-H2 Console → http://localhost:8080/h2-console
-
-🔹 Manual Setup
-
-Frontend
-
+```bash
 cd frontend
 npm install
 npm start
+```
 
-Backend
+Frontend runs at:
 
-cd backend/backend
-mvnw.cmd spring-boot:run
-📡 API Endpoints
-Courses
+```text
+http://localhost:4200
+```
 
-GET /admin/courses
+---
 
-POST /admin/courses
+### 3. H2 Database Console
 
-PUT /admin/courses/{id}
+For local development, access the H2 console at:
 
+```text
+http://localhost:8080/h2-console
+```
+
+Use the database values from `application-local.properties`.
+
+---
+
+## 📡 Main API Endpoints
+
+### Public APIs
+
+```text
+GET    /api/public/courses
+GET    /api/public/courses/{id}
+POST   /api/public/contact
+POST   /api/public/enroll
+GET    /api/public/learning/{accessToken}
+```
+
+### Admin Authentication
+
+```text
+POST   /api/admin/auth/login
+POST   /api/admin/auth/logout
+```
+
+### Student Authentication
+
+```text
+POST   /api/student/auth/login
+POST   /api/student/auth/logout
+GET    /api/student/dashboard
+```
+
+### Admin Management APIs
+
+```text
+GET    /admin/courses
+POST   /admin/courses
+PUT    /admin/courses/{id}
 DELETE /admin/courses/{id}
 
-Students
-
-GET /admin/students
-
-POST /admin/students
-
-PUT /admin/students/{id}
-
+GET    /admin/students
+POST   /admin/students
+PUT    /admin/students/{id}
 DELETE /admin/students/{id}
 
-Messages
+GET    /admin/messages
+GET    /admin/messages/{id}
 
-GET /admin/messages
+GET    /admin/enrollments
+```
 
-GET /admin/messages/{id}
+---
 
-📂 Project Structure
-institute-management-system/
-│
-├── backend/        → Spring Boot REST API
-├── frontend/       → Angular 17 Application
-├── docker-compose.yml
-└── documentation files
-🎯 Development Highlights
+## 🔐 Roles and Access
 
-Modular Angular standalone architecture
+### Student
 
-RESTful API design
+Students can:
 
-Clean UI using Angular Material
+* Explore courses
+* Enroll in courses
+* Log in to their student dashboard
+* View enrolled courses
+* Track learning progress
+* Access learning content
 
-Reactive Forms with validation
+### Administrator
 
-Separation of concerns (Controller → Service → Repository)
+Administrators can:
 
-Consistent UI/UX across modules
+* Log in securely
+* Add, update, and delete courses
+* Manage student records
+* View enrollments
+* Handle enquiries and messages
+* Monitor dashboard statistics
+* Access reports and administrative features
 
-📘 Documentation
+---
 
-PROJECT_DOCUMENTATION.md
+## 🌍 Production Deployment
 
-DEPLOYMENT_GUIDE.md
+The backend is configured for Railway with PostgreSQL.
 
-TROUBLESHOOTING.md
+Required backend environment variables:
 
-📌 Status
+```env
+SPRING_PROFILES_ACTIVE=prod
 
-Active development project demonstrating full-stack application architecture using Java and Angular.
+SPRING_DATASOURCE_URL=jdbc:postgresql://postgres.railway.internal:5432/railway
+SPRING_DATASOURCE_USERNAME=${{Postgres.PGUSER}}
+SPRING_DATASOURCE_PASSWORD=${{Postgres.PGPASSWORD}}
 
-⚠️ Important
+ADMIN_EMAIL=your-email@example.com
+ADMIN_PASSWORD=your-secure-password
+ADMIN_NAME=Administrator
+ADMIN_SESSION_HOURS=8
+STUDENT_SESSION_HOURS=24
+```
 
-After replacing README:
+Backend Railway root directory:
 
-git add README.md
-git commit -m "Refactor README and resolve merge conflict"
-git push
+```text
+backend/backend
+```
 
-If you want, I can also:
+---
 
-Make it more resume-focused
+## 🎯 Development Highlights
 
-Add a professional project description paragraph for LinkedIn
+* Full-stack architecture using Spring Boot and Angular
+* Layered backend design: Controller → Service → Repository
+* RESTful API development
+* PostgreSQL production database integration
+* H2 local development database
+* Role-based access through admin and student guards
+* Student enrollment and course-progress tracking
+* Angular standalone component architecture
+* Reactive forms and validation
+* Responsive Angular Material interface
+* Clean separation of frontend and backend responsibilities
+* Docker support for containerized deployment
 
-Help you write 3 strong bullet points for interviews**
+---
 
-Tell me what you want next.
+## 📌 Project Status
 
-give me all in one i ahve to copy paste thats readme file
+Active full-stack project demonstrating practical Java Spring Boot and Angular development.
 
-Here is your complete final README.md.
-Just replace everything inside your current README file with this.
+The application currently supports:
 
-🎓 Institute Management System
+* Course management
+* Student management
+* Course enrollment
+* Student dashboard
+* Course-progress tracking
+* Admin dashboard
+* Enquiry and message management
+* PostgreSQL production deployment
 
-A full-stack web application for managing institute operations including courses, students, and messages.
-This project demonstrates real-world CRUD operations, RESTful API design, modular frontend architecture, and clean separation of concerns using Java and Angular technologies.
+---
 
-🏗 Architecture
+## 👨‍💻 Author
 
-Backend: Spring Boot 3 (REST API)
+**Virendra Sonar**
+Full-Stack Java Developer
 
-Frontend: Angular 17 (Standalone Components) with Angular Material
-
-Database: H2 (Development)
-
-Build Tools: Maven & npm
-
-Container Support: Docker Compose
-
-✨ Core Features
-📊 Dashboard
-
-Real-time system statistics
-
-Centralized navigation to modules
-
-Dynamic API-driven data display
-
-📚 Course Management
-
-Create, update, and delete courses
-
-Structured course listing
-
-Backend validation and error handling
-
-👨‍🎓 Student Management
-
-Add, update, delete students
-
-Active / Inactive status handling
-
-Clean data table with action controls
-
-📩 Message Management
-
-View messages submitted via contact form
-
-Expandable message cards
-
-Admin-side message tracking
-
-🌐 Public Contact Form
-
-Allows website visitors to send inquiries
-
-Data persistence through REST APIs
-
-Validation and structured storage
-
-🛠 Technology Stack
-Backend
-
-Java 17+
-
-Spring Boot 3
-
-Spring Data JPA
-
-H2 Database
-
-RESTful APIs
-
-Maven
-
-Frontend
-
-Angular 17
-
-Angular Material (MDC)
-
-TypeScript
-
-RxJS
-
-Standalone Components
-
-Lazy Loading
-
-🚀 Getting Started
-📌 Prerequisites
-
-Java 17+
-
-Node.js 16+
-
-npm (comes with Node.js)
-
-🔹 Quick Setup (Recommended)
-
-Run:
-
-setup.bat
-start-system.bat
-
-Then access:
-
-Frontend → http://localhost:4200
-
-Backend API → http://localhost:8080
-
-H2 Console → http://localhost:8080/h2-console
-
-🔹 Manual Setup
-1️⃣ Install Frontend Dependencies
-cd frontend
-npm install
-2️⃣ Start Backend
-cd backend/backend
-mvnw.cmd spring-boot:run
-3️⃣ Start Frontend
-cd frontend
-npm start
-📡 API Endpoints
-Courses
-
-GET /admin/courses
-
-POST /admin/courses
-
-GET /admin/courses/{id}
-
-PUT /admin/courses/{id}
-
-DELETE /admin/courses/{id}
-
-Students
-
-GET /admin/students
-
-POST /admin/students
-
-GET /admin/students/{id}
-
-PUT /admin/students/{id}
-
-DELETE /admin/students/{id}
-
-Messages
-
-GET /admin/messages
-
-GET /admin/messages/{id}
-
-📂 Project Structure
-institute-management-system/
-│
-├── backend/               → Spring Boot REST API
-│   ├── controller/
-│   ├── service/
-│   ├── repository/
-│   └── model/
-│
-├── frontend/              → Angular 17 Application
-│   ├── components/
-│   ├── services/
-│   ├── models/
-│   └── shared/
-│
-├── docker-compose.yml
-└── documentation files
-🎯 Development Highlights
-
-Modular Angular standalone component architecture
-
-RESTful API design following best practices
-
-Layered backend structure (Controller → Service → Repository)
-
-Reactive Forms with validation
-
-Angular Material UI consistency
-
-Clean and responsive interface
-
-Proper error handling and snackbar notifications
-
-📘 Additional Documentation
-
-PROJECT_DOCUMENTATION.md
-
-DEPLOYMENT_GUIDE.md
-
-TROUBLESHOOTING.md
-
-🌐 Live Preview
-
-🔗 : Click on the link, you can add, edit, delete, modify courses.
-    You can add, delete, modify students.
-    You can send messages to us.
-👉 https://institute-management-system-frontend.onrender.com
-
-📌 Project Status
-
-Completed full-stack implementation with CRUD operations for Courses, Students, and Messages.
-
-This project demonstrates practical application development using Java Spring Boot and Angular.
-
-👨‍💻 Author
-
-Virendra Sonar
-Full Stack Developer specializing in scalable web applications using Java, Spring Boot, RESTful APIs, and modern frontend technologies.
+Focused on building secure and scalable web applications using Java, Spring Boot, RESTful APIs, PostgreSQL, Angular, TypeScript, HTML, and CSS.
