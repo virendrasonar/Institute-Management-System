@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "npx http-server dist/institute-management-frontend/browser -p $PORT",
+    "start": "serve -s dist/institute-management-frontend -l $PORT",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -23,6 +23,7 @@
     "@angular/router": "^17.0.0",
     "http-server": "^14.1.1",
     "rxjs": "~7.8.0",
+    "serve": "^14.2.6",
     "tslib": "^2.6.0",
     "zone.js": "~0.14.0"
   },
