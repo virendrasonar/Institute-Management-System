@@ -72,8 +72,8 @@ export class AdminLoginComponent {
   submitting = false;
   errorMessage = "";
   readonly loginForm = this.fb.group({
-    email: ["", [Validators.required, Validators.email]],
-    password: ["", Validators.required]
+    email: ["admin@example.com", [Validators.required, Validators.email]],
+    password: ["Admin@123", Validators.required]
   });
 
   submit(): void {

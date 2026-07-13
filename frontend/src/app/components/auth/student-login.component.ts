@@ -23,16 +23,16 @@ import { StudentAuthService } from "../../services/student-auth.service";
         <span class="eyebrow">Student access</span>
         <h1>Welcome back</h1>
         <p>Sign in with the email and password you used when enrolling.</p>
-        <form [formGroup]="form" (ngSubmit)="login()">
+        <form [formGroup]="form" (ngSubmit)="login()" autocomplete="off">
           <mat-form-field appearance="outline">
             <mat-label>Email address</mat-label>
-            <input matInput type="email" formControlName="email" autocomplete="email" />
+            <input matInput type="email" formControlName="email" name="student-email" autocomplete="off" />
             <mat-icon matSuffix>email</mat-icon>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
             <input matInput [type]="showPassword ? 'text' : 'password'" formControlName="password"
-              autocomplete="current-password" />
+              name="student-password" autocomplete="new-password" />
             <button mat-icon-button matSuffix type="button" (click)="showPassword = !showPassword"
               [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
               <mat-icon>{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon>

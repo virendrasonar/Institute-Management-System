@@ -175,8 +175,6 @@ Frontend runs at:
 http://localhost:4200
 ```
 
----
-
 ### 3. H2 Database Console
 
 For local development, access the H2 console at:
