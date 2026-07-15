@@ -4,20 +4,20 @@ A full-stack web application for managing institute operations through dedicated
 
 ## 🌐 Live Demo
 
-* **Backend API:** https://institute-management-system-production-ef72.up.railway.app
-* **Frontend:** Add your Railway frontend URL here after deployment.
+- **Backend API:** https://institute-management-system-production-ef72.up.railway.app
+- **Frontend:** https://lovely-art-production.up.railway.app.
 
 ---
 
 ## 🏗 Architecture
 
-* **Backend:** Java 17, Spring Boot 3, Spring Data JPA, Hibernate
-* **Frontend:** Angular 17, TypeScript, Angular Material
-* **Database:** H2 for local development, PostgreSQL for production
-* **Authentication:** Admin and student login with protected routes
-* **Deployment:** Railway
-* **Build Tools:** Maven and npm
-* **Container Support:** Docker and Docker Compose
+- **Backend:** Java 17, Spring Boot 3, Spring Data JPA, Hibernate
+- **Frontend:** Angular 17, TypeScript, Angular Material
+- **Database:** H2 for local development, PostgreSQL for production
+- **Authentication:** Admin and student login with protected routes
+- **Deployment:** Railway
+- **Build Tools:** Maven and npm
+- **Container Support:** Docker and Docker Compose
 
 ---
 
@@ -25,43 +25,43 @@ A full-stack web application for managing institute operations through dedicated
 
 ### 📚 Course Management
 
-* Browse available courses
-* View course details
-* Add, edit, and delete courses
-* Manage course information from the admin portal
-* Validate forms on frontend and backend
+- Browse available courses
+- View course details
+- Add, edit, and delete courses
+- Manage course information from the admin portal
+- Validate forms on frontend and backend
 
 ### 👨‍🎓 Student Features
 
-* Student registration and login
-* Course enrollment
-* Personalized student dashboard
-* View enrolled courses
-* Track learning progress
-* Access course learning pages
+- Student registration and login
+- Course enrollment
+- Personalized student dashboard
+- View enrolled courses
+- Track learning progress
+- Access course learning pages
 
 ### 🛠 Admin Portal
 
-* Secure admin login
-* Dashboard with system statistics
-* Manage courses through CRUD operations
-* Manage student records
-* View and manage enrollments
-* View student enquiries and contact messages
-* Access reports and analytics
+- Secure admin login
+- Dashboard with system statistics
+- Manage courses through CRUD operations
+- Manage student records
+- View and manage enrollments
+- View student enquiries and contact messages
+- Access reports and analytics
 
 ### 📩 Enquiry and Contact Management
 
-* Public contact form for visitors
-* Submit course-related enquiries
-* Store messages in the backend database
-* Admin-side message tracking and management
+- Public contact form for visitors
+- Submit course-related enquiries
+- Store messages in the backend database
+- Admin-side message tracking and management
 
 ### 📊 Dashboard and Analytics
 
-* Course, student, enquiry, and enrollment statistics
-* Dynamic data loaded through REST APIs
-* Centralized navigation for administrative modules
+- Course, student, enquiry, and enrollment statistics
+- Dynamic data loaded through REST APIs
+- Centralized navigation for administrative modules
 
 ---
 
@@ -69,25 +69,25 @@ A full-stack web application for managing institute operations through dedicated
 
 ### Backend
 
-* Java 17
-* Spring Boot 3
-* Spring Data JPA
-* Hibernate
-* PostgreSQL
-* H2 Database
-* RESTful APIs
-* Maven
+- Java 17
+- Spring Boot 3
+- Spring Data JPA
+- Hibernate
+- PostgreSQL
+- H2 Database
+- RESTful APIs
+- Maven
 
 ### Frontend
 
-* Angular 17
-* TypeScript
-* Angular Material
-* RxJS
-* Reactive Forms
-* Standalone Components
-* Lazy Loading
-* HTML and CSS
+- Angular 17
+- TypeScript
+- Angular Material
+- RxJS
+- Reactive Forms
+- Standalone Components
+- Lazy Loading
+- HTML and CSS
 
 ---
 
@@ -134,11 +134,11 @@ Institute-Management-System/
 
 Install the following before running the project:
 
-* Java 17+
-* Node.js 16+
-* npm
-* Maven or Maven Wrapper
-* PostgreSQL for production setup
+- Java 17+
+- Node.js 16+
+- npm
+- Maven or Maven Wrapper
+- PostgreSQL for production setup
 
 ---
 
@@ -174,6 +174,23 @@ Frontend runs at:
 ```text
 http://localhost:4200
 ```
+
+# <<<<<<< HEAD
+
+### Default Admin Login
+
+When the project is launched locally, the Admin Login page shows these default credentials and pre-fills the login form:
+
+```text
+Email: admin@example.com
+Password: Admin@123
+```
+
+Use these credentials only for local/demo setup. Change `ADMIN_EMAIL` and `ADMIN_PASSWORD` before deploying the project.
+
+---
+
+> > > > > > > ace0673 (Add default admin credentials to login form)
 
 ### 3. H2 Database Console
 
@@ -241,24 +258,24 @@ GET    /admin/enrollments
 
 Students can:
 
-* Explore courses
-* Enroll in courses
-* Log in to their student dashboard
-* View enrolled courses
-* Track learning progress
-* Access learning content
+- Explore courses
+- Enroll in courses
+- Log in to their student dashboard
+- View enrolled courses
+- Track learning progress
+- Access learning content
 
 ### Administrator
 
 Administrators can:
 
-* Log in securely
-* Add, update, and delete courses
-* Manage student records
-* View enrollments
-* Handle enquiries and messages
-* Monitor dashboard statistics
-* Access reports and administrative features
+- Log in securely
+- Add, update, and delete courses
+- Manage student records
+- View enrollments
+- Handle enquiries and messages
+- Monitor dashboard statistics
+- Access reports and administrative features
 
 ---
 
@@ -292,18 +309,18 @@ backend/backend
 
 ## 🎯 Development Highlights
 
-* Full-stack architecture using Spring Boot and Angular
-* Layered backend design: Controller → Service → Repository
-* RESTful API development
-* PostgreSQL production database integration
-* H2 local development database
-* Role-based access through admin and student guards
-* Student enrollment and course-progress tracking
-* Angular standalone component architecture
-* Reactive forms and validation
-* Responsive Angular Material interface
-* Clean separation of frontend and backend responsibilities
-* Docker support for containerized deployment
+- Full-stack architecture using Spring Boot and Angular
+- Layered backend design: Controller → Service → Repository
+- RESTful API development
+- PostgreSQL production database integration
+- H2 local development database
+- Role-based access through admin and student guards
+- Student enrollment and course-progress tracking
+- Angular standalone component architecture
+- Reactive forms and validation
+- Responsive Angular Material interface
+- Clean separation of frontend and backend responsibilities
+- Docker support for containerized deployment
 
 ---
 
@@ -313,14 +330,14 @@ Active full-stack project demonstrating practical Java Spring Boot and Angular d
 
 The application currently supports:
 
-* Course management
-* Student management
-* Course enrollment
-* Student dashboard
-* Course-progress tracking
-* Admin dashboard
-* Enquiry and message management
-* PostgreSQL production deployment
+- Course management
+- Student management
+- Course enrollment
+- Student dashboard
+- Course-progress tracking
+- Admin dashboard
+- Enquiry and message management
+- PostgreSQL production deployment
 
 ---
 
