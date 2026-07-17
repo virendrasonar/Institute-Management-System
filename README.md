@@ -541,18 +541,12 @@ Password: Admin@123
 
 This repository is maintained as a personal portfolio project. Suggestions, bug reports, and constructive feedback are welcome through GitHub Issues.
 
----
-
-## License
-
-No license file is currently included in this repository. Add a license before accepting external contributions or reusing the project in another product.
-
 ## 👨‍💻 Author
 
 **Virendra Sonar**
 
-Java Developer
+Java Full Stack Developer
 
-LinkedIn: <your-link>
+LinkedIn: [www.linkedin.com/in/virendra-sonar](https://www.linkedin.com/in/virendra-sonar)
 
 Email: virendrasonar187@gmail.com
