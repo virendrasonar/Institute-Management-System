@@ -73,17 +73,17 @@ An institute operations platform built with Spring Boot, Angular, JPA, and relat
 
 ## Screenshots
 
-| Dashboard | Admin Login |
+| Home | Course Catalog |
 |---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Admin Login](docs/screenshots/admin-login.png) |
+| ![Home](docs/screenshots/home.png) | ![Course Catalog](docs/screenshots/course-catalog.png) |
 
-| Student Dashboard | Course Management |
+| Admin Dashboard | Admin Menu |
 |---|---|
-| ![Student Dashboard](docs/screenshots/student-dashboard.png) | ![Course Management](docs/screenshots/course-management.png) |
+| ![Admin Dashboard](docs/screenshots/admin-dashboard.png) | ![Admin Menu](docs/screenshots/admin-menu.png) |
 
-| Enrollment | Reports |
+| Student Management | Reports |
 |---|---|
-| ![Enrollment](docs/screenshots/enrollment.png) | ![Reports](docs/screenshots/reports.png) |
+| ![Student Management](docs/screenshots/student-management.png) | ![Reports](docs/screenshots/reports.png) |
 
 ## Architecture Diagram
 
