@@ -5,14 +5,15 @@
 
 ![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-17-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Angular Admin](https://img.shields.io/badge/Admin%20UI-Angular%2017-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![Angular Public Site](https://img.shields.io/badge/Public%20Site-Angular%2020-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-Admin%205.2%20%7C%20Public%205.9-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-Local-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Production-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Backend%20Ready-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Backend%20%2B%20Public%20Site-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![Railway](https://img.shields.io/badge/Deployed%20on-Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)
 
-An institute operations platform built with a Spring Boot backend and Angular dashboard. The application handles public course discovery, student enrollment, student learning access, admin course management, student records, contact messages, enrollment tracking, and protected dashboards from a single full-stack codebase.
+An institute operations platform built with a Spring Boot backend, an Angular admin/student dashboard, and a separate Angular public website. The application handles public course discovery, student enrollment, student learning access, admin course management, student records, contact messages, enrollment tracking, and protected dashboards from a single repository.
 
 This repository is designed to show more than CRUD screens. It demonstrates API design, layered backend architecture, JPA data modeling, session-based access control, form validation, Angular route guards, environment-specific configuration, database-backed workflows, deployment configuration, and backend test coverage.
 
@@ -32,7 +33,8 @@ This repository is designed to show more than CRUD screens. It demonstrates API 
 | Area | What This Project Shows |
 |---|---|
 | Backend design | Controller, service, repository, DTO, entity, and configuration layers with clear ownership. |
-| Frontend design | Angular standalone components, lazy-loaded routes, guards, services, and reactive forms. |
+| Admin frontend | Angular 17 standalone components, lazy-loaded routes, guards, services, and reactive forms. |
+| Public website | Angular 20 public site with course pages, contact flow, API caching, retries, health checks, and Nginx hosting config. |
 | Authentication | Separate admin and student login flows using expiring bearer tokens. |
 | Course workflow | Public catalog, course detail pages, enrollment, learning access, progress updates, and admin course management. |
 | Persistence | Spring Data JPA repositories backed by MySQL locally and PostgreSQL in production. |
@@ -44,11 +46,13 @@ This repository is designed to show more than CRUD screens. It demonstrates API 
 | Metric | Current Repository |
 |---|---:|
 | REST handler methods | 28 |
-| Angular component files | 19 |
-| Angular service files | 7 |
+| Admin Angular component files | 19 |
+| Admin Angular service files | 7 |
+| Public website component files | 20 |
+| Public website service files | 17 |
 | Core domain tables | 4 |
 | Backend test classes | 10 |
-| Business modules | Courses, Students, Enrollments, Messages, Auth, Reports |
+| Business modules | Courses, Students, Enrollments, Messages, Auth, Reports, Public Website |
 
 ## Screenshots
 
@@ -67,9 +71,15 @@ Replace these placeholders with current screenshots from your deployed applicati
 
 ```mermaid
 flowchart LR
-    User["Visitor / Student / Admin"] --> Angular["Angular 17 UI"]
-    Angular --> Guards["Route Guards + Interceptors"]
-    Guards --> API["Spring Boot REST API"]
+    Visitor["Visitor"] --> PublicSite["Angular 20 Public Website"]
+    Student["Student"] --> AdminUI["Angular 17 Student/Admin UI"]
+    Admin["Admin"] --> AdminUI
+
+    PublicSite --> PublicApiClient["API Service with Cache + Retry"]
+    AdminUI --> Guards["Route Guards + Admin Interceptor"]
+
+    PublicApiClient --> API["Spring Boot REST API"]
+    Guards --> API
 
     API --> PublicController["PublicController"]
     API --> AdminController["AdminController"]
@@ -87,6 +97,7 @@ flowchart LR
     API --> Filter["AdminAuthFilter"]
     Services --> Passwords["PBKDF2 PasswordService"]
     Services --> DTOs["DTO Responses"]
+    PublicSite --> Nginx["Nginx Static Hosting"]
 ```
 
 ## Features
@@ -96,6 +107,8 @@ flowchart LR
 - Course catalog with course details, pricing, level, instructor, thumbnail, materials, and embedded learning media metadata.
 - Contact form that stores enquiries for admin review.
 - Institute information and health endpoints for public pages and deployment checks.
+- Separate public website routes for home, courses, course details, about, contact, API integration testing, and 404 handling.
+- Public website API service with request timeouts, retries, short-term caching, and periodic health checks.
 
 ### Student Experience
 
@@ -145,7 +158,8 @@ flowchart LR
 | Clean Code | Business behavior is grouped into focused services such as `EnrollmentService`, `PasswordService`, `AdminAuthService`, and `StudentAuthService`. |
 | Responsive Angular UI | Angular Material, SCSS, standalone components, and lazy routes support a dashboard-style admin experience. |
 | Environment Configuration | Local and production profiles separate database URLs, credentials, ports, admin sessions, and student sessions. |
-| Docker | Backend has a multi-stage Dockerfile; compose files define local service wiring and production deployment patterns. |
+| Public Website Delivery | The public website includes an Nginx Docker image, service-worker configuration, runtime environment template, and Lighthouse scripts. |
+| Docker | Backend and public website have multi-stage Dockerfiles; compose files define local/staging/production service wiring. |
 | Production Deployment | Railway-ready production profile connects to PostgreSQL through environment variables. |
 
 ### Software Engineering Principles
@@ -164,8 +178,11 @@ flowchart LR
 | Spring Boot 3.5 | Used for fast backend development, dependency injection, REST APIs, profiles, and deployable application packaging. |
 | Spring Data JPA | Keeps data access readable through repository interfaces while still supporting custom finder methods. |
 | Hibernate | Handles object-relational mapping, lazy relationships, table constraints, and schema updates during development. |
-| Angular 17 | Fits admin dashboards well through structured routing, TypeScript, reactive forms, services, and reusable components. |
+| Angular 17 | Used for the admin/student dashboard because structured routing, TypeScript, reactive forms, services, guards, and reusable components fit operational screens well. |
+| Angular 20 | Used in the public website, with standalone page routes, service-worker configuration, and separate environment files for local, staging, and production builds. |
 | Angular Material | Provides production-style UI controls for forms, navigation, tables, and dashboard screens. |
+| Nginx | Serves the public website container, handles Angular routing, adds cache headers, and proxies `/api/` requests when deployed with the backend service. |
+| Lighthouse CI tooling | Included in the public website package scripts to audit page performance after production builds. |
 | MySQL | Local relational database for day-to-day development through the `local` Spring profile. |
 | PostgreSQL | Production database target for Railway deployment. |
 | Maven | Standard Java build lifecycle for compiling, testing, and packaging the backend. |
@@ -391,11 +408,15 @@ What is currently included:
 |---|---|
 | `backend/backend/Dockerfile` | Builds and runs the Spring Boot API as a Java 17 container. |
 | `docker-compose.yml` | Defines backend, frontend, and MySQL service wiring for local orchestration. |
-| `docker-compose.production.yml` | Provides a production-oriented service blueprint with backend, website, database, and Nginx sections. |
+| `docker-compose.staging.yml` | Provides a staging-oriented service blueprint for backend, public website, and admin dashboard services. |
+| `docker-compose.production.yml` | Provides a production-oriented service blueprint with backend, public website, database, Redis, admin dashboard, and Nginx sections. |
 | `public-website/Dockerfile` | Builds the public website container. |
 
 > **Note**
-> The admin `frontend/` directory currently does not include its own Dockerfile. Add one before relying on the frontend service in `docker-compose.yml`.
+> The admin `frontend/` directory currently does not include its own Dockerfile. The compose entries that build `./frontend` are deployment placeholders until that Dockerfile is added.
+
+> **Note**
+> The production/staging compose examples include template variables for JWT, Redis, SMTP, and monitoring. The current backend code uses custom in-memory session tokens and does not implement Redis-backed sessions, JWT authentication, or email sending.
 
 ## Installation
 
