@@ -537,28 +537,22 @@ Password: Admin@123
 - Environment-based configuration keeps local MySQL development and PostgreSQL production deployment separate.
 - Docker packaging is most useful when every deployable application surface has an explicit container story.
 
-## Contributing
+## 🤝 Contributing
 
-Contributions are welcome through issues and pull requests.
+This repository is maintained as a personal portfolio project. Suggestions, bug reports, and constructive feedback are welcome through GitHub Issues.
 
-1. Fork the repository.
-2. Create a feature branch.
-3. Keep changes focused and tested.
-4. Run backend tests before opening a pull request.
-5. Describe the behavior change and screenshots when UI is affected.
-
-```bash
-cd backend/backend
-./mvnw test
-```
+---
 
 ## License
 
 No license file is currently included in this repository. Add a license before accepting external contributions or reusing the project in another product.
 
-## Author
+## 👨‍💻 Author
 
-**Virendra Sonar**<br>
-Full-Stack Java Developer
+**Virendra Sonar**
 
-Built to demonstrate Java, Spring Boot, REST API design, relational persistence, Angular dashboards, authentication flows, deployment configuration, and clean full-stack engineering practices.
+Java Developer
+
+LinkedIn: <your-link>
+
+Email: virendrasonar187@gmail.com
