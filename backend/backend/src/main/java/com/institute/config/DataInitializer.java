@@ -159,22 +159,39 @@ public class DataInitializer implements CommandLineRunner {
         course.setRating(seed.rating());
         course.setStudentsEnrolled(seed.studentsEnrolled());
         course.setThumbnailUrl(seed.thumbnailUrl());
-        String videoId = featuredVideoId(seed.name());
+        List<String> videoIds = featuredVideoIds(seed.name());
+        String videoId = videoIds.get(0);
         course.setVideoType("YOUTUBE");
         course.setVideoUrl("https://www.youtube.com/watch?v=" + videoId);
         course.setVideoId(videoId);
         course.setMaterials(seed.materials());
+        course.setModules(modulesFromMaterials(seed.materials(), videoIds));
     }
 
-    private String featuredVideoId(String courseName) {
-        if (courseName.startsWith("Modern Java")) return "xk4_1vDrzzo";
-        if (courseName.startsWith("AI Engineering")) return "i_LwzRVP7bg";
-        if (courseName.startsWith("Generative AI")) return "H4YK_7MAckk";
-        if (courseName.startsWith("Full-Stack")) return "bMknfKXIFA8";
-        if (courseName.startsWith("Data Science")) return "ua-CiDNNj30";
-        if (courseName.startsWith("Cloud")) return "Wf2eSG3owoA";
-        if (courseName.startsWith("Cybersecurity")) return "3Kq1MIfTWCE";
-        return "kbZejnPXyLM";
+    private String modulesFromMaterials(String materials, List<String> videoIds) {
+        String[] topics = materials == null ? new String[0] : materials.split("\\R");
+        StringBuilder modules = new StringBuilder();
+        for (int index = 0; index < topics.length && index < 3; index++) {
+            String topic = topics[index].trim();
+            if (!topic.isBlank()) {
+                if (modules.length() > 0) modules.append('\n');
+                modules.append("Module ").append(index + 1).append(": ").append(topic)
+                        .append(" | https://www.youtube.com/watch?v=")
+                        .append(videoIds.get(index % videoIds.size()));
+            }
+        }
+        return modules.toString();
+    }
+
+    private List<String> featuredVideoIds(String courseName) {
+        if (courseName.startsWith("Modern Java")) return List.of("xk4_1vDrzzo", "vtPkZShrvXQ", "9SGDpanrc8U");
+        if (courseName.startsWith("AI Engineering")) return List.of("i_LwzRVP7bg", "aircAruvnKk", "GwIo3gDZCVQ");
+        if (courseName.startsWith("Generative AI")) return List.of("H4YK_7MAckk", "dOxUroR57xs", "hHjmr_YOqnU");
+        if (courseName.startsWith("Full-Stack")) return List.of("bMknfKXIFA8", "Oe421EPjeBE", "Ke90Tje7VS0");
+        if (courseName.startsWith("Data Science")) return List.of("ua-CiDNNj30", "LHBE6Q9XlzI", "rfscVS0vtbw");
+        if (courseName.startsWith("Cloud")) return List.of("Wf2eSG3owoA", "3c-iBn73dDE", "X48VuDVv0do");
+        if (courseName.startsWith("Cybersecurity")) return List.of("3Kq1MIfTWCE", "inWWhr5tnEA", "U_P23SqJaDc");
+        return List.of("kbZejnPXyLM", "c9Wg6Cb_YlU", "FTFaQWZBqQ8");
     }
 
     private record CourseSeed(String name, String description, String duration, String level, String icon,

@@ -36,6 +36,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
         <!-- Desktop Navigation -->
         <nav class="desktop-nav" *ngIf="!isMobile">
           <a
+            *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
             mat-button
             routerLink="/"
             routerLinkActive="active"
@@ -45,23 +46,38 @@ import { StudentAuthService } from "../../../services/student-auth.service";
             Home
           </a>
 
-          <a mat-button routerLink="/courses" routerLinkActive="active">
-            <mat-icon>library_books</mat-icon>
-            Courses
+          <a *ngIf="studentAuth.isAuthenticated() && !auth.isAuthenticated()"
+             mat-button routerLink="/student/dashboard" routerLinkActive="active">
+            <mat-icon>school</mat-icon>
+            Student Dashboard
           </a>
 
-          <a mat-button routerLink="/about" routerLinkActive="active">
+          <a mat-button routerLink="/courses" routerLinkActive="active">
+            <mat-icon>library_books</mat-icon>
+            {{ studentAuth.isAuthenticated() && !auth.isAuthenticated() ? 'All Courses' : 'Courses' }}
+          </a>
+
+          <a *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
+             mat-button routerLink="/about" routerLinkActive="active">
             <mat-icon>info</mat-icon>
             About Us
           </a>
 
-          <a mat-button routerLink="/contact" routerLinkActive="active">
+          <a *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
+             mat-button routerLink="/contact" routerLinkActive="active">
             <mat-icon>contact_mail</mat-icon>
             Contact
           </a>
 
-          <button mat-button [matMenuTriggerFor]="loginMenu" class="login-menu-trigger">
-            Login
+          <button *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
+            mat-button [matMenuTriggerFor]="loginMenu" class="login-menu-trigger">
+            <mat-icon>{{ auth.isAuthenticated() ? 'admin_panel_settings' : studentAuth.isAuthenticated() ? 'account_circle' : 'login' }}</mat-icon>
+            {{ auth.isAuthenticated() ? 'Admin Panel' : studentAuth.isAuthenticated() ? 'Student Portal' : 'Login' }}
+          </button>
+
+          <button *ngIf="studentAuth.isAuthenticated() && !auth.isAuthenticated()"
+            mat-icon-button class="student-signout-btn" (click)="studentLogout()" aria-label="Student sign out">
+            <mat-icon>logout</mat-icon>
           </button>
 
           <mat-menu #loginMenu="matMenu">
@@ -160,6 +176,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
 
         <nav class="mobile-nav-links">
           <a
+            *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
             mat-button
             routerLink="/"
             (click)="drawer.close()"
@@ -176,10 +193,11 @@ import { StudentAuthService } from "../../../services/student-auth.service";
             class="mobile-nav-link"
           >
             <mat-icon>library_books</mat-icon>
-            Courses
+            {{ studentAuth.isAuthenticated() && !auth.isAuthenticated() ? 'All Courses' : 'Courses' }}
           </a>
 
           <a
+            *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
             mat-button
             routerLink="/about"
             (click)="drawer.close()"
@@ -190,6 +208,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
           </a>
 
           <a
+            *ngIf="!studentAuth.isAuthenticated() || auth.isAuthenticated()"
             mat-button
             routerLink="/contact"
             (click)="drawer.close()"
@@ -202,7 +221,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
           <a *ngIf="studentAuth.isAuthenticated()" mat-button routerLink="/student/dashboard"
              (click)="drawer.close()" class="mobile-nav-link">
             <mat-icon>school</mat-icon>
-            My Learning
+            Student Dashboard
           </a>
 
           <button *ngIf="studentAuth.isAuthenticated()" mat-button
@@ -260,7 +279,7 @@ import { StudentAuthService } from "../../../services/student-auth.service";
             </button>
           </div>
 
-          <a *ngIf="!auth.isAuthenticated()" mat-button routerLink="/admin/login"
+          <a *ngIf="!auth.isAuthenticated() && !studentAuth.isAuthenticated()" mat-button routerLink="/admin/login"
              (click)="drawer.close()" class="mobile-nav-link admin-link">
             <mat-icon>login</mat-icon>
             Admin Login
@@ -360,6 +379,15 @@ import { StudentAuthService } from "../../../services/student-auth.service";
       .desktop-nav a.active {
         background: #4338ca !important;
         color: #ffffff !important;
+      }
+
+      .student-signout-btn {
+        color: #4338ca !important;
+        border-radius: 10px !important;
+      }
+
+      .student-signout-btn:hover {
+        background: #eef2ff !important;
       }
 
       /* ================= MOBILE MENU BUTTON ================= */

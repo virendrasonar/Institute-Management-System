@@ -30,8 +30,11 @@ An institute operations platform built with Spring Boot, Angular, JPA, and relat
 
 - Secure admin and student portals with expiring bearer-token sessions.
 - Course, student, message, and enrollment management.
-- 28 REST API handler methods across public, admin, and student flows.
+- Logged-in student enrollment without repeating the public enrollment form.
+- Module-based course learning with multiple video lessons and progress tracking.
+- 29 REST API handler methods across public, admin, and student flows.
 - Responsive Angular 17 admin/student dashboard with route guards.
+- Focused student experience with dashboard/course navigation and no footer distractions after login.
 - Separate Angular 20 public website with API caching, retries, and health checks.
 - Spring Data JPA persistence with MySQL locally and PostgreSQL in production.
 - Dockerized backend and public website deployment support.
@@ -41,10 +44,11 @@ An institute operations platform built with Spring Boot, Angular, JPA, and relat
 
 | Area | Implementation Detail |
 |---|---|
-| API surface | 28 mapped REST handler methods across 4 Spring controllers. |
+| API surface | 29 mapped REST handler methods across 4 Spring controllers. |
 | Backend architecture | Layered Controller -> Service -> Repository structure with 4 repositories and 5 Spring service classes. |
 | Domain model | 4 JPA entities mapped to relational tables: courses, students, enrollments, and messages. |
-| Admin dashboard | 19 Angular 17 component files, 7 services, guarded routes, interceptor-backed admin requests, and reactive forms. |
+| Admin dashboard | 19 Angular 17 component files, 7 services, guarded routes, interceptor-backed admin requests, reactive forms, and table-style admin views. |
+| Student learning | Authenticated students can enroll directly, open a focused dashboard, and track progress across course modules. |
 | Public website | 20 Angular 20 component files and 17 services for public pages, caching, health checks, SEO, monitoring, and UI behavior. |
 | Persistence | MySQL local profile and PostgreSQL production profile using Spring Data JPA and Hibernate. |
 | Deployment | Railway URLs, Spring production profile, backend Dockerfile, public website Dockerfile, and compose templates. |
@@ -54,7 +58,7 @@ An institute operations platform built with Spring Boot, Angular, JPA, and relat
 
 | Metric | Current Repository |
 |---|---:|
-| REST API handler methods | 28 |
+| REST API handler methods | 29 |
 | Spring controllers | 4 |
 | Spring service classes | 5 |
 | JPA repositories | 4 |
@@ -140,16 +144,18 @@ flowchart TD
 - Protected admin routes and backend endpoints.
 - Create, read, update, and delete courses.
 - View, create, update, and delete student records.
-- View and delete public contact messages.
-- Review enrollment summaries ordered by most recent enrollment.
+- View and delete public contact messages in a table-style inbox.
+- Review enrollment summaries and progress in a table-style admin view.
 - Access dashboard and reports screens in the Angular admin application.
 
 ### Student
 
 - Course enrollment with name, email, and password.
 - Student login with expiring access token.
-- Student dashboard showing enrolled courses.
+- Student dashboard showing enrolled courses with focused student navigation.
+- Direct course enrollment for signed-in students.
 - Learning page access through enrollment access tokens.
+- Module-based video learning with per-module completion tracking.
 - Progress tracking from 0 to 100 percent with completion timestamp support.
 
 ### Public Website
@@ -174,6 +180,7 @@ flowchart TD
 | Course Management | Maintains the institute course catalog and learning metadata. |
 | Student Management | Stores student profiles, status, and password hash references. |
 | Enrollment Management | Links students to courses, creates access tokens, and tracks progress. |
+| Learning Modules | Stores module/video lesson metadata on courses and calculates course progress from completed modules. |
 | Message Management | Captures contact form enquiries for admin review. |
 | Authentication | Handles admin and student login sessions separately. |
 | Reporting UI | Provides admin-facing reporting and dashboard navigation. |
@@ -193,7 +200,7 @@ flowchart TD
 | Validation | Backend services validate required fields, email format, password length, media type, and progress range; Angular reactive forms add client-side validation. |
 | Error Handling | Controllers return explicit HTTP status codes through `ResponseEntity`; Angular centralizes client error handling in `ErrorHandlerService`. |
 | Clean Code | Business behavior is grouped into focused services such as `EnrollmentService`, `PasswordService`, `AdminAuthService`, and `StudentAuthService`. |
-| Responsive Angular UI | Angular Material, SCSS, standalone components, and lazy routes support a dashboard-style admin experience. |
+| Responsive Angular UI | Angular Material, SCSS, standalone components, and lazy routes support admin tables, focused student navigation, and module-based learning screens. |
 | Environment Configuration | Local and production profiles separate database URLs, credentials, ports, admin sessions, and student sessions. |
 | Public Website Delivery | The public website includes an Nginx Docker image, service-worker configuration, runtime environment template, and Lighthouse scripts. |
 | Docker | Backend and public website have multi-stage Dockerfiles; compose files define local/staging/production service wiring. |
@@ -291,6 +298,7 @@ Institute-Management-System-main/
 | `POST` | `/api/student/auth/login` | Student login. |
 | `POST` | `/api/student/auth/logout` | Student logout. |
 | `GET` | `/api/student/dashboard` | Student dashboard for authenticated students. |
+| `POST` | `/api/student/courses/{courseId}/enroll` | Enroll the authenticated student in a course. |
 
 ### Admin APIs
 
@@ -349,6 +357,7 @@ erDiagram
         string video_type
         string video_id
         text materials
+        text modules
     }
 
     STUDENTS {

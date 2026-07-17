@@ -246,19 +246,19 @@ import { CourseService } from "../../../services/course.service";
         display: flex;
         align-items: center;
         overflow: hidden;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         animation: gradientShift 20s ease-in-out infinite;
         color: #ffffff;
       }
 
-      /* Smooth Indigo Animation */
+      /* Smooth blue animation */
       @keyframes gradientShift {
         0%,
         100% {
-          background: linear-gradient(135deg, #4338ca, #818cf8);
+          background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         }
         50% {
-          background: linear-gradient(135deg, #3730a3, #a5b4fc);
+          background: linear-gradient(135deg, #1e40af 0%, #2563eb 48%, #60a5fa 100%);
         }
       }
 
@@ -316,7 +316,7 @@ import { CourseService } from "../../../services/course.service";
         font-weight: 600 !important;
         text-transform: none !important;
         background-color: #ffffff !important;
-        color: #4338ca !important;
+        color: #1d4ed8 !important;
       }
 
       /* Secondary Button */
@@ -508,7 +508,7 @@ import { CourseService } from "../../../services/course.service";
         width: 90px;
         height: 90px;
         margin: 0 auto 30px auto;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -576,20 +576,19 @@ import { CourseService } from "../../../services/course.service";
         left: 0;
         height: 4px;
         width: 100%;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
       }
 
       /* Hover Effect */
       .course-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 25px 50px rgba(67, 56, 202, 0.15) !important;
+        box-shadow: 0 12px 32px rgba(67, 56, 202, 0.1) !important;
       }
 
       /* ================= IMAGE ================= */
 
       .course-image {
         height: 200px;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -599,7 +598,7 @@ import { CourseService } from "../../../services/course.service";
       }
 
       .course-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
-      .course-card:hover .course-image img { transform: scale(1.04); }
+      .course-card:hover .course-image img { transform: none; }
       .popular-label { position: absolute; left: 14px; bottom: 14px; display: flex; align-items: center; gap: 4px; padding: 7px 11px; border-radius: 999px; background: rgba(17,24,39,.86); color: #fff; font-size: 12px; font-weight: 700; backdrop-filter: blur(8px); }
       .popular-label mat-icon { width: 16px !important; height: 16px !important; font-size: 16px !important; color: #fbbf24; }
 
@@ -612,7 +611,7 @@ import { CourseService } from "../../../services/course.service";
 
       /* Icon Hover Animation */
       .course-card:hover .course-image mat-icon {
-        transform: scale(1.15);
+        transform: none;
       }
 
       /* ================= CONTENT ================= */
@@ -762,7 +761,7 @@ import { CourseService } from "../../../services/course.service";
       .author-avatar {
         width: 52px;
         height: 52px;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -791,7 +790,7 @@ import { CourseService } from "../../../services/course.service";
 
       .cta-section {
         padding: 110px 0;
-        background: linear-gradient(135deg, #4338ca, #3730a3);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         color: #ffffff;
         text-align: center;
       }

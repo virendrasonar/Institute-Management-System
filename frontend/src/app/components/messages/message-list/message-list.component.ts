@@ -3,7 +3,6 @@ import { CommonModule } from "@angular/common";
 import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSnackBarModule, MatSnackBar } from "@angular/material/snack-bar";
-import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonModule } from "@angular/material/button";
 import { MessageService } from "../../../services/message.service";
 import { Message } from "../../../models/message.model";
@@ -17,234 +16,70 @@ import { MatIconModule } from "@angular/material/icon";
     MatCardModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatExpansionModule,
     MatButtonModule,
     MatIconModule,
   ],
   template: `
-    <div class="page-wrapper">
-      <!-- Header -->
-      <div class="page-header">
-        <h1>
-          <mat-icon>mail_outline</mat-icon>
-          Message Center
-        </h1>
+    <main class="page-wrapper">
+      <header class="page-header">
+        <div>
+          <span>Admin communication</span>
+          <h1><mat-icon>mail_outline</mat-icon> Message Center</h1>
+          <p>Review incoming student enquiries and remove messages that are no longer needed.</p>
+        </div>
+        <strong>{{ messages.length }} total</strong>
+      </header>
 
-        <p>Manage student enquiries and communication</p>
-      </div>
-
-      <!-- Loading -->
       <div *ngIf="loading" class="loading">
-        <mat-spinner diameter="60"></mat-spinner>
+        <mat-spinner diameter="52"></mat-spinner>
       </div>
 
-      <!-- Empty -->
-      <div *ngIf="!loading && messages.length === 0" class="empty-state">
-        <mat-card>
-          <mat-card-content>
-            <h3>No Messages Found</h3>
-            <p>All incoming messages will appear here.</p>
-          </mat-card-content>
-        </mat-card>
-      </div>
+      <section *ngIf="!loading && messages.length === 0" class="empty-state">
+        <mat-icon>mark_email_read</mat-icon>
+        <h2>No Messages Found</h2>
+        <p>All incoming messages will appear here.</p>
+      </section>
 
-      <!-- Messages -->
-      <mat-accordion *ngIf="!loading && messages.length > 0">
-        <mat-expansion-panel *ngFor="let message of messages">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{ message.senderName }}
-            </mat-panel-title>
-            <mat-panel-description>
-              {{ message.email }}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <div class="message-body">
-            <p><strong>From:</strong> {{ message.senderName }}</p>
-            <p><strong>Email:</strong> {{ message.email }}</p>
-
-            <div class="message-text">
-              {{ message.content }}
-            </div>
-
-            <div class="actions">
-              <button
-                mat-raised-button
-                color="warn"
-                (click)="deleteMessage(message.id!)"
-              >
-                Delete
-              </button>
-            </div>
+      <mat-card class="table-card" *ngIf="!loading && messages.length > 0">
+        <div class="table-toolbar">
+          <div>
+            <h2>Inbox</h2>
+            <p>Latest enquiries from the website contact form</p>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
+          <span class="status-pill">Open messages</span>
+        </div>
+
+        <div class="message-table">
+          <div class="table-head">
+            <span>Sender</span>
+            <span>Email</span>
+            <span>Message</span>
+            <span>Action</span>
+          </div>
+
+          <div class="table-row" *ngFor="let message of messages">
+            <div class="sender">
+              <span>{{ initials(message.senderName) }}</span>
+              <strong>{{ message.senderName }}</strong>
+            </div>
+            <a [href]="'mailto:' + message.email">{{ message.email }}</a>
+            <p>{{ message.content }}</p>
+            <button mat-stroked-button color="warn" (click)="deleteMessage(message.id!)">
+              <mat-icon>delete</mat-icon>
+              Delete
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </main>
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        min-height: 100vh;
-        background: #f5f7ff;
-        padding: 50px 24px 80px;
-      }
-
-      /* ================= WRAPPER ================= */
-
-      .page-wrapper {
-        max-width: 1150px;
-        margin: 0 auto;
-      }
-
-      /* ================= HEADER ================= */
-
-      .page-header {
-        background: linear-gradient(135deg, #9214d6, #1f8dd6);
-        border-radius: 22px;
-        padding: 45px 30px;
-        color: white;
-        margin-bottom: 40px;
-        box-shadow: 0 18px 45px rgba(67, 56, 202, 0.18);
-      }
-
-      .page-header h1 {
-        display: flex;
-        align-items: center;
-        gap: 25px;
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin: 0;
-      }
-
-      .page-header h1 mat-icon {
-        font-size: 32px !important;
-        width: 32px !important;
-        height: 32px !important;
-        line-height: 32px !important;
-      }
-
-      .page-header p {
-        margin-top: 12px;
-        opacity: 0.9;
-        font-size: 1rem;
-      }
-
-      /* ================= LOADING ================= */
-
-      .loading {
-        display: flex;
-        justify-content: center;
-        padding: 60px 0;
-      }
-
-      /* ================= EMPTY STATE ================= */
-
-      .empty-state mat-card {
-        padding: 40px;
-        border-radius: 20px !important;
-        border: 1px solid #e0e7ff;
-        box-shadow: 0 12px 30px rgba(67, 56, 202, 0.08);
-        text-align: center;
-      }
-
-      /* ================= ACCORDION ================= */
-
-      mat-expansion-panel {
-        margin-bottom: 20px;
-        border-radius: 18px !important;
-        overflow: hidden;
-        border: 1px solid #e0e7ff;
-        box-shadow: 0 10px 30px rgba(67, 56, 202, 0.08);
-        transition: all 0.25s ease;
-      }
-
-      mat-expansion-panel:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 18px 40px rgba(67, 56, 202, 0.15);
-      }
-
-      /* Header inside expansion */
-      mat-expansion-panel-header {
-        padding: 20px 24px !important;
-        font-weight: 600;
-      }
-
-      .mat-expansion-panel-header-title {
-        font-weight: 600;
-        color: #1f2937;
-      }
-
-      .mat-expansion-panel-header-description {
-        color: #1f2937;
-        font-weight: 500;
-      }
-
-      /* ================= MESSAGE BODY ================= */
-
-      .message-body {
-        padding: 24px;
-        background: #ffffff;
-      }
-
-      .message-body strong {
-        color: #1f2937;
-      }
-
-      /* Message text box */
-      .message-text {
-        background: #f3f4ff;
-        border: 1px solid #e0e7ff;
-        padding: 18px 20px;
-        border-radius: 14px;
-        margin-top: 16px;
-        white-space: pre-wrap;
-        line-height: 1.6;
-        font-size: 0.95rem;
-      }
-
-      /* ================= ACTIONS ================= */
-
-      .actions {
-        margin-top: 25px;
-        display: flex;
-        justify-content: flex-end;
-      }
-
-      .actions button {
-        border-radius: 10px !important;
-        padding: 8px 24px !important;
-        font-weight: 600 !important;
-        text-transform: none !important;
-        transition: 0.25s ease !important;
-      }
-
-      .actions button:hover {
-        transform: translateY(-2px);
-      }
-
-      /* ================= MOBILE ================= */
-
-      @media (max-width: 768px) {
-        :host {
-          padding: 40px 16px 60px;
-        }
-
-        .page-header {
-          padding: 30px 20px;
-        }
-
-        .page-header h1 {
-          font-size: 1.8rem;
-        }
-
-        .message-body {
-          padding: 18px;
-        }
-      }
-    `,
-  ],
+  styles: [`
+    :host{display:block;min-height:100vh;background:#f5f7ff;padding:40px 22px 70px}.page-wrapper{max-width:1180px;margin:0 auto}.page-header{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px;padding:32px 36px;border-radius:22px;background:linear-gradient(135deg,#1d4ed8,#4338ca 52%,#7c3aed);color:#fff;box-shadow:0 18px 42px rgba(67,56,202,.26)}.page-header span{text-transform:uppercase;letter-spacing:1.2px;font-size:11px;font-weight:850;color:#dbeafe}.page-header h1{display:flex;align-items:center;gap:12px;margin:7px 0 8px;font-size:34px;letter-spacing:0}.page-header p{margin:0;color:#dbeafe}.page-header strong{padding:9px 13px;border-radius:999px;background:rgba(255,255,255,.14);white-space:nowrap}.loading{display:grid;place-items:center;min-height:45vh}
+    .empty-state{text-align:center;padding:70px 20px;background:#fff;border:1px solid #e0e7ff;border-radius:18px;box-shadow:0 10px 28px rgba(15,23,42,.07)}.empty-state mat-icon{width:54px;height:54px;font-size:54px;color:#4338ca}.empty-state h2{margin:12px 0 8px;color:#111827}.empty-state p{margin:0;color:#64748b}
+    .table-card{overflow:hidden;border:1px solid #e0e7ff;border-radius:18px!important;box-shadow:0 12px 32px rgba(15,23,42,.08)}.table-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;border-bottom:1px solid #e5e7eb}.table-toolbar h2{margin:0;color:#111827}.table-toolbar p{margin:5px 0 0;color:#64748b}.status-pill{padding:8px 12px;border-radius:999px;background:#eef2ff;color:#4338ca;font-weight:850}
+    .message-table{overflow-x:auto}.table-head,.table-row{display:grid;grid-template-columns:1.1fr 1.2fr minmax(360px,2fr  ) 120px;gap:20px;align-items:center;min-width:920px}.table-head{padding:13px 24px;background:#f8fafc;color:#64748b;text-transform:uppercase;letter-spacing:.06em;font-size:11px;font-weight:850}.table-row{padding:16px 24px;border-top:1px solid #eef2f7;background:#fff}.table-row:hover{background:#f8fafc}.sender{display:flex;align-items:center;gap:11px;min-width:0}.sender span{display:grid;flex:0 0 38px;width:38px;height:38px;place-items:center;border-radius:12px;background:#eef2ff;color:#4338ca;font-weight:850}.sender strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#111827}.table-row a{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#2563eb;font-weight:750;text-decoration:none}.table-row p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin:0;color:#475569;line-height:1.5}.table-row button{height:38px;border-radius:10px!important;font-weight:750;text-transform:none!important}.table-row button mat-icon{width:18px;height:18px;font-size:18px}
+    @media(max-width:620px){:host{padding:24px 14px 50px}.page-header{align-items:flex-start;flex-direction:column;padding:28px 22px}.page-header h1{font-size:27px}.table-toolbar{align-items:flex-start;flex-direction:column}}
+  `],
 })
 export class MessageListComponent implements OnInit {
   messages: Message[] = [];
@@ -292,5 +127,9 @@ export class MessageListComponent implements OnInit {
         });
       },
     });
+  }
+
+  initials(name?: string): string {
+    return (name || "NA").split(/\s+/).slice(0, 2).map(part => part[0]).join("").toUpperCase();
   }
 }

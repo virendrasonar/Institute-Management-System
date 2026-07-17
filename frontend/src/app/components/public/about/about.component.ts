@@ -200,7 +200,7 @@ import { RouterModule } from "@angular/router";
       /* ================= HERO ================= */
 
       .about-hero {
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         color: white;
         padding: 100px 0;
         text-align: center;
@@ -280,7 +280,7 @@ import { RouterModule } from "@angular/router";
         width: 90px;
         height: 90px;
         margin: 0 auto 25px auto;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -353,7 +353,7 @@ import { RouterModule } from "@angular/router";
         width: 80px;
         height: 80px;
         margin: 0 auto 20px auto;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -420,7 +420,7 @@ import { RouterModule } from "@angular/router";
         width: 115px;
         height: 115px;
         margin-bottom: 22px;
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -493,7 +493,7 @@ import { RouterModule } from "@angular/router";
       }
 
       .stat-item {
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         color: white;
         padding: 35px 25px;
         border-radius: 20px;
@@ -548,7 +548,7 @@ import { RouterModule } from "@angular/router";
         position: absolute;
         left: 50%;
         width: 3px;
-        background: linear-gradient(to bottom, #4338ca, #818cf8);
+        background: linear-gradient(to bottom, #1d4ed8, #3b82f6);
         top: 0;
         bottom: 0;
         transform: translateX(-50%);
@@ -611,7 +611,7 @@ import { RouterModule } from "@angular/router";
 
       /* Year Badge */
       .timeline-year {
-        background: linear-gradient(135deg, #4338ca, #6366f1);
+        background: linear-gradient(135deg, #1d4ed8, #2563eb);
         color: white;
         padding: 6px 14px;
         border-radius: 8px;
@@ -623,7 +623,7 @@ import { RouterModule } from "@angular/router";
       /* ================= CTA ================= */
 
       .cta-section {
-        background: linear-gradient(135deg, #4338ca, #818cf8);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 52%, #3b82f6 100%);
         padding: 100px 0;
         color: white;
         text-align: center;

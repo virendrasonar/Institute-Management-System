@@ -82,6 +82,7 @@ public class AdminService {
             if (updatedCourse.getStudentsEnrolled() != null) course.setStudentsEnrolled(updatedCourse.getStudentsEnrolled());
             if (updatedCourse.getThumbnailUrl() != null) course.setThumbnailUrl(updatedCourse.getThumbnailUrl());
             if (updatedCourse.getMaterials() != null) course.setMaterials(updatedCourse.getMaterials());
+            if (updatedCourse.getModules() != null) course.setModules(updatedCourse.getModules());
 
             if (updatedCourse.getVideoType() != null || updatedCourse.getVideoUrl() != null) {
                 course.setVideoType(updatedCourse.getVideoType());

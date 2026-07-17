@@ -49,6 +49,19 @@ public class EnrollmentService {
                 .orElseGet(() -> createEnrollment(course, student));
     }
 
+    @Transactional
+    public Enrollment enrollExistingStudent(Long courseId, Long studentId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Course not found"));
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new IllegalArgumentException("Student not found"));
+        if (!"ACTIVE".equalsIgnoreCase(student.getStatus())) {
+            throw new IllegalArgumentException("Student is not active");
+        }
+        return enrollmentRepository.findByCourseIdAndStudentEmailIgnoreCase(courseId, student.getEmail())
+                .orElseGet(() -> createEnrollment(course, student));
+    }
+
     @Transactional(readOnly = true)
     public Enrollment getByAccessToken(String token) {
         return enrollmentRepository.findByAccessToken(token)

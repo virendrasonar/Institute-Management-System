@@ -294,6 +294,23 @@ import { Course } from "../../../models/course.model";
                 </mat-form-field>
               </div>
 
+              <div class="form-section slide-in-left module-section">
+                <div class="field-header">
+                  <mat-icon>view_list</mat-icon>
+                  <span>Course Modules & Video Links</span>
+                </div>
+                <mat-form-field appearance="fill" class="ultra-field">
+                  <mat-label>Modules</mat-label>
+                  <textarea matInput formControlName="modules" rows="6"
+                    placeholder="Module 1: Introduction | https://www.youtube.com/watch?v=VIDEO_ID&#10;Module 2: Core Concepts | https://youtu.be/VIDEO_ID"></textarea>
+                  <mat-hint>Add one module per line. Use “Module title | YouTube link”.</mat-hint>
+                </mat-form-field>
+                <div class="module-tip">
+                  <mat-icon>tips_and_updates</mat-icon>
+                  <span>Each module becomes a separate lesson with its own completion checkbox.</span>
+                </div>
+              </div>
+
               <div class="form-section slide-in-left">
                 <div class="field-header">
                   <mat-icon>library_books</mat-icon>
@@ -834,6 +851,25 @@ import { Course } from "../../../models/course.model";
         font-weight: 600;
       }
 
+      .module-tip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: #eef2ff;
+        color: #4338ca;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .module-tip mat-icon {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 20px !important;
+      }
+
       .field-header {
         display: flex;
         align-items: center;
@@ -1273,6 +1309,7 @@ export class CourseFormComponent implements OnInit {
       thumbnailUrl: [""],
       videoType: ["NONE"],
       videoUrl: [""],
+      modules: [""],
       materials: [""],
     }, { validators: this.courseMediaValidator });
   }
@@ -1299,6 +1336,7 @@ export class CourseFormComponent implements OnInit {
             thumbnailUrl: course.thumbnailUrl || "",
             videoType: course.videoType || "NONE",
             videoUrl: course.videoUrl || "",
+            modules: course.modules || "",
             materials: course.materials || "",
           });
         },

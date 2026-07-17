@@ -58,6 +58,9 @@ public class Course {
     @Column(columnDefinition = "TEXT")
     private String materials;
 
+    @Column(columnDefinition = "TEXT")
+    private String modules;
+
     public Course() {}
 
     public Course(String name, String description) {
@@ -105,6 +108,8 @@ public class Course {
 
     public String getMaterials() { return materials; }
 
+    public String getModules() { return modules; }
+
     // =========================
     // SETTERS
     // =========================
@@ -144,4 +149,6 @@ public class Course {
     public void setVideoId(String videoId) { this.videoId = videoId; }
 
     public void setMaterials(String materials) { this.materials = materials; }
+
+    public void setModules(String modules) { this.modules = modules; }
 }

@@ -20,14 +20,11 @@ import { AdminAuthService } from "../../services/admin-auth.service";
       <mat-card class="login-card">
         <div class="login-icon"><mat-icon>admin_panel_settings</mat-icon></div>
         <h1>Admin Login</h1>
-        <p>Sign in to access institute management tools.</p>
+        <p>Access the institute workspace for courses, students, enrollments, messages, and reports.</p>
 
-        <div class="demo-credentials" aria-label="Default admin login credentials">
-          <span>Default admin access</span>
-          <strong>Email:</strong>
-          <code>admin&#64;example.com</code>
-          <strong>Password:</strong>
-          <code>Admin&#64;123</code>
+        <div class="access-note" aria-label="Admin workspace access note">
+          <mat-icon>verified_user</mat-icon>
+          <span>Admin workspace</span>
         </div>
 
         <form [formGroup]="loginForm" (ngSubmit)="submit()">
@@ -61,15 +58,11 @@ import { AdminAuthService } from "../../services/admin-auth.service";
       border-radius: 20px; color: white; background: linear-gradient(135deg,#4338ca,#8b5cf6); }
     .login-icon mat-icon { width: 38px; height: 38px; font-size: 38px; }
     h1 { margin: 0 0 8px; color: #1f2937; font-size: 2rem; }
-    p { margin: 0 0 28px; color: #6b7280; }
-    .demo-credentials { display: grid; grid-template-columns: auto 1fr; gap: 8px 10px; align-items: center;
-      margin: 0 0 22px; padding: 14px 16px; border-radius: 14px; text-align: left;
-      background: #f5f3ff; border: 1px solid #ddd6fe; color: #4c1d95; }
-    .demo-credentials span { grid-column: 1 / -1; font-size: .78rem; font-weight: 800; letter-spacing: .08em;
-      text-transform: uppercase; color: #6d28d9; }
-    .demo-credentials strong { font-size: .88rem; }
-    .demo-credentials code { padding: 3px 8px; border-radius: 8px; background: white; color: #312e81;
-      font-family: inherit; font-weight: 700; word-break: break-all; }
+    p { margin: 0 0 22px; color: #6b7280; line-height: 1.6; }
+    .access-note { display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      margin: 0 0 22px; padding: 10px 14px; border-radius: 999px;
+      background: #eef2ff; border: 1px solid #c7d2fe; color: #4338ca; font-weight: 800; }
+    .access-note mat-icon { width: 18px; height: 18px; font-size: 18px; }
     form { display: grid; gap: 12px; }
     mat-form-field { width: 100%; }
     button { height: 50px; border-radius: 12px; color: white !important;

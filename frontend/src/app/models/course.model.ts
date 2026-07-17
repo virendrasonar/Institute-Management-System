@@ -17,6 +17,7 @@ export interface Course {
   videoUrl?: string;
   videoId?: string;
   materials?: string;
+  modules?: string;
   hasVideo?: boolean;
   materialsPreview?: string[];
 }

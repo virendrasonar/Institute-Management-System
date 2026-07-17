@@ -2,7 +2,7 @@ import { Injectable, computed, signal } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, finalize, tap } from "rxjs";
 import { environment } from "src/environments/environment";
-import { StudentDashboard } from "../models/course.model";
+import { EnrollmentResult, StudentDashboard } from "../models/course.model";
 
 export interface StudentSession {
   accessToken: string;
@@ -32,6 +32,12 @@ export class StudentAuthService {
 
   getDashboard(): Observable<StudentDashboard> {
     return this.http.get<StudentDashboard>(`${environment.apiUrl}/api/student/dashboard`, {
+      headers: this.authHeaders(),
+    });
+  }
+
+  enrollInCourse(courseId: number): Observable<EnrollmentResult> {
+    return this.http.post<EnrollmentResult>(`${environment.apiUrl}/api/student/courses/${courseId}/enroll`, {}, {
       headers: this.authHeaders(),
     });
   }

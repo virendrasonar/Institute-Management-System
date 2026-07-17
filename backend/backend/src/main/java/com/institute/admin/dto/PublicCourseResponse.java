@@ -22,6 +22,7 @@ public record PublicCourseResponse(
         Integer studentsEnrolled,
         String thumbnailUrl,
         boolean hasVideo,
+        String modules,
         List<String> materialsPreview) {
 
     public static PublicCourseResponse from(Course course) {
@@ -31,6 +32,7 @@ public record PublicCourseResponse(
                 course.getPrerequisites(), course.getFeatures(), course.getInstructor(),
                 course.getRating(), course.getStudentsEnrolled(), course.getThumbnailUrl(),
                 "YOUTUBE".equals(course.getVideoType()) || "UPLOADED".equals(course.getVideoType()),
+                course.getModules(),
                 previewMaterials(course.getMaterials()));
     }
 

@@ -2,6 +2,7 @@ package com.institute.admin.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.institute.admin.dto.StudentDashboardResponse;
+import com.institute.admin.dto.EnrollmentResponse;
 import com.institute.admin.model.Student;
 import com.institute.admin.repository.StudentRepository;
 import com.institute.admin.services.EnrollmentService;
@@ -53,6 +55,19 @@ public class StudentAuthController {
                     .orElseThrow(() -> new IllegalArgumentException("Student not found"));
             return ResponseEntity.ok(StudentDashboardResponse.from(student,
                     enrollmentService.getStudentEnrollments(studentId)));
+        } catch (IllegalArgumentException exception) {
+            return ResponseEntity.status(401).build();
+        }
+    }
+
+    @PostMapping("/courses/{courseId}/enroll")
+    public ResponseEntity<EnrollmentResponse> enrollInCourse(
+            @PathVariable Long courseId,
+            @RequestHeader(value = "Authorization", required = false) String authorization) {
+        try {
+            Long studentId = authService.requireStudentId(extractToken(authorization));
+            return ResponseEntity.ok(EnrollmentResponse.from(
+                    enrollmentService.enrollExistingStudent(courseId, studentId)));
         } catch (IllegalArgumentException exception) {
             return ResponseEntity.status(401).build();
         }

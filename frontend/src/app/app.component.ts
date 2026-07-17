@@ -4,6 +4,7 @@ import { RouterOutlet, Router, NavigationEnd } from "@angular/router";
 import { filter } from "rxjs/operators";
 import { NavigationComponent } from "./components/shared/navigation/navigation.component";
 import { FooterComponent } from "./components/shared/footer/footer.component";
+import { StudentAuthService } from "./services/student-auth.service";
 
 @Component({
   selector: "app-root",
@@ -17,7 +18,7 @@ import { FooterComponent } from "./components/shared/footer/footer.component";
         <router-outlet></router-outlet>
       </main>
 
-      <app-footer></app-footer>
+      <app-footer *ngIf="!studentAuth.isAuthenticated()"></app-footer>
     </div>
   `,
   styles: [
@@ -37,7 +38,7 @@ import { FooterComponent } from "./components/shared/footer/footer.component";
 export class AppComponent {
   title = "Institute Management System";
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public readonly studentAuth: StudentAuthService) {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {

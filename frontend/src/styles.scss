@@ -129,14 +129,14 @@ body {
 }
 
 .mat-mdc-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: var(--shadow-deep), var(--shadow-glow);
+  transform: none !important;
+  box-shadow: var(--shadow-float) !important;
   border-color: rgba(102, 126, 234, 0.3) !important;
 }
 
 .mat-mdc-card:hover::after {
-  opacity: 1;
-  animation: cardShimmer 2s ease-in-out infinite;
+  opacity: 0;
+  animation: none;
 }
 
 @keyframes cardShimmer {
