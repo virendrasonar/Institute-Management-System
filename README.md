@@ -1,7 +1,7 @@
 # Institute Management System
 
 <!-- Replace this placeholder with a repository banner or product screenshot. -->
-![Institute Management System Banner](./ui-blue-purple-desktop.png)
+![Institute Management System Home](docs/screenshots/home.png)
 
 ![Java](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
@@ -77,13 +77,17 @@ An institute operations platform built with Spring Boot, Angular, JPA, and relat
 |---|---|
 | ![Home](docs/screenshots/home.png) | ![Course Catalog](docs/screenshots/course-catalog.png) |
 
-| Admin Dashboard | Admin Menu |
+| Student Dashboard | Admin Dashboard |
 |---|---|
-| ![Admin Dashboard](docs/screenshots/admin-dashboard.png) | ![Admin Menu](docs/screenshots/admin-menu.png) |
+| ![Student Dashboard](docs/screenshots/student-dashboard.png) | ![Admin Dashboard](docs/screenshots/admin-dashboard.png) |
 
 | Student Management | Reports |
 |---|---|
 | ![Student Management](docs/screenshots/student-management.png) | ![Reports](docs/screenshots/reports.png) |
+
+| Admin Menu |
+|---|
+| ![Admin Menu](docs/screenshots/admin-menu.png) |
 
 ## Architecture Diagram
 
